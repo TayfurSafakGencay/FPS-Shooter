@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="899317de-2363-4c2a-b5e9-981aeff7816f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/GunConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/GunConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/ShootConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/ShootConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerFire.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerFire.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/AK47.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/AK47.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Data/AK47 Shoot Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Data/AK47 Shoot Config.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/VFXManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/VFXManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +104,7 @@
       <workItem from="1726500154180" duration="1748000" />
       <workItem from="1726503122065" duration="12284000" />
       <workItem from="1726552032681" duration="8490000" />
-      <workItem from="1726667815695" duration="4833000" />
+      <workItem from="1726667815695" duration="5268000" />
     </task>
     <servers />
   </component>

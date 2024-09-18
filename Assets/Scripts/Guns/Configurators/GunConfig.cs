@@ -3,6 +3,7 @@ using Guns.Enum;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.VFX;
 
 namespace Guns.Configurators
 {
@@ -27,7 +28,7 @@ namespace Guns.Configurators
     private float _stopShootingTime;
     private bool _lastFrameWantedToShoot;
     
-    private ParticleSystem _shootSystem;
+    private VisualEffect _shootSystem;
     private ObjectPool<TrailRenderer> _trailPool;
 
     public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour)
@@ -40,7 +41,7 @@ namespace Guns.Configurators
       _model.transform.localPosition = SpawnPoint;
       _model.transform.localRotation = Quaternion.Euler(SpawnRotation);
 
-      _shootSystem = _model.GetComponentInChildren<ParticleSystem>();
+      _shootSystem = _model.GetComponentInChildren<VisualEffect>();
     }
 
     public void Shoot()
@@ -83,6 +84,7 @@ namespace Guns.Configurators
         quaternion.Euler(SpawnRotation),
         Time.deltaTime * ShootConfig.RecoilRecoverySpeed
       );
+      
       if (wantsToShoot)
       {
         _lastFrameWantedToShoot = true;
