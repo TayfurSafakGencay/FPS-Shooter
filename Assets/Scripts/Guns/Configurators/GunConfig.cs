@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Guns.Enum;
+using Interface;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -17,6 +18,7 @@ namespace Guns.Configurators
     public Vector3 SpawnPoint;
     public Vector3 SpawnRotation;
     
+    public DamageConfig DamageConfig;
     public ShootConfig ShootConfig;
     public TrailConfig TrailConfig;
 
@@ -50,7 +52,6 @@ namespace Guns.Configurators
       {
         float lastDuration = Mathf.Clamp(0, (_stopShootingTime - _initialClickTime), ShootConfig.MaxSpreadTime);
         float lerpTime = (ShootConfig.RecoilRecoverySpeed - (Time.time - _stopShootingTime)) / ShootConfig.RecoilRecoverySpeed;
-
 
         _initialClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
       }
@@ -118,10 +119,14 @@ namespace Guns.Configurators
 
       trail.transform.position = endPoint;
 
-      // if (hit.collider != null)
-      // {
-      //   SurfaceManager.Instance.HandleImpact(hit.transform.gameObject, endPoint, hit.normal, ImpactType, 0);
-      // }
+      if (hit.collider != null)
+      {
+        //   SurfaceManager.Instance.HandleImpact(hit.transform.gameObject, endPoint, hit.normal, ImpactType, 0);
+        if (hit.collider.TryGetComponent(out IDamageable damageable))
+        {
+          damageable.TakeDamage(DamageConfig.GetDamage(distance));
+        }
+      }
 
       yield return new WaitForSeconds(TrailConfig.Duration);
       yield return null;

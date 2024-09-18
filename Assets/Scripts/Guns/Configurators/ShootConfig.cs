@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Guns.Enum;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -47,7 +46,7 @@ namespace Guns.Configurators
 
     private Vector3 GetTextureDirection(float shootTime)
     {
-      Vector2 halfSize = new Vector2(SpreadTexture.width / 2f, SpreadTexture.height/ 2f);
+      Vector2 halfSize = new(SpreadTexture.width / 2f, SpreadTexture.height/ 2f);
       int halfSquareExtents = Mathf.CeilToInt(Mathf.Lerp(0.01f, halfSize.x, Mathf.Clamp01(shootTime / MaxSpreadTime)));
       
       int minX = Mathf.FloorToInt(halfSize.x) - halfSquareExtents;
