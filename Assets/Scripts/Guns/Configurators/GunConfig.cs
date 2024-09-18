@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Guns.Enum;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -20,7 +21,12 @@ namespace Guns.Configurators
 
     private MonoBehaviour _activeMonoBehaviour;
     private GameObject _model;
+    
     private float _lastShotTime;
+    private float _initialClickTime;
+    private float _stopShootingTime;
+    private bool _lastFrameWantedToShoot;
+    
     private ParticleSystem _shootSystem;
     private ObjectPool<TrailRenderer> _trailPool;
 
@@ -39,16 +45,23 @@ namespace Guns.Configurators
 
     public void Shoot()
     {
+      if (Time.time - _lastShotTime - ShootConfig.FireRate > Time.deltaTime)
+      {
+        float lastDuration = Mathf.Clamp(0, (_stopShootingTime - _initialClickTime), ShootConfig.MaxSpreadTime);
+        float lerpTime = (ShootConfig.RecoilRecoverySpeed - (Time.time - _stopShootingTime)) / ShootConfig.RecoilRecoverySpeed;
+
+
+        _initialClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
+      }
+      
       if (Time.time > ShootConfig.FireRate + _lastShotTime)
       {
         _lastShotTime = Time.time;
         _shootSystem.Play();
-        
-        float spreadX = Random.Range(-ShootConfig.Spread.x, ShootConfig.Spread.x);
-        float spreadY = Random.Range(-ShootConfig.Spread.y, ShootConfig.Spread.y);
-        float spreadZ = Random.Range(-ShootConfig.Spread.z, ShootConfig.Spread.z);
-        Vector3 shootDirection = _shootSystem.transform.forward + new Vector3(spreadX, spreadY, spreadZ);
-        shootDirection.Normalize();
+
+        Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - _initialClickTime);
+        _model.transform.forward += _model.transform.TransformDirection(spreadAmount);
+        Vector3 shootDirection = _model.transform.forward;
 
         if (Physics.Raycast(_shootSystem.transform.position, shootDirection, out RaycastHit hit, float.MaxValue, ShootConfig.HitMask))
         {
@@ -60,6 +73,25 @@ namespace Guns.Configurators
               _shootSystem.transform.position + shootDirection * TrailConfig.MissDistance,
             new RaycastHit()));
         }
+      }
+    }
+
+    public void Tick(bool wantsToShoot)
+    {
+      _model.transform.localRotation = Quaternion.Lerp(
+        _model.transform.localRotation,
+        quaternion.Euler(SpawnRotation),
+        Time.deltaTime * ShootConfig.RecoilRecoverySpeed
+      );
+      if (wantsToShoot)
+      {
+        _lastFrameWantedToShoot = true;
+        Shoot();
+      }
+      else if (!wantsToShoot && _lastFrameWantedToShoot)
+      {
+        _stopShootingTime = Time.time;
+        _lastFrameWantedToShoot = false;
       }
     }
     

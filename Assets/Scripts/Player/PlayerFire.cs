@@ -11,9 +11,9 @@ namespace Player
 
     private void Update()
     {
-      if (Mouse.current.leftButton.isPressed && _gunSelector.ActiveGun != null)
+      if (_gunSelector.ActiveGun != null)
       {
-        _gunSelector.ActiveGun.Shoot();
+        _gunSelector.ActiveGun.Tick(Mouse.current.leftButton.isPressed);
       }
     }
   }
