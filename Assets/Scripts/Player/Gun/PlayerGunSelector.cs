@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Guns.Configurators;
 using Guns.Enum;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace Player.Gun
 
     [Header("Runtime Filled")]
     public GunConfig ActiveGun;
+    
+    private Action _onGunChanged;
 
     private void Start()
     {
@@ -37,6 +40,12 @@ namespace Player.Gun
 
       ActiveGun = gun;
       gun.Spawn(GunParent, this);
+      _onGunChanged?.Invoke();
+    }
+    
+    public void AddEventListenerOnGunChanged(Action action)
+    {
+      _onGunChanged += action;
     }
   }
 }

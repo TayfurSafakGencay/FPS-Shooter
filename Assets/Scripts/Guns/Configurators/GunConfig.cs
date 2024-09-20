@@ -19,6 +19,7 @@ namespace Guns.Configurators
     public Vector3 SpawnRotation;
     
     public DamageConfig DamageConfig;
+    public AmmoConfig AmmoConfig;
     public ShootConfig ShootConfig;
     public TrailConfig TrailConfig;
 
@@ -65,6 +66,8 @@ namespace Guns.Configurators
         _model.transform.forward += _model.transform.TransformDirection(spreadAmount);
         Vector3 shootDirection = _model.transform.forward;
 
+        AmmoConfig.CurrentClipAmmo--;
+        
         if (Physics.Raycast(_shootSystem.transform.position, shootDirection, out RaycastHit hit, float.MaxValue, ShootConfig.HitMask))
         {
           _activeMonoBehaviour.StartCoroutine(PlayTrail(_shootSystem.transform.position, hit.point, hit));
@@ -76,6 +79,16 @@ namespace Guns.Configurators
             new RaycastHit()));
         }
       }
+    }
+    
+    public bool CanReload()
+    {
+      return AmmoConfig.CanReload();
+    }
+    
+    public void EndReload()
+    {
+      AmmoConfig.Reload();
     }
 
     public void Tick(bool wantsToShoot)
@@ -89,7 +102,11 @@ namespace Guns.Configurators
       if (wantsToShoot)
       {
         _lastFrameWantedToShoot = true;
-        Shoot();
+
+        if (AmmoConfig.CurrentClipAmmo > 0)
+        {
+          Shoot();
+        }
       }
       else if (!wantsToShoot && _lastFrameWantedToShoot)
       {
