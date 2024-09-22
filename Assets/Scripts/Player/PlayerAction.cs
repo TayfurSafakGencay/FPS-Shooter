@@ -40,6 +40,7 @@ namespace Player
       {
         _isReloading = true;
         _playerAnimationController.Reload();
+        _gunSelector.ActiveGun.StartReloading();
       }
     }
 

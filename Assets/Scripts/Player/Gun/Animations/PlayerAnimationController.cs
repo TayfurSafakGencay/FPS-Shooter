@@ -41,7 +41,6 @@ namespace Player.Gun.Animations
 
     private void OnAnimationEventDispatch(AnimationEventKey eventKey)
     {
-      print(eventKey);
       switch (eventKey)
       {
         case AnimationEventKey.Detach_Magazine:

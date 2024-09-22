@@ -22,9 +22,11 @@ namespace Guns.Configurators
     public AmmoConfig AmmoConfig;
     public ShootConfig ShootConfig;
     public TrailConfig TrailConfig;
+    public AudioConfig AudioConfig;
 
     private MonoBehaviour _activeMonoBehaviour;
     private GameObject _model;
+    private AudioSource _audioSource;
     
     private float _lastShotTime;
     private float _initialClickTime;
@@ -45,9 +47,10 @@ namespace Guns.Configurators
       _model.transform.localRotation = Quaternion.Euler(SpawnRotation);
 
       _shootSystem = _model.GetComponentInChildren<VisualEffect>();
+      _audioSource = _model.GetComponent<AudioSource>();
     }
 
-    public void Shoot()
+    public void TryToShoot()
     {
       if (Time.time - _lastShotTime - ShootConfig.FireRate > Time.deltaTime)
       {
@@ -60,7 +63,15 @@ namespace Guns.Configurators
       if (Time.time > ShootConfig.FireRate + _lastShotTime)
       {
         _lastShotTime = Time.time;
+
+        if (AmmoConfig.CurrentClipAmmo == 0)
+        {
+          AudioConfig.PlayOutOfAmmoClip(_audioSource);
+          return;
+        }
+        
         _shootSystem.Play();
+        AudioConfig.PlayShootingClip(_audioSource, AmmoConfig.CurrentClipAmmo);
 
         Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - _initialClickTime);
         _model.transform.forward += _model.transform.TransformDirection(spreadAmount);
@@ -79,6 +90,11 @@ namespace Guns.Configurators
             new RaycastHit()));
         }
       }
+    }
+
+    public void StartReloading()
+    {
+      AudioConfig.PlayReloadClip(_audioSource);
     }
     
     public bool CanReload()
@@ -102,11 +118,7 @@ namespace Guns.Configurators
       if (wantsToShoot)
       {
         _lastFrameWantedToShoot = true;
-
-        if (AmmoConfig.CurrentClipAmmo > 0)
-        {
-          Shoot();
-        }
+        TryToShoot();
       }
       else if (!wantsToShoot && _lastFrameWantedToShoot)
       {
