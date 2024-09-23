@@ -15,10 +15,10 @@ MonoBehaviour:
   HitMask:
     serializedVersion: 2
     m_Bits: 448
-  FireRate: 0.125
-  RecoilRecoverySpeed: 10
-  MaxSpreadTime: 25
-  SpreadType: 2
-  Spread: {x: 0.05, y: 0.05, z: 0.05}
+  FireRate: 0.1
+  RecoilRecoverySpeed: 35
+  MaxSpreadTime: 1.6
+  SpreadType: 1
+  Spread: {x: 0.5, y: 0.5, z: 0}
   SpreadMultiplier: 0.1
   SpreadTexture: {fileID: 2800000, guid: bce43503518074f40aaca9d808ac14a3, type: 3}

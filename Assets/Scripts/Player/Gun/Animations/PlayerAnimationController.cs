@@ -1,7 +1,6 @@
 ﻿using Guns;
 using Guns.GunParts;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Player.Gun.Animations
 {
@@ -18,6 +17,7 @@ namespace Player.Gun.Animations
     private void Awake()
     {
       GetComponent<PlayerGunSelector>().AddEventListenerOnGunChanged(OnGunChanged);
+        
       _playerAction = GetComponent<PlayerAction>();
     }
 
@@ -52,6 +52,9 @@ namespace Player.Gun.Animations
         case AnimationEventKey.Attach_Magazine:
           AttachMagazine();
           break;
+        case AnimationEventKey.PULL_TRIGGER:
+          PullTrigger();
+          break;
       }
     }
 
@@ -69,6 +72,7 @@ namespace Player.Gun.Animations
     {
       _magazine = Instantiate(_gunPart.Magazine, _gunPart.LeftHand, true);
       _gunPart.Magazine.SetActive(false);
+      _playerAction.Reloading(0);
     }
     
     private void DropMagazine()
@@ -82,6 +86,12 @@ namespace Player.Gun.Animations
     {
       _gunPart.Magazine.SetActive(true);
       Destroy(_magazine);
+      _playerAction.Reloading(1);
+    }
+
+    private void PullTrigger()
+    {
+      _playerAction.Reloading(2);
     }
     
     #endregion

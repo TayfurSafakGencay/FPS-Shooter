@@ -93,9 +93,9 @@ namespace Guns.Configurators
       }
     }
 
-    public void StartReloading()
+    public void Reloading(int section)
     {
-      AudioConfig.PlayReloadClip(_audioSource);
+      AudioConfig.PlayReloadClip(_audioSource, section);
     }
     
     public bool CanReload()

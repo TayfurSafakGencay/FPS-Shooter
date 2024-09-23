@@ -33,7 +33,7 @@ namespace Guns.Configurators
             Random.Range(-Spread.x, Spread.x),
             Random.Range(-Spread.y, Spread.y),
             Random.Range(-Spread.z, Spread.z)),
-          Mathf.Clamp01(shootTime / MaxSpreadTime));
+          Mathf.Clamp01(shootTime / MaxSpreadTime * Time.deltaTime));
       }
       else if (SpreadType == BulletSpreadType.TextureBased)
       {
@@ -73,6 +73,11 @@ namespace Guns.Configurators
       Vector2 direction = (targetPosition - halfSize) / halfSize.x;
 
       return direction;
+    }
+
+    public void Reload()
+    {
+      
     }
   }
 }

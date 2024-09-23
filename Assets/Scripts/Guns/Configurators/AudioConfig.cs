@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Guns.Configurators
 {
@@ -14,7 +15,8 @@ namespace Guns.Configurators
 
     public AudioClip EmptyClip;
 
-    public AudioClip ReloadClip;
+    [FormerlySerializedAs("ReloadClip")]
+    public AudioClip[] ReloadClips;
     
     public void PlayShootingClip(AudioSource audioSource, int bulletCount)
     {
@@ -26,7 +28,7 @@ namespace Guns.Configurators
       {
         audioSource.PlayOneShot(FireClips[1], Volume);
       }
-      else if (bulletCount <= 5)
+      else
       {
         audioSource.PlayOneShot(LastBulletsClip, Volume);
       }
@@ -40,11 +42,11 @@ namespace Guns.Configurators
       }
     }
     
-    public void PlayReloadClip(AudioSource audioSource)
+    public void PlayReloadClip(AudioSource audioSource, int section)
     {
-      if (ReloadClip != null)
+      if (ReloadClips != null)
       {
-        audioSource.PlayOneShot(ReloadClip, Volume);
+        audioSource.PlayOneShot(ReloadClips[section], Volume);
       }
     }
   }

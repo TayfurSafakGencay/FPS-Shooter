@@ -53,5 +53,6 @@ namespace Guns
     Detach_Magazine,
     Drop_Magazine,
     Attach_Magazine,
+    PULL_TRIGGER,
   }
 }

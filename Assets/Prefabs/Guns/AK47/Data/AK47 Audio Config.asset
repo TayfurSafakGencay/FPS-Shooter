@@ -18,4 +18,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0174540d7cd20034cad6e247ddecc623, type: 3}
   LastBulletsClip: {fileID: 8300000, guid: 098db962e4701e74982d79e62c6f680f, type: 3}
   EmptyClip: {fileID: 8300000, guid: d1c2aac9d06a96949ac8ffa6b00ee197, type: 3}
-  ReloadClip: {fileID: 8300000, guid: d564c310489cdb4419256f580b17938c, type: 3}
+  ReloadClips:
+  - {fileID: 8300000, guid: 3a652a19e837a2540899ac9453037f85, type: 3}
+  - {fileID: 8300000, guid: ad9a927ac1e2e25488569c6d3322ae9b, type: 3}
+  - {fileID: 8300000, guid: a5ca3d1555fb6434db36fc456a2bcbdc, type: 3}

@@ -36,13 +36,17 @@ namespace Player
          && Application.isFocused && _gunSelector.ActiveGun != null);
     }
 
+    public void Reloading(int section)
+    {
+      _gunSelector.ActiveGun.Reloading(section);
+    }
+
     private void ReloadAction()
     {
       if (ShouldManualReload() || ShouldAutoReload())
       {
         _isReloading = true;
         _playerAnimationController.Reload();
-        _gunSelector.ActiveGun.StartReloading();
       }
     }
 
