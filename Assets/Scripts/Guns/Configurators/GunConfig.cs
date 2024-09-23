@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Guns.Enum;
 using Interface;
+using Surfaces;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -154,6 +155,10 @@ namespace Guns.Configurators
         if (hit.collider.TryGetComponent(out IDamageable damageable))
         {
           damageable.TakeDamage(DamageConfig.GetDamage(distance));
+        }
+        else if (hit.collider.TryGetComponent(out ISurface surface))
+        {
+          surface.Hit(endPoint, Quaternion.LookRotation(hit.normal));
         }
       }
 

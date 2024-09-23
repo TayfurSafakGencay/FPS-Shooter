@@ -30,6 +30,8 @@ namespace Player
 
     private void FireAction()
     {
+      if (_isReloading) return;
+      
       _gunSelector.ActiveGun.Tick(Mouse.current.leftButton.isPressed 
          && Application.isFocused && _gunSelector.ActiveGun != null);
     }
