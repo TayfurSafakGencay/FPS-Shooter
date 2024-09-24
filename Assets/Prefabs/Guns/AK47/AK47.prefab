@@ -6825,6 +6825,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftHand: {fileID: 5722516440957622905}
   Magazine: {fileID: 6533172319367944016}
+  LeftIkObject: {fileID: 1176306829140418669}
+  RightIkObject: {fileID: 6824743404584442856}
 --- !u!82 &-7290730368756293977
 AudioSource:
   m_ObjectHideFlags: 0
