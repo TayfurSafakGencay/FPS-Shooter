@@ -6022,6 +6022,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1649070078180378606}
   - component: {fileID: 1885934877708394203}
+  - component: {fileID: 7121373552953621399}
+  - component: {fileID: 1236196556273638151}
   m_Layer: 0
   m_Name: Gun - AK47
   m_TagString: Untagged
@@ -6124,6 +6126,39 @@ LODGroup:
     - renderer: {fileID: 1308981227653863678}
     - renderer: {fileID: 2501583076597096481}
   m_Enabled: 1
+--- !u!95 &7121373552953621399
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850856707225163501}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: adcf3d0bbdd3bde4f9d6d30975280285, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1236196556273638151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850856707225163501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9f9be977d74a1583cbbc0ccff3e134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7906127279227382455
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ namespace Player.Gun.Animations
   {
     private Animator _animator;
 
+    private ArmAnimator _armAnimator;
+    
     private GunAnimator _gunAnimator;
 
     private PlayerAction _playerAction;
@@ -23,10 +25,12 @@ namespace Player.Gun.Animations
 
     private void OnGunChanged()
     {
+      _armAnimator = GetComponentInChildren(typeof(ArmAnimator)) as ArmAnimator;
       _gunAnimator = GetComponentInChildren(typeof(GunAnimator)) as GunAnimator;
-      if (_gunAnimator != null)
+      
+      if (_armAnimator != null)
       {
-        _animator = _gunAnimator.GetAnimator();
+        _animator = _armAnimator.GetAnimator();
         Bindings();
 
         _gunPart = GetComponentInChildren<GunPart>();
@@ -35,8 +39,7 @@ namespace Player.Gun.Animations
     
     private void Bindings()
     {
-      _gunAnimator.AddEventListenerOnReloadEnd(_playerAction.EndReload);
-      _gunAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
+      _armAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
     }
 
     private void OnAnimationEventDispatch(AnimationEventKey eventKey)
@@ -54,6 +57,9 @@ namespace Player.Gun.Animations
           break;
         case AnimationEventKey.PULL_TRIGGER:
           PullTrigger();
+          break;
+        case AnimationEventKey.END_RELOAD:
+          EndReload();
           break;
       }
     }
@@ -85,13 +91,19 @@ namespace Player.Gun.Animations
     private void AttachMagazine()
     {
       _gunPart.Magazine.SetActive(true);
-      Destroy(_magazine);
       _playerAction.Reloading(1);
+      Destroy(_magazine);
     }
 
     private void PullTrigger()
     {
+      _gunAnimator.PlayAnimation(GunAnimationEventKey.ChargingTheBolt);
       _playerAction.Reloading(2);
+    }
+    
+    private void EndReload()
+    {
+      _playerAction.EndReload();
     }
     
     #endregion
