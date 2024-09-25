@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Guns.Enum;
+using Guns.GunParts;
 using Interface;
 using Surfaces;
 using Unity.Mathematics;
@@ -36,6 +37,7 @@ namespace Guns.Configurators
     
     private VisualEffect _shootSystem;
     private ObjectPool<TrailRenderer> _trailPool;
+    private Transform _aimPoint;
 
     public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour)
     {
@@ -49,6 +51,7 @@ namespace Guns.Configurators
 
       _shootSystem = _model.GetComponentInChildren<VisualEffect>();
       _audioSource = _model.GetComponent<AudioSource>();
+      _aimPoint = _model.GetComponent<GunPart>().transform;
     }
 
     public void TryToShoot()

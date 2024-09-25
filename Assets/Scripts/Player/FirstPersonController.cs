@@ -1,4 +1,5 @@
 using System.Collections;
+using Player.Gun.Animations;
 using UnityEngine;
 
 namespace Player
@@ -8,6 +9,8 @@ namespace Player
         public bool CanMove { get; private set; } = true;
         private bool _isSprinting => _canSprint && Input.GetKey(_sprintKey);
         private bool _shouldJump => _canJump && Input.GetKeyDown(_jumpKey) && _characterController.isGrounded;
+
+        private bool _isMoving;
         
         private bool _shouldCrouch => (Input.GetKeyDown(_crouchKey)||Input.GetKeyUp(_crouchKey)) && !_duringCrouchAnimation && _characterController.isGrounded; 
 
@@ -52,10 +55,10 @@ namespace Player
         private bool _duringCrouchAnimation;
         
         [Header("Head Bob Parameters")]
-        [SerializeField] private float _walkBobSpeed = 14f;
-        [SerializeField] private float _walkBobAmount = 0.05f;
+        [SerializeField] private float _walkBobSpeed = 10f;
+        [SerializeField] private float _walkBobAmount = 0.035f;
         [SerializeField] private float _runBobSpeed = 18f;
-        [SerializeField] private float _runBobAmount = 0.01f;
+        [SerializeField] private float _runBobAmount = 0.1f;
         [SerializeField] private float _crouchBobSpeed = 8f;
         [SerializeField] private float _crouchBobAmount = 0.025f;
         private float _defaultYPos;
@@ -81,6 +84,7 @@ namespace Player
         }
         
         private CharacterController _characterController;
+        private PlayerAnimationController _playerAnimationController;
 
         private Vector3 _moveDirection;
         private Vector2 _currentInput;
@@ -90,6 +94,7 @@ namespace Player
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
+            _playerAnimationController = GetComponent<PlayerAnimationController>();
             _defaultYPos = _camera.transform.localPosition.y;
             
             Cursor.lockState = CursorLockMode.Locked;
@@ -118,8 +123,20 @@ namespace Player
         
         private void HandleMovement()
         {
-            _currentInput = new Vector2(Input.GetAxis("Horizontal") * _currentSpeed,
-                Input.GetAxis("Vertical") * _currentSpeed);
+            float horizontalMove = Input.GetAxis("Horizontal");
+            float verticalMove = Input.GetAxis("Vertical");
+            
+            if (horizontalMove != 0 || verticalMove != 0)
+            {
+                _isMoving = true;
+            }
+            else
+            {
+                _isMoving = false;
+            }
+            
+            _currentInput = new Vector2(horizontalMove * _currentSpeed,
+                verticalMove * _currentSpeed);
             
             float moveDirectionY = _moveDirection.y;
             _moveDirection = transform.TransformDirection(Vector3.forward) * _currentInput.y +
@@ -189,6 +206,8 @@ namespace Player
                     _camera.transform.localPosition.x,
                     _defaultYPos + Mathf.Sin(_timer) * _bobAmount,
                     _camera.transform.localPosition.z);
+                
+                _playerAnimationController.ApplyBob(_timer, _bobSpeed, _bobAmount);
             }
         }
 
@@ -204,5 +223,18 @@ namespace Player
             
             _characterController.Move(_moveDirection * Time.deltaTime);
         }
+        
+
+        #region Getters & Setters
+
+        public bool GetIsMoving() => _isMoving;
+        
+        public bool GetIsRunning() => _isSprinting;
+        
+        public bool GetIsCrouching() => _isCrouching;
+        
+        public bool GetCanMove() => CanMove;
+
+        #endregion
     }
 }

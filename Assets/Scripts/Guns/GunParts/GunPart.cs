@@ -7,5 +7,11 @@ namespace Guns.GunParts
     public Transform LeftHand;
     
     public GameObject Magazine;
+
+    public Transform AimPoint;
+
+    public Transform LeftIkObject;
+    
+    public Transform RightIkObject;
   }
 }

@@ -15,11 +15,14 @@ namespace Player
 
     private PlayerAnimationController _playerAnimationController;
 
+    private FirstPersonController _firstPersonController;
+
     private bool _isReloading;
 
     private void Awake()
     {
       _playerAnimationController = GetComponent<PlayerAnimationController>();
+      _firstPersonController = GetComponent<FirstPersonController>();
     }
 
     private void Update()
@@ -30,7 +33,7 @@ namespace Player
 
     private void FireAction()
     {
-      if (_isReloading) return;
+      if (_isReloading || _firstPersonController.GetIsRunning()) return;
       
       _gunSelector.ActiveGun.Tick(Mouse.current.leftButton.isPressed 
          && Application.isFocused && _gunSelector.ActiveGun != null);

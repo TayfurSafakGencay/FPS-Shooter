@@ -1,5 +1,4 @@
-﻿using Guns;
-using Guns.GunParts;
+﻿using Guns.GunParts;
 using UnityEngine;
 
 namespace Player.Gun.Animations
@@ -34,6 +33,8 @@ namespace Player.Gun.Animations
         Bindings();
 
         _gunPart = GetComponentInChildren<GunPart>();
+        
+        SetInitialGunHeight();
       }
     }
     
@@ -106,6 +107,74 @@ namespace Player.Gun.Animations
       _playerAction.EndReload();
     }
     
+    #endregion
+
+    #region Run & Walk
+    
+    private bool _isRunning => _firstPersonController.GetIsRunning();
+
+    private bool _movingAnimationValue;
+
+    private Transform _gun;
+
+    private Vector3 _defaultGunPosition;
+    
+    private Vector3 _leftHandDefaultPosition;
+    
+    private Vector3 _rightHandDefaultPosition;
+    
+    private FirstPersonController _firstPersonController;
+
+    private const string _move = "Move";
+    private void FixedUpdate()
+    {
+      if (_isRunning && !_movingAnimationValue)
+      {
+        _animator.SetBool(_move, true);
+        _movingAnimationValue = true;
+      }
+      else if (!_isRunning && _movingAnimationValue)
+      {
+        _animator.SetBool(_move, false);
+        _movingAnimationValue = false;
+      }
+    }
+
+    private void SetInitialGunHeight()
+    {
+      _gun = _gunAnimator.transform;
+      _defaultGunPosition = _gun.transform.localPosition;
+      _leftHandDefaultPosition = _gunPart.LeftIkObject.localPosition;
+      _rightHandDefaultPosition = _gunPart.RightIkObject.localPosition;
+      _firstPersonController = GetComponent<FirstPersonController>();
+    }
+    
+    public void ApplyBob(float timer, float bobSpeed, float bobAmount)
+    {
+      bobAmount /= 8;
+      bobSpeed /= 8;
+      
+      timer += Time.deltaTime * bobSpeed;
+      
+      _gun.transform.localPosition = new Vector3(
+        _defaultGunPosition.x + Mathf.Sin(timer) * bobAmount,
+        _defaultGunPosition.y + Mathf.Sin(timer) * bobAmount,
+        _defaultGunPosition.z + Mathf.Sin(timer) * bobAmount);
+      
+      bobAmount /= 1.25f;
+      
+      _gunPart.LeftIkObject.transform.localPosition = new Vector3(
+        _leftHandDefaultPosition.x + Mathf.Sin(timer) * bobAmount,
+        _leftHandDefaultPosition.y + Mathf.Sin(timer) * bobAmount,
+        _leftHandDefaultPosition.z + Mathf.Sin(timer) * bobAmount);
+      
+      _gunPart.RightIkObject.transform.localPosition = new Vector3(
+        _rightHandDefaultPosition.x + Mathf.Sin(timer) * bobAmount,
+        _rightHandDefaultPosition.y + Mathf.Sin(timer) * bobAmount,
+        _rightHandDefaultPosition.z + Mathf.Sin(timer) * bobAmount);
+    }
+    
+
     #endregion
   }
 }

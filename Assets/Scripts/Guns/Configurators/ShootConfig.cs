@@ -74,10 +74,5 @@ namespace Guns.Configurators
 
       return direction;
     }
-
-    public void Reload()
-    {
-      
-    }
   }
 }
