@@ -1,4 +1,5 @@
-﻿using Guns.GunParts;
+﻿using Base.Enum;
+using Guns.GunParts;
 using UnityEngine;
 
 namespace Player.Gun.Animations
@@ -56,9 +57,6 @@ namespace Player.Gun.Animations
         case AnimationEventKey.Attach_Magazine:
           AttachMagazine();
           break;
-        case AnimationEventKey.PULL_TRIGGER:
-          PullTrigger();
-          break;
         case AnimationEventKey.END_RELOAD:
           EndReload();
           break;
@@ -86,7 +84,8 @@ namespace Player.Gun.Animations
     {
       GameObject droppedMagazine = Instantiate(_magazine, _magazine.transform.position, new Quaternion(0,0,90,1));
       droppedMagazine.AddComponent<Rigidbody>();
-      droppedMagazine.AddComponent<BoxCollider>().size = new Vector3(0.025f, 0.2f, 0.075f);
+      droppedMagazine.AddComponent<BoxCollider>().size = _gunPart.MagazineColliderSize;
+      droppedMagazine.transform.gameObject.layer = (int)Layer.OnlyVisual;
     }
 
     private void AttachMagazine()
@@ -96,11 +95,6 @@ namespace Player.Gun.Animations
       Destroy(_magazine);
     }
 
-    private void PullTrigger()
-    {
-      _gunAnimator.PlayAnimation(GunAnimationEventKey.ChargingTheBolt);
-      _playerAction.Reloading(2);
-    }
     
     private void EndReload()
     {

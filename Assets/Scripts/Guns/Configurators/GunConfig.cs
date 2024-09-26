@@ -1,7 +1,6 @@
 ﻿using System.Collections;
+using Base.Interface;
 using Guns.Enum;
-using Guns.GunParts;
-using Interface;
 using Surfaces;
 using Unity.Mathematics;
 using UnityEngine;
@@ -15,7 +14,6 @@ namespace Guns.Configurators
   {
     // public ImpactType ImpactType;
     public GunType GunType;
-    public string Name;
     public GameObject ModelPrefab;
     public Vector3 SpawnPoint;
     public Vector3 SpawnRotation;
@@ -37,7 +35,6 @@ namespace Guns.Configurators
     
     private VisualEffect _shootSystem;
     private ObjectPool<TrailRenderer> _trailPool;
-    private Transform _aimPoint;
 
     public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour)
     {
@@ -51,7 +48,6 @@ namespace Guns.Configurators
 
       _shootSystem = _model.GetComponentInChildren<VisualEffect>();
       _audioSource = _model.GetComponent<AudioSource>();
-      _aimPoint = _model.GetComponent<GunPart>().transform;
     }
 
     public void TryToShoot()

@@ -3,5 +3,6 @@
   public enum GunType
   {
     AK47,
+    M4
   }
 }

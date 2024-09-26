@@ -1,4 +1,4 @@
-﻿using Interface;
+﻿using Base.Interface;
 using UnityEngine;
 
 namespace Enemy

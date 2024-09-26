@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 45889241}
   - component: {fileID: 45889240}
   - component: {fileID: 45889239}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 157361779}
   - component: {fileID: 157361778}
   - component: {fileID: 157361777}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 209115195}
   - component: {fileID: 209115194}
   - component: {fileID: 209115193}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -812,7 +812,7 @@ GameObject:
   - component: {fileID: 391352514}
   - component: {fileID: 391352515}
   - component: {fileID: 391352516}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -915,10 +915,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd0c4a774cd4128855ba316e7f803f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gun: 0
+  Gun: 1
   GunParent: {fileID: 1190031401}
-  Guns:
-  - {fileID: 11400000, guid: 76ba7bd8d29c10d428e7f1492b12bf3c, type: 2}
+  Guns: {fileID: 11400000, guid: e9d78df5fe3cc6e419a15ec7f0235d31, type: 2}
   ActiveGun: {fileID: 0}
 --- !u!114 &391352515
 MonoBehaviour:
@@ -1063,7 +1062,7 @@ GameObject:
   - component: {fileID: 487501145}
   - component: {fileID: 487501144}
   - component: {fileID: 487501143}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1731,7 +1730,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1190031401}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GunSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2489,7 +2488,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 7, y: 7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1959505247
 MonoBehaviour:
@@ -2504,15 +2503,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2645,7 +2644,7 @@ GameObject:
   - component: {fileID: 2093086873}
   - component: {fileID: 2093086872}
   - component: {fileID: 2093086875}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

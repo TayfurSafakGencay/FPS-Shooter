@@ -35,7 +35,6 @@ namespace Player.Gun.Animations
     Detach_Magazine,
     Drop_Magazine,
     Attach_Magazine,
-    PULL_TRIGGER,
     END_RELOAD,
   }
   public class AnimationEvent : UnityEvent<AnimationEventKey>

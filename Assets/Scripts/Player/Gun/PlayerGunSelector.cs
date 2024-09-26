@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Guns.Configurators;
 using Guns.Enum;
 using UnityEngine;
@@ -16,7 +15,7 @@ namespace Player.Gun
     private Transform GunParent;
 
     [SerializeField]
-    private List<GunConfig> Guns;
+    private GunsList Guns;
 
     [Header("Runtime Filled")]
     public GunConfig ActiveGun;
@@ -30,7 +29,7 @@ namespace Player.Gun
 
     private void EquipGun()
     {
-      GunConfig gun = Guns.Find(g => g.GunType == Gun);
+      GunConfig gun = Guns.GunConfigs.Find(g => g.GunType == Gun);
 
       if (gun == null)
       {

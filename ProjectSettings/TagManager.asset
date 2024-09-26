@@ -11,13 +11,13 @@ TagManager:
   - 
   - Water
   - UI
+  - 
+  - 
+  - Player
   - Enemy
   - Wall
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - OnlyVisual
   - 
   - 
   - 

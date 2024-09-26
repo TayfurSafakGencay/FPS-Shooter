@@ -15,7 +15,7 @@ MonoBehaviour:
   Volume: 0.304
   FireClips:
   - {fileID: 8300000, guid: 0174540d7cd20034cad6e247ddecc623, type: 3}
-  - {fileID: 8300000, guid: 0174540d7cd20034cad6e247ddecc623, type: 3}
+  - {fileID: 8300000, guid: 1b7739598629d9a40b9611a3287c4ea3, type: 3}
   LastBulletsClip: {fileID: 8300000, guid: 098db962e4701e74982d79e62c6f680f, type: 3}
   EmptyClip: {fileID: 8300000, guid: d1c2aac9d06a96949ac8ffa6b00ee197, type: 3}
   ReloadClips:
