@@ -15,12 +15,13 @@ namespace Enemy
     public event IDamageable.TakeDamageEvent OnTakeDamage;
     public event IDamageable.DeathEvent OnDeath;
 
+
     private void OnEnable()
     {
       CurrentHealth = _maxHealth;
     }
-
-    public void TakeDamage(int damage)
+    
+    public void TakeDamage(int damage, Vector3 forceDirection, Vector3 hitPoint)
     {
       print(damage);
       int damageTaken = Mathf.Clamp(damage, 0, CurrentHealth);
@@ -33,7 +34,7 @@ namespace Enemy
 
       if (CurrentHealth == 0 && damageTaken != 0)
       {
-        OnDeath?.Invoke(transform.position);
+        OnDeath?.Invoke(damage, forceDirection, hitPoint);
       }
     }
   }

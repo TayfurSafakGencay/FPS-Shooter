@@ -11,9 +11,9 @@ namespace Base.Interface
     public delegate void TakeDamageEvent(int damage);
     public event TakeDamageEvent OnTakeDamage;
 
-    public delegate void DeathEvent(Vector3 position);
+    public delegate void DeathEvent(int damage, Vector3 forceDirection, Vector3 hitPoint);
     public event DeathEvent OnDeath;
     
-    public void TakeDamage(int damage);
+    public void TakeDamage(int damage, Vector3 forceDirection, Vector3 hitPoint);
   }
 }
