@@ -16,6 +16,8 @@ namespace Player
     private PlayerAnimationController _playerAnimationController;
 
     private FirstPersonController _firstPersonController;
+    
+    private CameraOperations _cameraOperations;
 
     private bool _isReloading;
 
@@ -23,6 +25,7 @@ namespace Player
     {
       _playerAnimationController = GetComponent<PlayerAnimationController>();
       _firstPersonController = GetComponent<FirstPersonController>();
+      _cameraOperations = GetComponent<CameraOperations>();
     }
 
     private void Update()
@@ -35,8 +38,14 @@ namespace Player
     {
       if (_isReloading || _firstPersonController.GetIsRunning()) return;
       
-      _gunSelector.ActiveGun.Tick(Mouse.current.leftButton.isPressed 
-         && Application.isFocused && _gunSelector.ActiveGun != null);
+      bool conditions = Mouse.current.leftButton.isPressed 
+                        && Application.isFocused && _gunSelector.ActiveGun != null;
+      _gunSelector.ActiveGun.Tick(conditions);
+
+      if (conditions)
+      {
+        _cameraOperations.ShakingForShooting();
+      }
     }
 
     public void Reloading(int section)

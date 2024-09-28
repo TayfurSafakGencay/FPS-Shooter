@@ -7,5 +7,6 @@
     Wall,
     Ground,
     OnlyVisual,
+    Environment
   }
 }

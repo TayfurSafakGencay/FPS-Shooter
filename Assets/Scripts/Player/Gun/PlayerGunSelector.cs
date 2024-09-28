@@ -9,6 +9,9 @@ namespace Player.Gun
   public class PlayerGunSelector : MonoBehaviour
   {
     [SerializeField]
+    private Camera _playerCamera;
+    
+    [SerializeField]
     private GunType Gun;
 
     [SerializeField]
@@ -38,7 +41,7 @@ namespace Player.Gun
       }
 
       ActiveGun = gun;
-      gun.Spawn(GunParent, this);
+      gun.Spawn(GunParent, this, _playerCamera);
       _onGunChanged?.Invoke();
     }
     

@@ -25,6 +25,7 @@ namespace Guns.Configurators
     public AudioConfig AudioConfig;
 
     private MonoBehaviour _activeMonoBehaviour;
+    private Camera _activeCamera;
     private GameObject _model;
     private AudioSource _audioSource;
     
@@ -36,9 +37,10 @@ namespace Guns.Configurators
     private VisualEffect _shootSystem;
     private ObjectPool<TrailRenderer> _trailPool;
 
-    public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour)
+    public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour, Camera activeCamera)
     {
       _activeMonoBehaviour = activeMonoBehaviour;
+      _activeCamera = activeCamera;
       _lastShotTime = 0;
       _trailPool = new ObjectPool<TrailRenderer>(CreateTrail);
       
@@ -48,6 +50,11 @@ namespace Guns.Configurators
 
       _shootSystem = _model.GetComponentInChildren<VisualEffect>();
       _audioSource = _model.GetComponent<AudioSource>();
+    }
+    
+    public void UpdateCamera(Camera activeCamera)
+    {
+      _activeCamera = activeCamera;
     }
 
     public void TryToShoot()
@@ -75,11 +82,12 @@ namespace Guns.Configurators
 
         Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - _initialClickTime);
         _model.transform.forward += _model.transform.TransformDirection(spreadAmount);
-        Vector3 shootDirection = _model.transform.forward;
+
+        Vector3 shootDirection = _activeCamera.transform.forward + _activeCamera.transform.TransformDirection(spreadAmount);
 
         AmmoConfig.CurrentClipAmmo--;
         
-        if (Physics.Raycast(_shootSystem.transform.position, shootDirection, out RaycastHit hit, float.MaxValue, ShootConfig.HitMask))
+        if (Physics.Raycast(GetRaycastOrigin(), shootDirection, out RaycastHit hit, float.MaxValue, ShootConfig.HitMask))
         {
           _activeMonoBehaviour.StartCoroutine(PlayTrail(_shootSystem.transform.position, hit.point, hit));
         }
@@ -91,20 +99,13 @@ namespace Guns.Configurators
         }
       }
     }
+    
+    public Vector3 GetRaycastOrigin()
+    {
+      Vector3 origin = _activeCamera.transform.position + _activeCamera.transform.forward *
+        Vector3.Distance(_activeCamera.transform.position, _shootSystem.transform.position);
 
-    public void Reloading(int section)
-    {
-      AudioConfig.PlayReloadClip(_audioSource, section);
-    }
-    
-    public bool CanReload()
-    {
-      return AmmoConfig.CanReload();
-    }
-    
-    public void EndReload()
-    {
-      AmmoConfig.Reload();
+      return origin;
     }
 
     public void Tick(bool wantsToShoot)
@@ -150,10 +151,12 @@ namespace Guns.Configurators
 
       if (hit.collider != null)
       {
-        //   SurfaceManager.Instance.HandleImpact(hit.transform.gameObject, endPoint, hit.normal, ImpactType, 0);
         if (hit.collider.TryGetComponent(out IDamageable damageable))
         {
-          damageable.TakeDamage(DamageConfig.GetDamage(distance));
+          Vector3 forceDirection = (hit.point - startPoint).normalized;
+          forceDirection.y = 1;
+          
+          damageable.TakeDamage(DamageConfig.GetDamage(distance), forceDirection, hit.point);
         }
         else if (hit.collider.TryGetComponent(out ISurface surface))
         {
@@ -182,6 +185,21 @@ namespace Guns.Configurators
       trailRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
       return trailRenderer;
+    }
+    
+    public void Reloading(int section)
+    {
+      AudioConfig.PlayReloadClip(_audioSource, section);
+    }
+    
+    public bool CanReload()
+    {
+      return AmmoConfig.CanReload();
+    }
+    
+    public void EndReload()
+    {
+      AmmoConfig.Reload();
     }
   }
 }
