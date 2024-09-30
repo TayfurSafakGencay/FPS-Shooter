@@ -19,6 +19,6 @@ MonoBehaviour:
   RecoilRecoverySpeed: 35
   MaxSpreadTime: 1.6
   SpreadType: 1
-  Spread: {x: 0.5, y: 0.5, z: 0}
+  Spread: {x: 0.25, y: 0.25, z: 0}
   SpreadMultiplier: 0.1
   SpreadTexture: {fileID: 2800000, guid: bce43503518074f40aaca9d808ac14a3, type: 3}
