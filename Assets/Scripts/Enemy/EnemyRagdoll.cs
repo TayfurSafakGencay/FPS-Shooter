@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Enemy
 {
@@ -11,20 +10,29 @@ namespace Enemy
       Ragdoll
     }
     
-    private Rigidbody[] _ragdollRigidbodies;
+    private BodyPart[] _bodyParts;
 
     private Animator _animator;
 
-    private CharacterController _characterController;
-
     private ZombieState _state = ZombieState.Walk;
+
+    private CharacterController _characterController;
     
     private void Awake()
     {
-      _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
       _animator = GetComponent<Animator>();
+      _bodyParts = GetComponentsInChildren<BodyPart>();
       _characterController = GetComponent<CharacterController>();
-      
+
+      Enemy enemy = GetComponent<Enemy>();
+      for (int i = 0; i < _bodyParts.Length; i++)
+      {
+        _bodyParts[i].SetManager(enemy);
+      }
+    }
+
+    private void Start()
+    {
       DisableRagdoll();
     }
 
@@ -41,12 +49,12 @@ namespace Enemy
       }
     }
 
-    public void OnDeath(int damage, Vector3 direction, Vector3 hitPoint)
+    public void Death(int damage, Vector3 direction, Vector3 hitPoint, Rigidbody hitRb)
     {
-      Vector3 force = damage * direction * 10;
+      Vector3 force = damage * direction;
       EnableRagdoll();
       
-      Rigidbody hitRb = _ragdollRigidbodies.OrderBy(rb => Vector3.Distance(rb.transform.position, hitPoint)).First();
+      // Rigidbody hitRb = _ragdollRigidbodies.OrderBy(rb => Vector3.Distance(rb.transform.position, hitPoint)).First();
       
       hitRb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
 
@@ -55,9 +63,9 @@ namespace Enemy
 
     private void DisableRagdoll()
     {
-      foreach (Rigidbody rb in _ragdollRigidbodies)
+      foreach (BodyPart bodyPart in _bodyParts)
       {
-        rb.isKinematic = true;
+        bodyPart.Rigidbody.isKinematic = true;
       }
       
       _animator.enabled = true; 
@@ -66,9 +74,9 @@ namespace Enemy
 
     private void EnableRagdoll()
     {
-      foreach (Rigidbody rb in _ragdollRigidbodies)
+      foreach (BodyPart bodyPart in _bodyParts)
       {
-        rb.isKinematic = false;
+        bodyPart.Rigidbody.isKinematic = false;
       }
       
       _animator.enabled = false;
@@ -82,5 +90,22 @@ namespace Enemy
     private void RagdollBehaviour()
     {
     }
+  }
+  
+  public enum BodyPartKey
+  {
+    Head,
+    UpperBody,
+    LowerBody,
+    LeftArm,
+    LeftForearm,
+    RightArm,
+    RightForearm,
+    LeftUpLeg,
+    LeftLeg,
+    LeftFoot,
+    RightUpLeg,
+    RightLeg,
+    RightFoot
   }
 }

@@ -18,20 +18,5 @@ namespace Enemy
       Health = GetComponent<EnemyHealth>();
       Ragdoll = GetComponent<EnemyRagdoll>();
     }
-
-    private void Start()
-    {
-      Health.OnDeath += Die;
-      Health.OnTakeDamage += TakeDamage;
-    }
-
-    private void Die(int damage, Vector3 forceDirection, Vector3 hitPoint)
-    {
-      Ragdoll.OnDeath(damage, forceDirection, hitPoint);
-    }
-
-    private void TakeDamage(int damage)
-    {
-    }
   }
 }
