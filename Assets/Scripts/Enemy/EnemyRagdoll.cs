@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Enemy
 {
@@ -10,7 +11,7 @@ namespace Enemy
       Ragdoll
     }
     
-    private BodyPart[] _bodyParts;
+    private List<BodyPart> _bodyParts;
 
     private Animator _animator;
 
@@ -21,11 +22,11 @@ namespace Enemy
     private void Awake()
     {
       _animator = GetComponent<Animator>();
-      _bodyParts = GetComponentsInChildren<BodyPart>();
+      _bodyParts = new List<BodyPart>(GetComponentsInChildren<BodyPart>());
       _characterController = GetComponent<CharacterController>();
 
       Enemy enemy = GetComponent<Enemy>();
-      for (int i = 0; i < _bodyParts.Length; i++)
+      for (int i = 0; i < _bodyParts.Count; i++)
       {
         _bodyParts[i].SetManager(enemy);
       }
@@ -49,7 +50,7 @@ namespace Enemy
       }
     }
 
-    public void Death(int damage, Vector3 direction, Vector3 hitPoint, Rigidbody hitRb)
+    public void Death(float damage, Vector3 direction, Vector3 hitPoint, Rigidbody hitRb)
     {
       Vector3 force = damage * direction;
       EnableRagdoll();
@@ -90,22 +91,10 @@ namespace Enemy
     private void RagdollBehaviour()
     {
     }
-  }
-  
-  public enum BodyPartKey
-  {
-    Head,
-    UpperBody,
-    LowerBody,
-    LeftArm,
-    LeftForearm,
-    RightArm,
-    RightForearm,
-    LeftUpLeg,
-    LeftLeg,
-    LeftFoot,
-    RightUpLeg,
-    RightLeg,
-    RightFoot
+
+    public void RemoveBodyPart(BodyPart bodyPart)
+    {
+      _bodyParts.Remove(bodyPart);
+    }
   }
 }

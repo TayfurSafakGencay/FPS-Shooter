@@ -5,18 +5,18 @@ namespace Enemy
   public class EnemyHealth : MonoBehaviour
   {
     [SerializeField]
-    private int _maxHealth = 100;
+    private float _maxHealth = 100;
 
-    public int CurrentHealth { get; set; }
+    public float CurrentHealth { get; set; }
 
     private void OnEnable()
     {
       CurrentHealth = _maxHealth;
     }
     
-    public bool TakeDamage(int damage)
+    public bool TakeDamage(float damage)
     {
-      int damageTaken = Mathf.Clamp(damage, 0, CurrentHealth);
+      float damageTaken = Mathf.Clamp(damage, 0, CurrentHealth);
       CurrentHealth -= damageTaken;
 
       return CurrentHealth <= 0;

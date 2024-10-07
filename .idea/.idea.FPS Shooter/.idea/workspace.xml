@@ -6,23 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="899317de-2363-4c2a-b5e9-981aeff7816f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Data/AK47 Shoot Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Data/AK47 Shoot Config.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Data/AK47 Trail Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Data/AK47 Trail Config.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/AK47.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/AK47.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/TrailMaterial/AK47 Trail Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/TrailMaterial/AK47 Trail Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Data/M4 Trail Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Data/M4 Trail Config.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/TrailMaterial/M4 Trail Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/TrailMaterial/M4 Trail Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Data/M4 Shoot Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Data/M4 Shoot Config.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DemoScene/DemoScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DemoScene/DemoScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Base/Interface/IDamageable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Base/Interface/IDamageable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/BodyPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/BodyPart.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyHealth.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyRagdoll.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyRagdoll.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-Balanced.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-Balanced.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-Performant.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-Performant.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/BurstAotSettings_StandaloneWindows.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/BurstAotSettings_StandaloneWindows.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/CommonBurstAotSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/CommonBurstAotSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +25,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0a26430ee1d947a9914cfe4c16ad4c086000/24/654b8c90/RequiredByNativeCodeAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9ae153a4144543aca4f16814b7ce3264175e00/a9/819f374e/SerializeField.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Packets/FolderColor/Editor/CustomWindowFileImage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Controls/KeyControl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Devices/Keyboard.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
@@ -150,7 +141,14 @@
       <workItem from="1727509971801" duration="12973000" />
       <workItem from="1727550523918" duration="2252000" />
       <workItem from="1727617743215" duration="9266000" />
-      <workItem from="1727688340070" duration="1606000" />
+      <workItem from="1727688340070" duration="6324000" />
+      <workItem from="1727793654383" duration="4776000" />
+      <workItem from="1727849196645" duration="1301000" />
+      <workItem from="1727867930385" duration="7063000" />
+      <workItem from="1727980272566" duration="2145000" />
+      <workItem from="1728023003282" duration="2829000" />
+      <workItem from="1728041970044" duration="3049000" />
+      <workItem from="1728294000043" duration="4606000" />
     </task>
     <servers />
   </component>
