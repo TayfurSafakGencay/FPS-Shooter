@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Base.Interface;
 using Managers;
+using Managers.Manager;
 using UnityEngine;
 
 namespace Enemy

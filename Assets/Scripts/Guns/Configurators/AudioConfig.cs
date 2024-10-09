@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
+﻿using Audio;
+using Managers;
+using Managers.Manager;
+using UnityEngine;
 
 namespace Guns.Configurators
 {
@@ -9,44 +11,35 @@ namespace Guns.Configurators
     [Range(0, 1f)]
     public float Volume = 1f;
 
-    public AudioClip[] FireClips;
+    public SoundKey FireClips;
 
-    public AudioClip LastBulletsClip;
+    public SoundKey LastBulletsClip;
 
-    public AudioClip EmptyClip;
+    public SoundKey EmptyMagClip;
 
-    [FormerlySerializedAs("ReloadClip")]
-    public AudioClip[] ReloadClips;
-    
+    public SoundKey[] ReloadClips;
+
+    private SoundManager _soundManager;
+    private void Awake()
+    {
+      _soundManager = SoundManager.Instance;
+    }
+
     public void PlayShootingClip(AudioSource audioSource, int bulletCount)
     {
-      if (bulletCount > 15)
-      {
-        audioSource.PlayOneShot(FireClips[0], Volume);
-      }
-      else if (bulletCount > 6)
-      {
-        audioSource.PlayOneShot(FireClips[1], Volume);
-      }
-      else
-      {
-        audioSource.PlayOneShot(LastBulletsClip, Volume);
-      }
+      _soundManager.PlayOneShot(bulletCount > 6 ? FireClips : LastBulletsClip, audioSource, Volume);
     }
     
     public void PlayOutOfAmmoClip(AudioSource audioSource)
     {
-      if (EmptyClip != null)
-      {
-        audioSource.PlayOneShot(EmptyClip, Volume);
-      }
+      _soundManager.PlayOneShot(EmptyMagClip, audioSource, Volume);
     }
     
     public void PlayReloadClip(AudioSource audioSource, int section)
     {
       if (ReloadClips != null)
       {
-        audioSource.PlayOneShot(ReloadClips[section], Volume);
+        _soundManager.PlayOneShot(ReloadClips[section], audioSource, Volume);
       }
     }
   }

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers.Base;
 using UnityEngine;
 
-namespace Managers
+namespace Managers.Manager
 {
-  public class ParticleManager : MonoBehaviour
+  public class ParticleManager : ManagerBase
   {
     public static ParticleManager Instance { get; private set; }
+    
     [SerializeField]
     private Transform _parent;
     
@@ -23,13 +25,20 @@ namespace Managers
 
     private void Awake()
     {
-      if (Instance == null)
+      if (Instance == null) Instance = this; 
+      else Destroy(gameObject);
+    }
+
+    public override void Initialize()
+    {
+      AddAction(ref GameManager.Instance.GameStateChanged, OnGameStateChanged);
+    }
+
+    private void OnGameStateChanged()
+    {
+      if (ActivatedGameStates.Contains(GameManager.Instance.CurrentGameState))
       {
-        Instance = this;
-      }
-      else
-      {
-        Destroy(gameObject);
+        Activate();
       }
     }
 
