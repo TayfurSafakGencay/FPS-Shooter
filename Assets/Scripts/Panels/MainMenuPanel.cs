@@ -1,5 +1,4 @@
 ﻿using Audio;
-using Managers;
 using Managers.Manager;
 using UnityEngine;
 
@@ -19,7 +18,7 @@ namespace Panels
     
     public void Options()
     {
-      Debug.Log("Options");
+      PanelManager.Instance.CreatePanel(PanelKey.SettingsPanel);
     }
     
     public void QuitGame()

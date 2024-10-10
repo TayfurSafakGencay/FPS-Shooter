@@ -42,7 +42,7 @@ namespace Managers.Manager
       }
     }
 
-    private async void CreatePanel(PanelKey panelKey)
+    public async void CreatePanel(PanelKey panelKey)
     {
       if (!_panelHandles.ContainsKey(panelKey))
       {
@@ -68,10 +68,13 @@ namespace Managers.Manager
   public enum PanelKey
   {
     MainMenuPanel,  
+    SettingsPanel,
   }
   
   public struct PanelLayer
   {
     public const int MainMenuPanel = 10;
+    public const int SettingsPanel = 20;
+    public const int SettingsPanelContent = 30;
   }
 }

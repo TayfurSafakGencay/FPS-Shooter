@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Base.Interface;
 using Guns.Enum;
+using Managers.Manager;
 using Surfaces;
 using Unity.Mathematics;
 using UnityEngine;
@@ -50,6 +51,7 @@ namespace Guns.Configurators
 
       _shootSystem = _model.GetComponentInChildren<VisualEffect>();
       _audioSource = _model.GetComponent<AudioSource>();
+      SoundManager.Instance.AttachMixerGroupToAudioSourceForSFX(ref _audioSource);
     }
     
     public void UpdateCamera(Camera activeCamera)
