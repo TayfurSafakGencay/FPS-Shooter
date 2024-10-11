@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2771363964366803421}
   - component: {fileID: 1042612790236051889}
   - component: {fileID: 24645601070567141}
+  - component: {fileID: 1403742645401869030}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -134,6 +135,18 @@ MonoBehaviour:
           m_StringArgument: IntroCinematic
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1403742645401869030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302388235715058535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5011dc5d7f4c00806433f9e6335c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2028934341724022459
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,6 +560,7 @@ GameObject:
   - component: {fileID: 5999314045177056339}
   - component: {fileID: 1526405297008279021}
   - component: {fileID: 1886179477689037311}
+  - component: {fileID: 6204454484746032206}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -669,6 +683,18 @@ MonoBehaviour:
           m_StringArgument: IntroCinematic
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6204454484746032206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5550941904302465061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5011dc5d7f4c00806433f9e6335c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5809013181371478349
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +984,7 @@ GameObject:
   - component: {fileID: 3629805638751891808}
   - component: {fileID: 239596586983114686}
   - component: {fileID: 6904331597286881450}
+  - component: {fileID: 8438131005729999303}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -1080,6 +1107,18 @@ MonoBehaviour:
           m_StringArgument: IntroCinematic
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8438131005729999303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6957955319805045511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5011dc5d7f4c00806433f9e6335c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7319659717785926824
 GameObject:
   m_ObjectHideFlags: 0

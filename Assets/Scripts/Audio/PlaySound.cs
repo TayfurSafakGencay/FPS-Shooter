@@ -1,5 +1,4 @@
-﻿using Managers;
-using Managers.Manager;
+﻿using Managers.Manager;
 using UnityEngine;
 
 namespace Audio
@@ -13,7 +12,7 @@ namespace Audio
 
     public void Start()
     {
-      SoundManager.Instance.PlaySound(SoundKey, Volume);
+      // SoundManager.Instance.PlaySound(SoundKey, Volume);
     }
   }
 }

@@ -51,7 +51,7 @@ namespace Guns.Configurators
 
       _shootSystem = _model.GetComponentInChildren<VisualEffect>();
       _audioSource = _model.GetComponent<AudioSource>();
-      SoundManager.Instance.AttachMixerGroupToAudioSourceForSFX(ref _audioSource);
+      _audioSource.outputAudioMixerGroup = SoundManager.Instance.GetMixerGroupToAudioSourceForSFX();
     }
     
     public void UpdateCamera(Camera activeCamera)

@@ -9,6 +9,11 @@
     MainMenuMusic = 1,
     // --- SFX --- //
     
+    // --- UI --- //
+    
+    ButtonHover = 14,
+    ButtonClick = 15,
+    
     // In Game
     
     // --- Music --- //

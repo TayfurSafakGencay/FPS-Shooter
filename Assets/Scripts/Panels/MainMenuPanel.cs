@@ -1,5 +1,6 @@
 ﻿using Audio;
 using Managers.Manager;
+using Panels.Base;
 using UnityEngine;
 
 namespace Panels

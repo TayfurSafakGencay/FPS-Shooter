@@ -1,4 +1,5 @@
 ﻿using Managers.Manager;
+using Panels.Base;
 using TMPro;
 using UnityEngine;
 using Slider = UnityEngine.UI.Slider;

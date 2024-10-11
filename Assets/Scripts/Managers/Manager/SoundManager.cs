@@ -25,6 +25,9 @@ namespace Managers.Manager
 
     [SerializeField]
     private AudioSource _uiAudioSource;
+    
+    [SerializeField]
+    private AudioSource _uiAudioSource2;
 
     [Header("Audio Mixer Groups")]
     private const string _masterMixerGroupKey = "Master";
@@ -76,7 +79,9 @@ namespace Managers.Manager
     {
       _musicAudioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_musicMixerGroupKey)[0];
       _sfxAudioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_sfxMixerGroupKey)[0];
+      
       _uiAudioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_uiMixerGroupKey)[0];
+      _uiAudioSource2.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_uiMixerGroupKey)[0];
     }
 
     public void PlayMusic(SoundKey soundKey)
@@ -88,9 +93,27 @@ namespace Managers.Manager
       _musicAudioSource.Play();
     }
     
-    public void PlaySound(SoundKey soundKey, float volume = 1)
+    public void PlayUISound(SoundKey soundKey, float volume = 1, int uiAudioSourceIndex = 1)
     {
       SoundDTO soundDto = _soundsData.GetSound(soundKey);
+
+      switch (uiAudioSourceIndex)
+      {
+        case 1:
+          PlayUISound(ref _uiAudioSource, soundDto, volume);
+          break;
+        case 2:
+          PlayUISound(ref _uiAudioSource2, soundDto, volume);
+          break;
+      }
+    }
+
+    private void PlayUISound(ref AudioSource audioSource, SoundDTO soundDto, float volume = 1)
+    {
+      audioSource.clip = soundDto.AudioClip;
+      audioSource.volume = soundDto.Volume * volume;
+      
+      audioSource.Play();
     }
     
     public void PlaySound(SoundKey soundKey, ref AudioSource audioSource, float volume = 1)
@@ -107,11 +130,13 @@ namespace Managers.Manager
       audioSource.PlayOneShot(_soundsData.GetSound(soundKey).AudioClip, volume);
     }
     
-    public void AttachMixerGroupToAudioSourceForSFX(ref AudioSource audioSource)
+    public AudioMixerGroup GetMixerGroupToAudioSourceForSFX()
     {
-      audioSource.outputAudioMixerGroup = _sfxAudioSource.outputAudioMixerGroup;
+      return _sfxAudioSource.outputAudioMixerGroup;
     }
-    
+
+    #region Set Volume
+
     private const float _minDb = -80;
     
     private const float _maxDb = 0;
@@ -139,6 +164,8 @@ namespace Managers.Manager
     {
       return Mathf.Lerp(_minDb, _maxDb, normalizedValue);
     }
+    
+    #endregion
   }
   
   [Serializable]
