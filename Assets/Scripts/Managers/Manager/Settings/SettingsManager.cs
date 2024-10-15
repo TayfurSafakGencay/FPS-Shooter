@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using Managers.Base;
 
 namespace Managers.Manager.Settings
 {
-  public partial class SettingsManager : MonoBehaviour
+  public partial class SettingsManager : ManagerBase
   {
     public static SettingsManager Instance { get; private set; }
 
@@ -10,6 +10,15 @@ namespace Managers.Manager.Settings
     {
       if (Instance == null) Instance = this;
       else Destroy(gameObject);
+    }
+
+    public override void Initialize()
+    {
+      AddAction(ref GameManager.Instance.GameStateChanged, OnGameStateChange);
+    }
+
+    private void OnGameStateChange()
+    {
     }
   }
 }

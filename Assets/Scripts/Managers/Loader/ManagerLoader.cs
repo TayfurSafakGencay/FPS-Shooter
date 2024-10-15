@@ -101,6 +101,7 @@ namespace Managers.Loader
   {
     GameManager,
     DataManager,
+    SettingsManager,
     LoadingManager,
     SoundManager,
     PanelManager,
