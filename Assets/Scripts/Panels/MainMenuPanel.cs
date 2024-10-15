@@ -1,7 +1,6 @@
 ﻿using Audio;
 using Managers.Manager;
 using Panels.Base;
-using UnityEngine;
 
 namespace Panels
 {
@@ -14,12 +13,12 @@ namespace Panels
 
     public void StartGame()
     {
-      Debug.Log("Start Game");
+      LoadingManager.Instance.StartLoadingScene();
     }
     
-    public void Options()
+    public async void Options()
     {
-      PanelManager.Instance.CreatePanel(PanelKey.SettingsPanel);
+      await PanelManager.Instance.CreatePanel(PanelKey.SettingsPanel);
     }
     
     public void QuitGame()

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Managers.Base;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -27,7 +28,7 @@ namespace Managers.Manager
       AddAction(ref GameManager.Instance.GameStateChanged, OnGameStateChange);
     }
 
-    private void OnGameStateChange()
+    private async void OnGameStateChange()
     {
       if (ActivatedGameStates.Contains(GameManager.Instance.CurrentGameState))
       {
@@ -37,12 +38,17 @@ namespace Managers.Manager
       switch (GameManager.Instance.CurrentGameState)
       {
         case GameState.MainMenu:
-          CreatePanel(PanelKey.MainMenuPanel);
+          await CreatePanel(PanelKey.MainMenuPanel);
           break;
       }
     }
 
-    public async void CreatePanel(PanelKey panelKey)
+    public AsyncOperationHandle<GameObject> GetPanelHandle(PanelKey panelKey)
+    {
+      return _panelHandles[panelKey];
+    }
+
+    public async Task CreatePanel(PanelKey panelKey)
     {
       if (!_panelHandles.ContainsKey(panelKey))
       {
@@ -63,12 +69,36 @@ namespace Managers.Manager
         Debug.LogWarning($"{panelKey} already in the list!");
       }
     }
+    
+    public void RemovePanel(PanelKey panelKey)
+    {
+      if (_panelHandles.ContainsKey(panelKey))
+      {
+        Addressables.ReleaseInstance(_panelHandles[panelKey]);
+        _panelHandles.Remove(panelKey);
+      }
+      else
+      {
+        Debug.LogWarning($"{panelKey} not found in the list!");
+      }
+    }
+    
+    public void ReleaseAllPanelsAsync()
+    {
+      foreach (KeyValuePair<PanelKey, AsyncOperationHandle<GameObject>> panelHandle in _panelHandles)
+      {
+        Addressables.ReleaseInstance(panelHandle.Value);
+      }
+
+      _panelHandles.Clear();     
+    }
   }
 
   public enum PanelKey
   {
     MainMenuPanel,  
     SettingsPanel,
+    LoadingPanel,
   }
   
   public struct PanelLayer
@@ -76,5 +106,6 @@ namespace Managers.Manager
     public const int MainMenuPanel = 10;
     public const int SettingsPanel = 20;
     public const int SettingsPanelContent = 30;
+    public const int LoadingPanel = 1000;
   }
 }
