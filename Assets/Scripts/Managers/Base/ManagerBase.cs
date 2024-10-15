@@ -31,15 +31,17 @@ namespace Managers.Base
 
     public void Deactivate()
     {
-      for (int i = 0; i < actions.Count; i++)
-      {
-        actions[i] = null;
-      } 
+      ManagerLoader.Instance.DeactivateManager(Key);
     }
 
     public virtual void OnDestroy()
     {
       Deactivate();
+      
+      for (int i = 0; i < actions.Count; i++)
+      {
+        actions[i] = null;
+      }
     }
   }
 }
