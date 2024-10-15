@@ -12,13 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0045805136524b6bbee49db9b532faa8, type: 3}
   m_Name: M4 Audio Config
   m_EditorClassIdentifier: 
-  Volume: 0.304
-  FireClips:
-  - {fileID: 8300000, guid: 662e4b7218d210840b4737f3955a5115, type: 3}
-  - {fileID: 8300000, guid: 662e4b7218d210840b4737f3955a5115, type: 3}
-  LastBulletsClip: {fileID: 8300000, guid: dcb33fa2abdfb8c49948ec35fe158996, type: 3}
-  EmptyClip: {fileID: 8300000, guid: 1b7c2cc38afda614abdfea1237041fb6, type: 3}
+  FireClip:
+    AudioClip: {fileID: 8300000, guid: 662e4b7218d210840b4737f3955a5115, type: 3}
+    Volume: 0.3
+  LastBulletsClip:
+    AudioClip: {fileID: 8300000, guid: dcb33fa2abdfb8c49948ec35fe158996, type: 3}
+    Volume: 0.3
+  EmptyMagClip:
+    AudioClip: {fileID: 8300000, guid: 1b7c2cc38afda614abdfea1237041fb6, type: 3}
+    Volume: 0.3
   ReloadClips:
-  - {fileID: 8300000, guid: 93eaf07972efb424ea14ee6462847a03, type: 3}
-  - {fileID: 8300000, guid: 662bad541ad2a3d48bc3e99a34addfc2, type: 3}
-  - {fileID: 8300000, guid: f6833362e6e606546a3e545ddf36f0f4, type: 3}
+  - AudioClip: {fileID: 8300000, guid: 93eaf07972efb424ea14ee6462847a03, type: 3}
+    Volume: 0.3
+  - AudioClip: {fileID: 8300000, guid: 662bad541ad2a3d48bc3e99a34addfc2, type: 3}
+    Volume: 0.3
+  - AudioClip: {fileID: 8300000, guid: f6833362e6e606546a3e545ddf36f0f4, type: 3}
+    Volume: 0.3

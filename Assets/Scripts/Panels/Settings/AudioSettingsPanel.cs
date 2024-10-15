@@ -1,4 +1,5 @@
 ﻿using Managers.Manager;
+using Managers.Manager.Settings;
 using Panels.Base;
 using TMPro;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace Panels.Settings
     
     public void OnMasterSliderValueChanged()
     {
-      SoundManager.Instance.SetMasterVolume(_masterSlider.value);
+      SettingsManager.Instance.SetMasterVolume(_masterSlider.value);
       _masterValueText.text = $"{(int)(_masterSlider.value * 100)}%";
     }
     
@@ -29,7 +30,7 @@ namespace Panels.Settings
     
     public void OnMusicSliderValueChanged()
     {
-      SoundManager.Instance.SetMusicVolume(_musicSlider.value);
+      SettingsManager.Instance.SetMusicVolume(_musicSlider.value);
       _musicValueText.text = $"{(int)(_musicSlider.value * 100)}%";
     }
     
@@ -39,7 +40,7 @@ namespace Panels.Settings
     
     public void OnSfxSliderValueChanged()
     {
-      SoundManager.Instance.SetSFXVolume(_sfxSlider.value);
+      SettingsManager.Instance.SetSFXVolume(_sfxSlider.value);
       _sfxValueText.text = $"{(int)(_sfxSlider.value * 100)}%";
     }
     
@@ -49,7 +50,7 @@ namespace Panels.Settings
     
     public void OnUiSliderValueChanged()
     {
-      SoundManager.Instance.SetUIVolume(_uiSlider.value);
+      SettingsManager.Instance.SetUIVolume(_uiSlider.value);
       _uiValueText.text = $"{(int)(_uiSlider.value * 100)}%";
     }
   }

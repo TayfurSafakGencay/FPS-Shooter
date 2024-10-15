@@ -9,7 +9,7 @@ namespace Panels.General_UI
   {
     public void OnPointerEnter(PointerEventData eventData)
     {
-      SoundManager.Instance.PlayUISound(SoundKey.ButtonHover, 0.15f, 1);
+      SoundManager.Instance.PlayUISound(SoundKey.ButtonHover, 0.15f);
     }
 
     public void OnPointerClick(PointerEventData eventData)

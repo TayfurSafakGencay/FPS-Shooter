@@ -1,6 +1,4 @@
-﻿using Audio;
-using Managers;
-using Managers.Manager;
+﻿using System;
 using UnityEngine;
 
 namespace Guns.Configurators
@@ -8,39 +6,44 @@ namespace Guns.Configurators
   [CreateAssetMenu(fileName = "Audio Config", menuName = "Tools/Guns/Audio Config", order = 0)]
   public class AudioConfig : ScriptableObject
   {
-    [Range(0, 1f)]
-    public float Volume = 1f;
+    public SoundVo FireClip;
 
-    public SoundKey FireClips;
+    public SoundVo LastBulletsClip;
 
-    public SoundKey LastBulletsClip;
+    public SoundVo EmptyMagClip;
 
-    public SoundKey EmptyMagClip;
-
-    public SoundKey[] ReloadClips;
-
-    private SoundManager _soundManager;
-    private void Awake()
-    {
-      _soundManager = SoundManager.Instance;
-    }
-
+    public SoundVo[] ReloadClips;
+    
     public void PlayShootingClip(AudioSource audioSource, int bulletCount)
     {
-      _soundManager.PlayOneShot(bulletCount > 6 ? FireClips : LastBulletsClip, audioSource, Volume);
+      PlaySound(audioSource, bulletCount > 6 ? FireClip : LastBulletsClip);
     }
     
     public void PlayOutOfAmmoClip(AudioSource audioSource)
     {
-      _soundManager.PlayOneShot(EmptyMagClip, audioSource, Volume);
+      PlaySound(audioSource, EmptyMagClip);   
     }
     
     public void PlayReloadClip(AudioSource audioSource, int section)
     {
       if (ReloadClips != null)
       {
-        _soundManager.PlayOneShot(ReloadClips[section], audioSource, Volume);
+        PlaySound(audioSource, ReloadClips[section]);
       }
+    }
+
+    private void PlaySound(AudioSource audioSource, SoundVo soundVo)
+    {
+      audioSource.PlayOneShot(soundVo.AudioClip, soundVo.Volume);
+    }
+    
+    [Serializable]
+    public record SoundVo
+    {
+      public AudioClip AudioClip;
+      
+      [Range(0, 1)]
+      public float Volume = 0.3f;
     }
   }
 }

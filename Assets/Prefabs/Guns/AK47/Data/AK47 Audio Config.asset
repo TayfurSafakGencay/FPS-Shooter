@@ -12,13 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0045805136524b6bbee49db9b532faa8, type: 3}
   m_Name: AK47 Audio Config
   m_EditorClassIdentifier: 
-  Volume: 0.304
-  FireClips:
-  - {fileID: 8300000, guid: 0174540d7cd20034cad6e247ddecc623, type: 3}
-  - {fileID: 8300000, guid: 1b7739598629d9a40b9611a3287c4ea3, type: 3}
-  LastBulletsClip: {fileID: 8300000, guid: 098db962e4701e74982d79e62c6f680f, type: 3}
-  EmptyClip: {fileID: 8300000, guid: d1c2aac9d06a96949ac8ffa6b00ee197, type: 3}
+  FireClip:
+    AudioClip: {fileID: 8300000, guid: 0174540d7cd20034cad6e247ddecc623, type: 3}
+    Volume: 0.3
+  LastBulletsClip:
+    AudioClip: {fileID: 8300000, guid: 098db962e4701e74982d79e62c6f680f, type: 3}
+    Volume: 0.3
+  EmptyMagClip:
+    AudioClip: {fileID: 8300000, guid: d1c2aac9d06a96949ac8ffa6b00ee197, type: 3}
+    Volume: 0.3
   ReloadClips:
-  - {fileID: 8300000, guid: 3a652a19e837a2540899ac9453037f85, type: 3}
-  - {fileID: 8300000, guid: ad9a927ac1e2e25488569c6d3322ae9b, type: 3}
-  - {fileID: 8300000, guid: a5ca3d1555fb6434db36fc456a2bcbdc, type: 3}
+  - AudioClip: {fileID: 8300000, guid: 3a652a19e837a2540899ac9453037f85, type: 3}
+    Volume: 0.3
+  - AudioClip: {fileID: 8300000, guid: ad9a927ac1e2e25488569c6d3322ae9b, type: 3}
+    Volume: 0.3
+  - AudioClip: {fileID: 8300000, guid: a5ca3d1555fb6434db36fc456a2bcbdc, type: 3}
+    Volume: 0.3
