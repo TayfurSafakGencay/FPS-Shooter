@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Audio;
+using DG.Tweening;
 using Managers.Base;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -81,7 +82,7 @@ namespace Managers.Manager
           SoundsData = await LoadAudioData(AudioDataAddressableKey.MainMenuAudioData);
           break;
         case GameState.Game:
-          StopMusic();
+          StopMusicFadeOut(_musicFadeOutDuration);
           break;
       }
     }
@@ -114,6 +115,13 @@ namespace Managers.Manager
     public void StopMusic()
     {
       _musicAudioSource.Stop();
+    }
+
+    private const float _musicFadeOutDuration = 1.5f;
+
+    public void StopMusicFadeOut(float duration = _musicFadeOutDuration)
+    {
+      _musicAudioSource.DOFade(0, duration).OnComplete(StopMusic);
     }
 
     public void PlayUISound(SoundKey soundKey, float volume = 1, int uiAudioSourceIndex = 1)
