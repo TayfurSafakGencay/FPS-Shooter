@@ -45,7 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Key: 5
-  ActivatedGameStates: 03000000
-  _parent: {fileID: 6160009259754711171}
-  _particleEffectVos: []
-  _instantiateParticleEffects: []
+  ActivatedGameStates: 
+  _parent: {fileID: 0}
+  _particleEffectVos:
+  - Name: 0
+    ParticleSystem: {fileID: 961409312920285058, guid: 1ce0fb911a735d943a619c36ff43258f,
+      type: 3}
+    Count: 10
+  _instantiateParticleEffects:
+  - Name: 0
+    ParticleSystem: {fileID: 961409312920285058, guid: 1ce0fb911a735d943a619c36ff43258f,
+      type: 3}
+    Count: 10
