@@ -79,13 +79,8 @@ namespace Managers.Loader
       }
       else if (_activatedManagers.Count == _activeManagersForLoadAssets.Count + _activeManagersForLoadGame.Count)
       {
-        GameManager.Instance.ChangeGameState(GameState.InGame);
+        GameManager.Instance.ChangeGameState(GameState.Game);
       }
-    }
-
-    public bool CheckManagerActivated(ManagerKey managerKey)
-    {
-      return _activatedManagers.Contains(managerKey);
     }
     
     public void DeactivateManager(ManagerKey managerKey)
@@ -94,6 +89,11 @@ namespace Managers.Loader
       {
         _activatedManagers.Remove(managerKey);
       }
+    }
+    
+    public bool CheckManagerActivated(ManagerKey managerKey)
+    {
+      return _activatedManagers.Contains(managerKey);
     }
   }
   

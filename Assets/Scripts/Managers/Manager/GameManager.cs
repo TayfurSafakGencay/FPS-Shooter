@@ -1,6 +1,5 @@
 ﻿using System;
 using Managers.Base;
-using Managers.Loader;
 using UnityEngine;
 
 namespace Managers.Manager
@@ -57,7 +56,7 @@ namespace Managers.Manager
     LoadGame,
     MainMenu,
     LoadAssets,
-    InGame,
+    Game,
     TestScene,
   }
 
