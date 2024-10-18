@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Base.Interface;
-using Managers;
 using Managers.Manager;
 using UnityEngine;
 
@@ -25,9 +24,6 @@ namespace Enemy
     [SerializeField]
     private Vector3 _woundLocalPosition;
     
-    [SerializeField]
-    private Vector3 _childBodyPartRotation;
-
     public Rigidbody Rigidbody { get; private set; }
 
     private CharacterJoint _characterJoint;
@@ -62,8 +58,13 @@ namespace Enemy
       _enemy.Ragdoll.Death(newDamage, forceDirection, hitPoint, Rigidbody);
 
       if (_limb.Length == 0) return;
-        
-      GameObject limb = Instantiate(_limb[_childBodyParts.Count], transform.position, Quaternion.Euler(0,0,0));
+      
+      // Vector3 limbRotation = transform.rotation.eulerAngles + _limbInitialRotation;
+      GameObject limbGameObject = Instantiate(_limb[_childBodyParts.Count], transform.position, Quaternion.identity, transform.parent);
+      LimbObject limb = limbGameObject.GetComponent<LimbObject>();
+      limbGameObject.transform.localRotation = Quaternion.Euler(limb.InitialRotation);
+      limb.transform.parent = null;
+      limb.Rigidbody.AddForceAtPosition(forceDirection * newDamage / 10, hitPoint, ForceMode.Impulse);
       // limb.GetComponent<Rigidbody>().AddForceAtPosition(forceDirection * newDamage / 10, hitPoint, ForceMode.Impulse);
         
       _woundHole.transform.localPosition = _woundLocalPosition;
@@ -109,6 +110,35 @@ namespace Enemy
         default:
           return 0.75f;
       }
+    }
+
+    private bool isPaused = false;
+
+    void Update()
+    {
+      if (Input.GetKeyDown(KeyCode.Tab))
+      {
+        if (isPaused)
+        {
+          ResumeGame();
+        }
+        else
+        {
+          PauseGame();
+        }
+      }
+    }
+
+    public void PauseGame()
+    {
+      Time.timeScale = 0f; // Zamanı durdur
+      isPaused = true;
+    }
+
+    public void ResumeGame()
+    {
+      Time.timeScale = 1f; // Zamanı normale döndür
+      isPaused = false;
     }
   }
   public enum BodyPartKey

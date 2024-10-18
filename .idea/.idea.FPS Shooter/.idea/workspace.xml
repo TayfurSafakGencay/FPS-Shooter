@@ -6,12 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="899317de-2363-4c2a-b5e9-981aeff7816f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Panels/LoadingPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Panels/LoadingPanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Global Volume/VolumeProfileTest.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Global Volume/VolumeProfileTest.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Loader/ManagerLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Loader/ManagerLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/Settings/SettingsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/Settings/SettingsManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/SoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/SoundManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Panels/General_UI/InitialBackground.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Panels/General_UI/InitialBackground.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/Head.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/Head.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LeftArm.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LeftArm.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LeftArmPiece.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LeftArmPiece.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LeftForeArm.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LeftForeArm.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LeftLeg.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LeftLeg.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LeftUpLeg.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LeftUpLeg.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LegUpPiece.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/LegUpPiece.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightArm.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightArm.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightArmPiece.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightArmPiece.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightForeArm.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightForeArm.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightLeg.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightLeg.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightUpLeg.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightUpLeg.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/BodyPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/BodyPart.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Limb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Limb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Surfaces/SurfaceConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Surfaces/SurfaceConfig.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +176,9 @@
       <workItem from="1728639498408" duration="11810000" />
       <workItem from="1728805526510" duration="16748000" />
       <workItem from="1728900811037" duration="19200000" />
-      <workItem from="1728993155097" duration="8597000" />
+      <workItem from="1728993155097" duration="12689000" />
+      <workItem from="1729085384284" duration="3496000" />
+      <workItem from="1729162442018" duration="4556000" />
     </task>
     <servers />
   </component>

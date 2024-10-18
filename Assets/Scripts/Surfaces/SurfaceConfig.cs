@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Managers.Manager;
+using UnityEngine;
 
 namespace Surfaces
 {
@@ -13,6 +15,11 @@ namespace Surfaces
 
     [Range(0f, 1f)]
     public float Volume = 1f;
+
+    private void Awake()
+    {
+      AudioSource.outputAudioMixerGroup = SoundManager.Instance.GetMixerGroupToAudioSourceForSFX();
+    }
 
     public void PlayParticle(Vector3 position, Quaternion rotation)
     {
