@@ -46,14 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: 5
   ActivatedGameStates: 
-  _parent: {fileID: 0}
   _particleEffectVos:
   - Name: 0
-    ParticleSystem: {fileID: 961409312920285058, guid: 1ce0fb911a735d943a619c36ff43258f,
+    ParticleSystem: {fileID: 8690988621151380237, guid: 1ce0fb911a735d943a619c36ff43258f,
       type: 3}
     Count: 10
+  - Name: 1
+    ParticleSystem: {fileID: 8690988621151380237, guid: bf6723939f9a67d419c5f11e9fcf6e7b,
+      type: 3}
+    Count: 5
   _instantiateParticleEffects:
   - Name: 0
-    ParticleSystem: {fileID: 961409312920285058, guid: 1ce0fb911a735d943a619c36ff43258f,
+    ParticleSystem: {fileID: 8690988621151380237, guid: 1ce0fb911a735d943a619c36ff43258f,
       type: 3}
     Count: 10

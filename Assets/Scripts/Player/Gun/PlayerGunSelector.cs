@@ -28,6 +28,7 @@ namespace Player.Gun
     private void Start()
     {
       EquipGun();
+      
     }
 
     private void EquipGun()
@@ -40,8 +41,8 @@ namespace Player.Gun
         return;
       }
 
-      ActiveGun = gun;
-      gun.Spawn(GunParent, this, _playerCamera);
+      ActiveGun = gun.Clone() as GunConfig;
+      ActiveGun?.Spawn(GunParent, this, _playerCamera);
       _onGunChanged?.Invoke();
     }
     

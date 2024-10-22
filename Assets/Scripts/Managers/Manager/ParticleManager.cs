@@ -11,9 +11,6 @@ namespace Managers.Manager
     public static ParticleManager Instance { get; private set; }
     
     [SerializeField]
-    private Transform _parent;
-    
-    [SerializeField]
     private List<ParticleEffectVo> _particleEffectVos;
 
     private readonly Dictionary<string, Queue<ParticleSystem>> _particleSystemPools = new();
@@ -56,28 +53,7 @@ namespace Managers.Manager
         _instantiateParticleEffectsDictionary.Add(particleEffectVo.Name.ToString(), particleEffectVo.ParticleSystem);
       }
     }
-
-    public void PlayParticleEffectFromPool(Vector3 position, VFX vfx)
-    {
-      string particlePoolName = vfx.ToString();
-
-      if (_particleSystemPools[particlePoolName].Count <= 0) return;
-      
-      ParticleSystem particleInstance = _particleSystemPools[particlePoolName].Dequeue();
-      particleInstance.transform.parent = _parent;
-      particleInstance.transform.position = position;
-      particleInstance.gameObject.SetActive(true);
-      particleInstance.Play();
-
-      StartCoroutine(ReturnParticleToPool(particleInstance, _particleSystemPools[particlePoolName]));
-    }
-
-    public void PlayParticleEffect(Vector3 position, VFX vfx, float time = 3f)
-    {
-      ParticleSystem particle = Instantiate(_instantiateParticleEffectsDictionary[vfx.ToString()], position, Quaternion.identity, transform);
-      Destroy(particle.gameObject, time);
-    }
-
+    
     private void CreateParticlesInPool(int count, ParticleSystem particle, VFX vfx)
     {
       string poolName = vfx.ToString();
@@ -101,11 +77,32 @@ namespace Managers.Manager
       particleInstance.gameObject.SetActive(false);
       pool.Enqueue(particleInstance);
     }
+
+    public void PlayParticleEffectFromPool(Vector3 position, VFX vfx)
+    {
+      string particlePoolName = vfx.ToString();
+
+      if (_particleSystemPools[particlePoolName].Count <= 0) return;
+      
+      ParticleSystem particleInstance = _particleSystemPools[particlePoolName].Dequeue();
+      particleInstance.transform.position = position;
+      particleInstance.gameObject.SetActive(true);
+      particleInstance.Play();
+
+      StartCoroutine(ReturnParticleToPool(particleInstance, _particleSystemPools[particlePoolName]));
+    }
+
+    public void PlayParticleEffect(Vector3 position, VFX vfx, float time = 3f)
+    {
+      ParticleSystem particle = Instantiate(_instantiateParticleEffectsDictionary[vfx.ToString()], position, Quaternion.identity, transform);
+      Destroy(particle.gameObject, time);
+    }
   }
 
   public enum VFX
   {
     HitZombie,
+    HitZombieHeadShot,
   }
   
   [Serializable]

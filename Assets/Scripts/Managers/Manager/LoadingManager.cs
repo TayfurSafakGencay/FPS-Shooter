@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Managers.Base;
-using Panels;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UserInterface.Panel;
 
 namespace Managers.Manager
 {

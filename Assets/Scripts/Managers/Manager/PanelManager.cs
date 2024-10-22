@@ -40,6 +40,9 @@ namespace Managers.Manager
         case GameState.MainMenu:
           await CreatePanel(PanelKey.MainMenuPanel);
           break;
+        case GameState.Game:
+          await CreatePanel(PanelKey.InGamePanel);
+          break;
       }
     }
 
@@ -99,6 +102,7 @@ namespace Managers.Manager
     MainMenuPanel,  
     SettingsPanel,
     LoadingPanel,
+    InGamePanel,
   }
   
   public struct PanelLayer

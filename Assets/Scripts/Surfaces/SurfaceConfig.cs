@@ -1,5 +1,4 @@
-﻿using System;
-using Managers.Manager;
+﻿using Managers.Manager;
 using UnityEngine;
 
 namespace Surfaces
