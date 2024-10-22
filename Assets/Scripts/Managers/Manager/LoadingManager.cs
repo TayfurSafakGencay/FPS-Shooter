@@ -77,9 +77,9 @@ namespace Managers.Manager
       {
         yield return new WaitForSeconds(2f);
       }
-
-      GameManager.Instance.ChangeGameState(GameState.Game);
+      
       sceneLoadOperation.allowSceneActivation = true;
+      GameManager.Instance.ChangeGameState(GameState.Game);
     }
 
     private int _loadingTaskCount;

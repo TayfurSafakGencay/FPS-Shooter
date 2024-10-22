@@ -38,8 +38,9 @@ namespace Guns.Configurators
     
     private VisualEffect _shootSystem;
     private ObjectPool<TrailRenderer> _trailPool;
+    private Player.Player _player;
 
-    public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour, Camera activeCamera)
+    public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour, Camera activeCamera, Player.Player player)
     {
       _activeMonoBehaviour = activeMonoBehaviour;
       _activeCamera = activeCamera;
@@ -53,6 +54,8 @@ namespace Guns.Configurators
       _shootSystem = _model.GetComponentInChildren<VisualEffect>();
       _audioSource = _model.GetComponent<AudioSource>();
       _audioSource.outputAudioMixerGroup = SoundManager.Instance.GetMixerGroupToAudioSourceForSFX();
+
+      _player = player;
     }
     
     public void UpdateCamera(Camera activeCamera)
@@ -89,6 +92,7 @@ namespace Guns.Configurators
         Vector3 shootDirection = _activeCamera.transform.forward + _activeCamera.transform.TransformDirection(spreadAmount);
 
         AmmoConfig.CurrentClipAmmo--;
+        _player.Fire(ShootConfig.Spread);
         
         if (Physics.Raycast(GetRaycastOrigin(), shootDirection, out RaycastHit hit, float.MaxValue, ShootConfig.HitMask))
         {

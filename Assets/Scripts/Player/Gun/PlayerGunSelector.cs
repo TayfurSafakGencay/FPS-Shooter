@@ -24,11 +24,17 @@ namespace Player.Gun
     public GunConfig ActiveGun;
     
     private Action _onGunChanged;
+    
+    private Player _player;
+
+    private void Awake()
+    {
+      _player = GetComponent<Player>();
+    }
 
     private void Start()
     {
       EquipGun();
-      
     }
 
     private void EquipGun()
@@ -42,7 +48,7 @@ namespace Player.Gun
       }
 
       ActiveGun = gun.Clone() as GunConfig;
-      ActiveGun?.Spawn(GunParent, this, _playerCamera);
+      ActiveGun?.Spawn(GunParent, this, _playerCamera, _player);
       _onGunChanged?.Invoke();
     }
     

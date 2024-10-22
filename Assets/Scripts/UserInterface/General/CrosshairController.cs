@@ -14,6 +14,12 @@ namespace UserInterface.General
     private float _margin;
     
     [SerializeField]
+    private float _expandSpeed;
+    
+    [SerializeField]
+    private float _shrinkSpeed;
+    
+    [SerializeField]
     private RectTransform _top, _bottom, _left, _right, _center;
 
     private float _topValue, _bottomValue, _leftValue, _rightValue;
@@ -70,7 +76,7 @@ namespace UserInterface.General
     
     public void ExpandCrossHair(float addValue)
     {
-      _expandValue += addValue;
+      _expandValue += addValue * _expandSpeed;
       
       if (_expandValue >= 100)
       {
@@ -80,16 +86,13 @@ namespace UserInterface.General
     
     private void ShrinkingCrossHair()
     {
-      switch (_expandValue)
+      if (_expandValue <= 0)
       {
-        case 0:
-          return;
-        case < 0:
-          _expandValue = 0;
-          break;
+        _expandValue = 0;
+        return;
       }
-
-      _expandValue -= _speed * Time.deltaTime;
+      
+      _expandValue -= _shrinkSpeed * Time.deltaTime;
     }
 
     [SerializeField]

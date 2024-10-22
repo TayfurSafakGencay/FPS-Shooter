@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace UserInterface.General
 {
-  public class InitialBackground : MonoBehaviour
+  public class VignetteEffect : MonoBehaviour
   {
     [SerializeField]
     private VolumeProfile _volumeProfile;
@@ -28,14 +28,14 @@ namespace UserInterface.General
       SettingsManager.Instance.DisableDeviceControls();
 
         DOTween.To(() => _vignette.intensity.value, x => _vignette.intensity.Override(x), 
-          0, 2f).OnComplete(AnimationCompleted);
+          0, UserInterfaceTimes.InitialVignetteEffectTime).OnComplete(AnimationCompleted);
     }
 
     private void AnimationCompleted()
     {
       SettingsManager.Instance.EnableDeviceControls();
 
-      Destroy(this);
+      Destroy(gameObject);
     }
   }
 }

@@ -4,6 +4,8 @@ using Managers.Base;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UserInterface.General;
+using Utilities;
 
 namespace Managers.Manager
 {
@@ -19,13 +21,18 @@ namespace Managers.Manager
     {
       if (Instance == null) Instance = this;
       else Destroy(gameObject);
-
-      _panelContainer = GameObject.FindWithTag("PanelCanvas").transform;
+      
+      ChangePanelContainer();
     }
     
     public override void Initialize()
     {
       AddAction(ref GameManager.Instance.GameStateChanged, OnGameStateChange);
+    }
+    
+    private void ChangePanelContainer()
+    {
+      _panelContainer = Root.Instance.Canvas.transform;
     }
 
     private async void OnGameStateChange()
@@ -41,6 +48,8 @@ namespace Managers.Manager
           await CreatePanel(PanelKey.MainMenuPanel);
           break;
         case GameState.Game:
+          await Utility.Delay(UserInterfaceTimes.InitialVignetteEffectTime);
+          ChangePanelContainer();
           await CreatePanel(PanelKey.InGamePanel);
           break;
       }
