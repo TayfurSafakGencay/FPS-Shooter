@@ -12,7 +12,7 @@ namespace Player
 
         private bool _isMoving;
         
-        private bool _shouldCrouch => (Input.GetKeyDown(_crouchKey)||Input.GetKeyUp(_crouchKey)) && !_duringCrouchAnimation && _characterController.isGrounded; 
+        private bool _shouldCrouch => (Input.GetKeyDown(_crouchKey) || Input.GetKeyUp(_crouchKey)) && !_duringCrouchAnimation && _characterController.isGrounded; 
 
         [SerializeField] private Camera _camera;
         
@@ -233,7 +233,13 @@ namespace Player
         
         public bool GetIsCrouching() => _isCrouching;
         
+        public bool GetIsJumping() => _shouldJump;
+        
         public bool GetCanMove() => CanMove;
+        
+        public bool GetIsSliding() => _isSliding;
+        
+        public bool GetIsGrounded() => _characterController.isGrounded;
 
         #endregion
     }
