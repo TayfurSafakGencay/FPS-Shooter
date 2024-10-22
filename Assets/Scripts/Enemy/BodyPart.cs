@@ -48,8 +48,8 @@ namespace Enemy
 
     public void TakeDamage(int damage, Vector3 forceDirection, Vector3 hitPoint)
     {
-      ParticleManager.Instance.PlayParticleEffectFromPool(hitPoint, VFX.HitZombie);
-      
+      ParticleManager.Instance.PlayParticleEffectFromPool(hitPoint, BodyPartKey == BodyPartKey.Head ? VFX.HitZombieHeadShot : VFX.HitZombie);
+
       float newDamage = damage * GetBodyPartDamageCoefficient();
       bool isDead = _enemy.Health.TakeDamage(newDamage);
 
@@ -59,13 +59,13 @@ namespace Enemy
 
       if (_limb.Length == 0) return;
       
-      // Vector3 limbRotation = transform.rotation.eulerAngles + _limbInitialRotation;
       GameObject limbGameObject = Instantiate(_limb[_childBodyParts.Count], transform.position, Quaternion.identity, transform.parent);
       LimbObject limb = limbGameObject.GetComponent<LimbObject>();
       limbGameObject.transform.localRotation = Quaternion.Euler(limb.InitialRotation);
       limb.transform.parent = null;
-      limb.Rigidbody.AddForceAtPosition(forceDirection * newDamage / 10, hitPoint, ForceMode.Impulse);
-      // limb.GetComponent<Rigidbody>().AddForceAtPosition(forceDirection * newDamage / 10, hitPoint, ForceMode.Impulse);
+      limb.Rigidbody.AddForceAtPosition(forceDirection * newDamage / 25, hitPoint, ForceMode.Impulse);
+
+
         
       _woundHole.transform.localPosition = _woundLocalPosition;
       _woundHole.SetActive(true);

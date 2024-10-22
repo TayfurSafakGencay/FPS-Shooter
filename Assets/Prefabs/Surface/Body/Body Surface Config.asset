@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0dfd50b02845279cc8b01da498b03f, type: 3}
+  m_Name: Body Surface Config
+  m_EditorClassIdentifier: 
+  HitParticle: {fileID: 2628233833809926790, guid: 1ce0fb911a735d943a619c36ff43258f,
+    type: 3}
+  HitSound: {fileID: 8300000, guid: c12d40421acc84a4b90823d6080bbad1, type: 3}
+  AudioSource: {fileID: 1882435559410187167, guid: ccc4ffd312dee22408d634ea76461037,
+    type: 3}
+  Volume: 1

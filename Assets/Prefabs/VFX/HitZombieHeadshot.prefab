@@ -9741,7 +9741,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5751163608376384955, guid: 20533fcb1154ee04297aead1dcdd67cd,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 59d6d93f132df20499e0b5fa24540247, type: 3}
+  m_audioClip: {fileID: 8300000, guid: efa592409126fa24fbcd19aed5c89c23, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.35
   m_Pitch: 1
@@ -9839,7 +9839,7 @@ GameObject:
   - component: {fileID: 8690988621151380237}
   - component: {fileID: 6354949120410267514}
   m_Layer: 0
-  m_Name: HitZombie
+  m_Name: HitZombieHeadshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
