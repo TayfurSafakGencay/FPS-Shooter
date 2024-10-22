@@ -1,8 +1,8 @@
 ﻿using Audio;
 using Managers.Manager;
-using Panels.Base;
+using UserInterface.Panel.Base;
 
-namespace Panels
+namespace UserInterface.Panel
 {
   public class MainMenuPanel : BasePanel
   {

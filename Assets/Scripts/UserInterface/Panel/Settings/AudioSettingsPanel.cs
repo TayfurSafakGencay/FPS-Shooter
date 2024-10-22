@@ -1,11 +1,11 @@
 ﻿using Managers.Manager;
 using Managers.Manager.Settings;
-using Panels.Base;
 using TMPro;
 using UnityEngine;
+using UserInterface.Panel.Base;
 using Slider = UnityEngine.UI.Slider;
 
-namespace Panels.Settings
+namespace UserInterface.Panel.Settings
 {
   public class AudioSettingsPanel : BasePanel
   {

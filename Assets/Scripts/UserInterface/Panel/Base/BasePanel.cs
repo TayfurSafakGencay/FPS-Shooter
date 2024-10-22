@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Panels.Base
+namespace UserInterface.Panel.Base
 {
   [RequireComponent(typeof(SortingGroup))]
   public abstract class BasePanel : MonoBehaviour

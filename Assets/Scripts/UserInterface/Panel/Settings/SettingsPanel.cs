@@ -1,9 +1,9 @@
 ﻿using Managers.Manager;
-using Panels.Base;
 using TMPro;
 using UnityEngine;
+using UserInterface.Panel.Base;
 
-namespace Panels.Settings
+namespace UserInterface.Panel.Settings
 {
   public class SettingsPanel : BasePanel
   {

@@ -3,7 +3,7 @@ using Managers.Manager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Panels.General_UI
+namespace UserInterface.General
 {
   public class ButtonSounds : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
   {

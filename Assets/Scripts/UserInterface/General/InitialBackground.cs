@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace Panels.General_UI
+namespace UserInterface.General
 {
   public class InitialBackground : MonoBehaviour
   {

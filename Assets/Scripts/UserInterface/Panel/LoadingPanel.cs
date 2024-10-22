@@ -1,11 +1,10 @@
-﻿using System;
-using Managers.Manager;
-using Panels.Base;
+﻿using Managers.Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UserInterface.Panel.Base;
 
-namespace Panels
+namespace UserInterface.Panel
 {
   public class LoadingPanel : BasePanel
   {

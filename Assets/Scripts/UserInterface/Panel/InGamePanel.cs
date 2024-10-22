@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Panels
+namespace UserInterface.Panel
 {
   public class InGamePanel : MonoBehaviour
   {
@@ -11,6 +11,11 @@ namespace Panels
 
     [SerializeField]
     private TextMeshProUGUI _ammoText;
+
+    private void Awake()
+    {
+      _playerGunSelector = FindObjectOfType<PlayerGunSelector>();
+    }
 
     private void Update()
     {

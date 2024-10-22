@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Panels.Settings
+namespace UserInterface.Panel.Settings
 {
   public class ControlSettingsPanel : MonoBehaviour
   {
