@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using Utilities;
 
 namespace Guns.Configurators
 {
   [CreateAssetMenu(fileName = "Ammo Config", menuName = "Tools/Guns/Ammo Config", order = 0)]
-  public class AmmoConfig : ScriptableObject
+  public class AmmoConfig : ScriptableObject, System.ICloneable
   {
     public int MaxAmmo;
     public int ClipSize;
@@ -24,6 +25,15 @@ namespace Guns.Configurators
     public bool CanReload()
     {
       return CurrentClipAmmo < ClipSize && CurrentAmmo > 0;
+    }
+    
+    public object Clone()
+    {
+      AmmoConfig clone = CreateInstance<AmmoConfig>();
+      
+      Utility.CopyValues(this, clone);
+
+      return clone;
     }
   }
 }

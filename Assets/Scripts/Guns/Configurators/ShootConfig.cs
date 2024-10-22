@@ -1,12 +1,13 @@
 ﻿using System.Linq;
 using Guns.Enum;
 using UnityEngine;
+using Utilities;
 using Random = UnityEngine.Random;
 
 namespace Guns.Configurators
 {
   [CreateAssetMenu(fileName = "Shoot Config", menuName = "Tools/Guns/Shoot Configuration", order = 0)]
-  public class ShootConfig : ScriptableObject
+  public class ShootConfig : ScriptableObject, System.ICloneable
   {
     public LayerMask HitMask;
     public float FireRate = 0.25f;
@@ -73,6 +74,15 @@ namespace Guns.Configurators
       Vector2 direction = (targetPosition - halfSize) / halfSize.x;
 
       return direction;
+    }
+
+    public object Clone()
+    {
+      ShootConfig clone = CreateInstance<ShootConfig>();
+      
+      Utility.CopyValues(this, clone);
+
+      return clone;
     }
   }
 }

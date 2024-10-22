@@ -11,7 +11,7 @@ using UnityEngine.VFX;
 namespace Guns.Configurators
 {
   [CreateAssetMenu(fileName = "Gun", menuName = "Tools/Guns/Gun", order = 0)]
-  public class GunConfig : ScriptableObject
+  public class GunConfig : ScriptableObject, System.ICloneable
   {
     // public ImpactType ImpactType;
     public GunType GunType;
@@ -19,12 +19,13 @@ namespace Guns.Configurators
     public Vector3 SpawnPoint;
     public Vector3 SpawnRotation;
     
+    [Header("Configurations")]
     public DamageConfig DamageConfig;
     public AmmoConfig AmmoConfig;
     public ShootConfig ShootConfig;
     public TrailConfig TrailConfig;
     public AudioConfig AudioConfig;
-
+    
     private MonoBehaviour _activeMonoBehaviour;
     private Camera _activeCamera;
     private GameObject _model;
@@ -160,7 +161,7 @@ namespace Guns.Configurators
           
           damageable.TakeDamage(DamageConfig.GetDamage(distance), forceDirection, hit.point);
         }
-        else if (hit.collider.TryGetComponent(out ISurface surface))
+        if (hit.collider.TryGetComponent(out ISurface surface))
         {
           surface.Hit(endPoint, Quaternion.LookRotation(hit.normal));
         }
@@ -202,6 +203,25 @@ namespace Guns.Configurators
     public void EndReload()
     {
       AmmoConfig.Reload();
+    }
+
+    public object Clone()
+    {
+      GunConfig clone = CreateInstance<GunConfig>();
+
+      clone.GunType = GunType;
+      clone.name = name;
+      clone.ModelPrefab = ModelPrefab;
+      clone.SpawnPoint = SpawnPoint;
+      clone.SpawnRotation = SpawnRotation;
+      
+      clone.DamageConfig = DamageConfig.Clone() as DamageConfig;
+      clone.AmmoConfig = AmmoConfig.Clone() as AmmoConfig;
+      clone.ShootConfig = ShootConfig.Clone() as ShootConfig;
+      clone.TrailConfig = TrailConfig.Clone() as TrailConfig;
+      clone.AudioConfig = AudioConfig.Clone() as AudioConfig;
+
+      return clone;
     }
   }
 }
