@@ -8,6 +8,8 @@ namespace Player
     private FirstPersonController _firstPersonController;
 
     public Action<float> OnFire;
+
+    public Action<bool> OnHit;
     
     private void Awake()
     {
@@ -24,6 +26,11 @@ namespace Player
       float maxValue = Mathf.Max(spread.x, spread.y, spread.z);
 
       OnFire?.Invoke(maxValue);
+    }
+
+    public void Hit(bool headshot)
+    {
+      OnHit?.Invoke(headshot);
     }
   }
 }

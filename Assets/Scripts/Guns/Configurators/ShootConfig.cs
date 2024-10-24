@@ -44,6 +44,11 @@ namespace Guns.Configurators
 
       return spread;
     }
+    
+    public Vector3 GetNormalSpread()
+    {
+      return Spread;
+    }
 
     private Vector3 GetTextureDirection(float shootTime)
     {

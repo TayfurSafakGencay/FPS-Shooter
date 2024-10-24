@@ -88,7 +88,6 @@ namespace Guns.Configurators
 
         Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - _initialClickTime);
         _model.transform.forward += _model.transform.TransformDirection(spreadAmount);
-
         Vector3 shootDirection = _activeCamera.transform.forward + _activeCamera.transform.TransformDirection(spreadAmount);
 
         AmmoConfig.CurrentClipAmmo--;
@@ -162,8 +161,8 @@ namespace Guns.Configurators
         {
           Vector3 forceDirection = (hit.point - startPoint).normalized;
           forceDirection.y = 1;
-          
-          damageable.TakeDamage(DamageConfig.GetDamage(distance), forceDirection, hit.point);
+          damageable.TakeDamage(DamageConfig.GetDamage(distance), forceDirection, hit.point, out bool isHeadshot);
+          _player.Hit(isHeadshot);
         }
         if (hit.collider.TryGetComponent(out ISurface surface))
         {
@@ -221,7 +220,8 @@ namespace Guns.Configurators
       
       clone.DamageConfig = DamageConfig.Clone() as DamageConfig;
       clone.AmmoConfig = AmmoConfig.Clone() as AmmoConfig;
-      clone.ShootConfig = ShootConfig.Clone() as ShootConfig;
+      clone.ShootConfig = ShootConfig;
+      // clone.ShootConfig = ShootConfig.Clone() as ShootConfig;
       clone.TrailConfig = TrailConfig.Clone() as TrailConfig;
       clone.AudioConfig = AudioConfig.Clone() as AudioConfig;
 

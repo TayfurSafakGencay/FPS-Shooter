@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using Player.Gun.Animations;
 using UnityEngine;
 
@@ -36,10 +37,9 @@ namespace Player
         private float _currentSpeed => _isCrouching ? _crouchSpeed : _isSprinting ? _sprintSpeed : _walkSpeed;
         
         [Header("Look Parameters")]
-        [SerializeField, Range(1, 10)] private float _lookSpeedX = 2f;
-        [SerializeField, Range(1, 10)] private float _lookSpeedY = 2f;
+        [SerializeField, Range(1, 1000)] private float _mouseSensitivity = 100f;
         [SerializeField, Range(1, 180)] private float _upperLookLimit = 80f;
-        [SerializeField, Range(1, 180)] private float _lowerLookLimit = 80f;
+        [SerializeField, Range(1, 180)] private float _lowerLookLimit = -80f;
         
         [Header("Jump Parameters")]
         [SerializeField] private float _jumpForce = 8f;
@@ -90,7 +90,7 @@ namespace Player
         private Vector2 _currentInput;
         
         private float _rotationX;
-
+        
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
@@ -99,6 +99,8 @@ namespace Player
             
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            
+            _originalRotation = _camera.transform.localRotation;
         }
         
         private void Update()
@@ -146,10 +148,49 @@ namespace Player
         
         private void HandleLook()
         {
-            _rotationX -= Input.GetAxis("Mouse Y") * _lookSpeedY;
-            _rotationX = Mathf.Clamp(_rotationX, -_upperLookLimit, _lowerLookLimit);
-            _camera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * _lookSpeedX, 0);
+            float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity * Time.deltaTime;
+
+            transform.Rotate(Vector3.up * mouseX);
+
+            _rotationX -= mouseY;
+            _rotationX = Mathf.Clamp(_rotationX, _lowerLookLimit, _upperLookLimit);
+
+            _camera.transform.Rotate(Vector3.right * -mouseY);
+        }
+        
+        public float _recoilDuration = 0.1f;
+        
+        public float _recoilRandomness = 90;
+        
+        private bool _isFiring;
+
+        private Quaternion _originalRotation;
+        
+        public Transform _cameraParent;
+
+        public void ApplyRecoil(Vector3 spread)
+        {
+        if (!_isFiring)
+        {
+            _originalRotation = _cameraParent.transform.localRotation;
+            _isFiring = true;
+        }
+        
+        _cameraParent.DOShakeRotation(_recoilDuration, spread, 1, _recoilRandomness)
+            .OnComplete(() =>
+            {
+                _cameraParent.transform.localRotation = _originalRotation;
+            });
+        }
+        
+        public void StopFiring()
+        {
+            if (!_isFiring) return;
+
+            _isFiring = false;
+
+            _cameraParent.transform.DOLocalRotateQuaternion(_originalRotation, _recoilDuration * 2).SetEase(Ease.OutQuad);
         }
         
         private void HandleJump()

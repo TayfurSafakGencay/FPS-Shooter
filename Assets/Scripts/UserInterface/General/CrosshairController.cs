@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace UserInterface.General
 {
@@ -30,12 +31,16 @@ namespace UserInterface.General
     {
       _player = FindObjectOfType<Player.Player>();
       _player.OnFire += ExpandCrossHair;
+      _player.OnHit += OnHit;
+      
+      _hitCrosshair.enabled = false;
     }
 
     private void Update()
     {
       CheckMovement();
       ShrinkingCrossHair();
+      CheckingHitIndicator();
       
       _topValue = Mathf.Lerp(_top.position.y, _center.position.y + _margin + _expandValue, _speed * Time.deltaTime);
       _bottomValue = Mathf.Lerp(_bottom.position.y, _center.position.y - _margin - _expandValue, _speed * Time.deltaTime);
@@ -94,11 +99,11 @@ namespace UserInterface.General
       
       _expandValue -= _shrinkSpeed * Time.deltaTime;
     }
-
+    
     [SerializeField]
     private float _crouchingMargin = 20f;
     [SerializeField]
-    private float _normalMargin = 30f;
+    private float _normalMargin = 25f;
     [SerializeField]
     private float _runningMargin = 100f;
     [SerializeField]
@@ -107,6 +112,50 @@ namespace UserInterface.General
     public void SetMargin(float margin)
     {
       _margin = margin;
+    }
+
+    [Header("Hit")]
+    [SerializeField]
+    private Image _hitCrosshair;
+
+    private const float _hitIndicatorTime = 0.1f;
+
+    private float _currentVisibleTime;
+
+    private bool _isVisible;
+    
+
+    private void CheckingHitIndicator()
+    {
+      if (!_isVisible) return;
+      
+      _currentVisibleTime -= Time.deltaTime;
+      if (_currentVisibleTime <= 0)
+      {
+        HideIndicator();
+      }
+    }
+    
+    public void ShowHitIndicator()
+    {
+      _currentVisibleTime = _hitIndicatorTime;
+
+      if (_isVisible) return;
+      _isVisible = true;
+      _hitCrosshair.enabled = true;
+    }
+
+    private void HideIndicator()
+    {
+      _isVisible = false;
+      _hitCrosshair.enabled = false;
+    }
+
+    private void OnHit(bool headshot)
+    {
+      _hitCrosshair.color = headshot ? Color.red : Color.white;
+      _hitCrosshair.rectTransform.localPosition = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
+      ShowHitIndicator();
     }
   }
 }

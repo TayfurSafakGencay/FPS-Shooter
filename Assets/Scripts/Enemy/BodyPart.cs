@@ -46,8 +46,9 @@ namespace Enemy
       _enemy = enemy;
     }
 
-    public void TakeDamage(int damage, Vector3 forceDirection, Vector3 hitPoint)
+    public void TakeDamage(int damage, Vector3 forceDirection, Vector3 hitPoint, out bool isHeadshot)
     {
+      isHeadshot = BodyPartKey == BodyPartKey.Head;
       ParticleManager.Instance.PlayParticleEffectFromPool(hitPoint, BodyPartKey == BodyPartKey.Head ? VFX.HitZombieHeadShot : VFX.HitZombie);
 
       float newDamage = damage * GetBodyPartDamageCoefficient();
@@ -65,8 +66,6 @@ namespace Enemy
       limb.transform.parent = null;
       limb.Rigidbody.AddForceAtPosition(forceDirection * newDamage / 25, hitPoint, ForceMode.Impulse);
 
-
-        
       _woundHole.transform.localPosition = _woundLocalPosition;
       _woundHole.SetActive(true);
       transform.localScale = Vector3.zero;
@@ -110,35 +109,6 @@ namespace Enemy
         default:
           return 0.75f;
       }
-    }
-
-    private bool isPaused = false;
-
-    void Update()
-    {
-      if (Input.GetKeyDown(KeyCode.Tab))
-      {
-        if (isPaused)
-        {
-          ResumeGame();
-        }
-        else
-        {
-          PauseGame();
-        }
-      }
-    }
-
-    public void PauseGame()
-    {
-      Time.timeScale = 0f; // Zamanı durdur
-      isPaused = true;
-    }
-
-    public void ResumeGame()
-    {
-      Time.timeScale = 1f; // Zamanı normale döndür
-      isPaused = false;
     }
   }
   public enum BodyPartKey

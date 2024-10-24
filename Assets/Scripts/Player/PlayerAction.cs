@@ -17,15 +17,12 @@ namespace Player
 
     private FirstPersonController _firstPersonController;
     
-    private CameraOperations _cameraOperations;
-
     private bool _isReloading;
 
     private void Awake()
     {
       _playerAnimationController = GetComponent<PlayerAnimationController>();
       _firstPersonController = GetComponent<FirstPersonController>();
-      _cameraOperations = GetComponent<CameraOperations>();
     }
 
     private void Update()
@@ -44,7 +41,11 @@ namespace Player
 
       if (conditions)
       {
-        _cameraOperations.ShakingForShooting();
+        _firstPersonController.ApplyRecoil(_gunSelector.ActiveGun.ShootConfig.GetNormalSpread());
+      }
+      else
+      {
+        _firstPersonController.StopFiring();
       }
     }
 
