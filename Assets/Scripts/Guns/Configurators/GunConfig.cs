@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Base.Interface;
+using DG.Tweening;
 using Guns.Enum;
 using Managers.Manager;
 using Surfaces;
@@ -39,6 +40,7 @@ namespace Guns.Configurators
     private VisualEffect _shootSystem;
     private ObjectPool<TrailRenderer> _trailPool;
     private Player.Player _player;
+
 
     public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour, Camera activeCamera, Player.Player player)
     {
@@ -88,6 +90,13 @@ namespace Guns.Configurators
 
         Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - _initialClickTime);
         _model.transform.forward += _model.transform.TransformDirection(spreadAmount);
+        
+        _model.transform.DOLocalMoveZ(_model.transform.localPosition.z - 0.05f, 0.05f)
+          .OnComplete(() =>
+          {
+            _model.transform.DOLocalMoveZ(0, 0.05f);
+          });
+        
         Vector3 shootDirection = _activeCamera.transform.forward + _activeCamera.transform.TransformDirection(spreadAmount);
 
         AmmoConfig.CurrentClipAmmo--;

@@ -154,6 +154,7 @@ namespace UserInterface.General
     private void OnHit(bool headshot)
     {
       _hitCrosshair.color = headshot ? Color.red : Color.white;
+      _hitCrosshair.rectTransform.localScale = headshot ? new Vector3(1.3f, 1.3f, 1) : new Vector3(1, 1, 1);
       _hitCrosshair.rectTransform.localPosition = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
       ShowHitIndicator();
     }
