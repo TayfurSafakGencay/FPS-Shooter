@@ -24,14 +24,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515030979043397063}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.052327927, y: -0.017428532, z: 0.00091338967, w: 0.99847746}
+  m_LocalRotation: {x: 0.069745846, y: -0.017409937, z: 0.0012174213, w: 0.99741215}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 457612096620722693}
   m_Father: {fileID: 8322046229236024851}
-  m_LocalEulerAnglesHint: {x: 6, y: -2, z: 0}
+  m_LocalEulerAnglesHint: {x: 8, y: -2, z: 0}
 --- !u!1 &4546103607809971146
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,8 +285,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LeftHand: {fileID: 5301463467629524831}
-  LeftIkObject: {fileID: 4902480495305361733}
-  RightIkObject: {fileID: 7575418138433591597}
   Magazine: {fileID: 3178951244560080022}
   MagazineColliderSize: {x: 0.00675, y: 0.0025, z: 0.015}
 --- !u!82 &-7290730368756293977
@@ -2579,6 +2577,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 270
       objectReference: {fileID: 0}
+    - target: {fileID: 2224202175138340454, guid: 335c5762862a37f48ae7458878e3d258,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3999492726957910354, guid: 335c5762862a37f48ae7458878e3d258,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2703,6 +2706,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625039356855893003, guid: 335c5762862a37f48ae7458878e3d258,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933920867440896424, guid: 335c5762862a37f48ae7458878e3d258,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9005399579249141425, guid: 335c5762862a37f48ae7458878e3d258,
+        type: 3}
+      propertyPath: m_Name
+      value: HologramSight
       objectReference: {fileID: 0}
     - target: {fileID: 9122606274573172904, guid: 335c5762862a37f48ae7458878e3d258,
         type: 3}

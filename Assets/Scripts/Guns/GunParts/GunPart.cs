@@ -7,10 +7,6 @@ namespace Guns.GunParts
     [Header("IK")]
     public Transform LeftHand;
 
-    public Transform LeftIkObject;
-    
-    public Transform RightIkObject;
-    
     [Header("Gun Parts")]
     public GameObject Magazine;
     

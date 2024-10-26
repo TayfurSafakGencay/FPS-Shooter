@@ -37,9 +37,9 @@ namespace Player
         private float _currentSpeed => _isCrouching ? _crouchSpeed : _isSprinting ? _sprintSpeed : _walkSpeed;
         
         [Header("Look Parameters")]
-        [SerializeField, Range(1, 1000)] private float _mouseSensitivity = 100f;
+        [SerializeField, Range(1, 3)] private float _mouseSensitivity = 3f;
         [SerializeField, Range(1, 180)] private float _upperLookLimit = 80f;
-        [SerializeField, Range(1, 180)] private float _lowerLookLimit = -80f;
+        [SerializeField, Range(1, 180)] private float _lowerLookLimit = 80f;
         
         [Header("Jump Parameters")]
         [SerializeField] private float _jumpForce = 8f;
@@ -137,8 +137,7 @@ namespace Player
                 _isMoving = false;
             }
             
-            _currentInput = new Vector2(horizontalMove * _currentSpeed,
-                verticalMove * _currentSpeed);
+            _currentInput = new Vector2(horizontalMove * _currentSpeed, verticalMove * _currentSpeed);
             
             float moveDirectionY = _moveDirection.y;
             _moveDirection = transform.TransformDirection(Vector3.forward) * _currentInput.y +
@@ -148,20 +147,22 @@ namespace Player
         
         private void HandleLook()
         {
-            float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity * Time.deltaTime;
-            float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity * Time.deltaTime;
+            float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
+            float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 
             transform.Rotate(Vector3.up * mouseX);
 
             _rotationX -= mouseY;
-            _rotationX = Mathf.Clamp(_rotationX, _lowerLookLimit, _upperLookLimit);
+            _rotationX = Mathf.Clamp(_rotationX, -_upperLookLimit, _lowerLookLimit);
 
-            _camera.transform.Rotate(Vector3.right * -mouseY);
+            _camera.transform.localRotation = Quaternion.Euler(_rotationX, 0f, 0f);
         }
         
-        public float _recoilDuration = 0.1f;
+        [SerializeField]
+        private float _recoilDuration = 0.1f;
         
-        public float _recoilRandomness = 90;
+        [SerializeField]
+        private float _recoilRandomness = 90;
         
         private bool _isFiring;
 

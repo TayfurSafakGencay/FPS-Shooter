@@ -94,7 +94,6 @@ namespace Player.Gun.Animations
       _playerAction.Reloading(1);
       Destroy(_magazine);
     }
-
     
     private void EndReload()
     {
@@ -112,10 +111,6 @@ namespace Player.Gun.Animations
     private Transform _gun;
 
     private Vector3 _defaultGunPosition;
-    
-    private Vector3 _leftHandDefaultPosition;
-    
-    private Vector3 _rightHandDefaultPosition;
     
     private FirstPersonController _firstPersonController;
 
@@ -137,9 +132,7 @@ namespace Player.Gun.Animations
     private void SetInitialGunHeight()
     {
       _gun = _gunAnimator.transform;
-      _defaultGunPosition = _gun.transform.localPosition;
-      _leftHandDefaultPosition = _gunPart.LeftIkObject.localPosition;
-      _rightHandDefaultPosition = _gunPart.RightIkObject.localPosition;
+      _defaultGunPosition = _gunPart.transform.localPosition;
       _firstPersonController = GetComponent<FirstPersonController>();
     }
     
@@ -147,27 +140,13 @@ namespace Player.Gun.Animations
     {
       bobAmount /= 8;
       bobSpeed /= 8;
-      
       timer += Time.deltaTime * bobSpeed;
-      
-      _gun.transform.localPosition = new Vector3(
+
+      _gunPart.transform.localPosition = new Vector3(
         _defaultGunPosition.x + Mathf.Sin(timer) * bobAmount,
         _defaultGunPosition.y + Mathf.Sin(timer) * bobAmount,
         _defaultGunPosition.z + Mathf.Sin(timer) * bobAmount);
-      
-      bobAmount /= 1.25f;
-      
-      _gunPart.LeftIkObject.transform.localPosition = new Vector3(
-        _leftHandDefaultPosition.x + Mathf.Sin(timer) * bobAmount,
-        _leftHandDefaultPosition.y + Mathf.Sin(timer) * bobAmount,
-        _leftHandDefaultPosition.z + Mathf.Sin(timer) * bobAmount);
-      
-      _gunPart.RightIkObject.transform.localPosition = new Vector3(
-        _rightHandDefaultPosition.x + Mathf.Sin(timer) * bobAmount,
-        _rightHandDefaultPosition.y + Mathf.Sin(timer) * bobAmount,
-        _rightHandDefaultPosition.z + Mathf.Sin(timer) * bobAmount);
     }
-    
 
     #endregion
   }

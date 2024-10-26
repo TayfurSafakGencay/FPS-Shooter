@@ -6,11 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="899317de-2363-4c2a-b5e9-981aeff7816f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/AK47.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/AK47.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Animation/Reload - M4.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Animation/Reload - M4.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Data/M4 Shoot Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Data/M4 Shoot Config.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Panels/InGamePanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Panels/InGamePanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/M4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/M4.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/GunConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/GunConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/General/CrosshairController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/General/CrosshairController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Guns/GunParts/GunPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Guns/GunParts/GunPart.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/FirstPersonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/FirstPersonController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/Animations/PlayerAnimationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/Animations/PlayerAnimationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +191,9 @@
       <workItem from="1729679620248" duration="15148000" />
       <workItem from="1729755866173" duration="3318000" />
       <workItem from="1729773441415" duration="13122000" />
-      <workItem from="1729793706922" duration="1801000" />
+      <workItem from="1729793706922" duration="1802000" />
+      <workItem from="1729863808554" duration="8449000" />
+      <workItem from="1729951484711" duration="1290000" />
     </task>
     <servers />
   </component>
