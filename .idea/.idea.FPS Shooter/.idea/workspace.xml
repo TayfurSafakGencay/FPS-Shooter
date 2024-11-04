@@ -5,34 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="899317de-2363-4c2a-b5e9-981aeff7816f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Data/M4.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Data/M4.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/M4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/M4.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Panels/InGamePanel.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Panels/InGamePanel.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/TestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/PlayerAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/PlayerAction.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/GunConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/GunConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Guns/GunParts/GunPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Guns/GunParts/GunPart.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/PanelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/PanelManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/FirstPersonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/FirstPersonController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/FirstPersonController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/FirstPersonController.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/Animations.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/Animations.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/Animations/ArmAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/Animations/ArmAnimator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/Animations/ArmAnimator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/Animations/ArmAnimator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/Animations/PlayerAnimationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/Animations/PlayerAnimationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/Animations/PlayerAnimationController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/Animations/PlayerAnimationController.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/PlayerGunSelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/PlayerGunSelector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Gun/PlayerGunSelector.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/PlayerGunSelector.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Player.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/PlayerAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerAction.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/PlayerAction.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/General/CrosshairController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/General/CrosshairController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/InGamePanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/PlayerScreenPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/InGamePanel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/PlayerScreenPanel.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/ShootConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/ShootConfig.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +194,7 @@
       <workItem from="1730529975462" duration="2018000" />
       <workItem from="1730560346090" duration="7926000" />
       <workItem from="1730630604412" duration="8420000" />
-      <workItem from="1730711517199" duration="21947000" />
+      <workItem from="1730711517199" duration="24038000" />
     </task>
     <servers />
   </component>

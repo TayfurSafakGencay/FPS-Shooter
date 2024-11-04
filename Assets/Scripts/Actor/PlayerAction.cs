@@ -49,7 +49,9 @@ namespace Actor
 
       if (conditions)
       {
-        _firstPersonController.ApplyRecoil(_gunSelector.ActiveGun.ShootConfig.GetNormalSpread());
+        _firstPersonController.ApplyRecoil(_player.GetIsScoped() ?
+          _gunSelector.ActiveGun.ShootConfig.GetScopeSpread() :
+          _gunSelector.ActiveGun.ShootConfig.GetNormalSpread());
       }
       else
       {

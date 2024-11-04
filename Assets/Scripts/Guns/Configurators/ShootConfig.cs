@@ -17,6 +17,7 @@ namespace Guns.Configurators
     
     [Header("Simple Spread")]
     public Vector3 Spread = new(0.1f, 0.1f, 0.1f);
+    public Vector3 ScopeSpread = new(0.1f, 0.1f, 0.1f);
     
     [Header("Texture Based Spread")]
     [Range(0.001f, 5f)]
@@ -44,10 +45,37 @@ namespace Guns.Configurators
 
       return spread;
     }
+
+    public Vector3 GetScopeSpread(float shootTime = 0)
+    {
+      Vector3 spread = Vector3.zero;
+
+      if (SpreadType == BulletSpreadType.Simple)
+      {
+        spread = Vector3.Lerp(Vector3.zero,
+          new Vector3(
+            Random.Range(-ScopeSpread.x, ScopeSpread.x),
+            Random.Range(-ScopeSpread.y, ScopeSpread.y),
+            Random.Range(-ScopeSpread.z, ScopeSpread.z)),
+          Mathf.Clamp01(shootTime / MaxSpreadTime * Time.deltaTime));
+      }
+      else if (SpreadType == BulletSpreadType.TextureBased)
+      {
+        spread = GetTextureDirection(shootTime);
+        spread *= SpreadMultiplier;
+      }
+
+      return spread;
+    }
     
     public Vector3 GetNormalSpread()
     {
       return Spread;
+    }
+    
+    public Vector3 GetScopeSpread()
+    {
+      return ScopeSpread;
     }
 
     private Vector3 GetTextureDirection(float shootTime)

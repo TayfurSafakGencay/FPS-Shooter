@@ -44,7 +44,6 @@ namespace Guns.Configurators
     private ObjectPool<TrailRenderer> _trailPool;
     private Player _player;
 
-
     public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour, Camera activeCamera, Player player)
     {
       _activeMonoBehaviour = activeMonoBehaviour;
@@ -93,7 +92,10 @@ namespace Guns.Configurators
         _shootSystem.Play();
         AudioConfig.PlayShootingClip(_audioSource, AmmoConfig.CurrentClipAmmo);
 
-        Vector3 spreadAmount = ShootConfig.GetSpread(Time.time - _initialClickTime);
+        Vector3 spreadAmount = _player.GetIsScoped() ?
+          ShootConfig.GetScopeSpread(Time.time - _initialClickTime) :
+          ShootConfig.GetSpread(Time.time - _initialClickTime);
+        
         _model.transform.forward += _model.transform.TransformDirection(spreadAmount);
         
         _model.transform.DOLocalMoveZ(_model.transform.localPosition.z - 0.05f, 0.05f)

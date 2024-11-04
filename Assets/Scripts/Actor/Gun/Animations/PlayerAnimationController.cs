@@ -64,8 +64,11 @@ namespace Actor.Gun.Animations
     public void Reload()
     {
       _animator.SetTrigger(RELOAD_TRIGGER);
-      
-      _player.GetPlayerGunSelector().ActiveGun.Scope();
+
+      if (_player.GetIsScoped())
+      {
+        _player.GetPlayerGunSelector().ActiveGun.Scope();
+      }
     }
 
     private void DetachMagazine()
