@@ -61,6 +61,7 @@ namespace Player
         [SerializeField] private float _runBobAmount = 0.1f;
         [SerializeField] private float _crouchBobSpeed = 8f;
         [SerializeField] private float _crouchBobAmount = 0.025f;
+
         private float _defaultYPos;
         private float _timer;
         private float _bobSpeed => _isCrouching ? _crouchBobSpeed : _isSprinting ? _runBobSpeed : _walkBobSpeed;
@@ -117,7 +118,7 @@ namespace Player
                     HandleCrouch();
 
                 if (_canHeadBob)
-                    HandleHeadBob();
+                    ApplyBob();
                 
                 ApplyFinalMovement();
             }
@@ -237,22 +238,6 @@ namespace Player
             _duringCrouchAnimation = false;
         }
 
-        private void HandleHeadBob()
-        {
-            if(!_characterController.isGrounded) return;
-
-            if (Mathf.Abs(_moveDirection.x) > 0.1f || Mathf.Abs(_moveDirection.z) > 0.1f)
-            {
-                _timer += Time.deltaTime * _bobSpeed;
-                _camera.transform.localPosition = new Vector3(
-                    _camera.transform.localPosition.x,
-                    _defaultYPos + Mathf.Sin(_timer) * _bobAmount,
-                    _camera.transform.localPosition.z);
-                
-                _playerAnimationController.ApplyBob(_timer, _bobSpeed, _bobAmount);
-            }
-        }
-
         private void ApplyFinalMovement()
         {
             if (!_characterController.isGrounded)
@@ -264,6 +249,19 @@ namespace Player
             }
             
             _characterController.Move(_moveDirection * Time.deltaTime);
+        }
+
+        private void ApplyBob()
+        {
+            _playerAnimationController.ApplyBob(); 
+
+            if (!_isMoving || !_characterController.isGrounded) return;
+            _timer += Time.deltaTime * _bobSpeed;
+
+            _camera.transform.localPosition = new Vector3(
+                _camera.transform.localPosition.x,
+                _defaultYPos + Mathf.Sin(_timer) * _bobAmount,
+                _camera.transform.localPosition.z);
         }
         
 

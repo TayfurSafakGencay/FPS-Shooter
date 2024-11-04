@@ -64,6 +64,11 @@ namespace Guns.Configurators
     {
       _activeCamera = activeCamera;
     }
+    
+    public void OpenScope()
+    {
+      _model.transform.DOLocalMoveZ(-0.5f, 0.1f);
+    }
 
     public void TryToShoot()
     {

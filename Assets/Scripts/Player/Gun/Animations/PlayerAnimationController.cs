@@ -13,7 +13,7 @@ namespace Player.Gun.Animations
     private GunAnimator _gunAnimator;
 
     private PlayerAction _playerAction;
-
+    
     private GunPart _gunPart;
 
     private void Awake()
@@ -108,8 +108,6 @@ namespace Player.Gun.Animations
 
     private bool _movingAnimationValue;
 
-    private Transform _gun;
-
     private Vector3 _defaultGunPosition;
     
     private FirstPersonController _firstPersonController;
@@ -131,21 +129,45 @@ namespace Player.Gun.Animations
 
     private void SetInitialGunHeight()
     {
-      _gun = _gunAnimator.transform;
-      _defaultGunPosition = _gunPart.transform.localPosition;
       _firstPersonController = GetComponent<FirstPersonController>();
+      _defaultGunPosition = _gunPart.transform.localPosition;
     }
     
-    public void ApplyBob(float timer, float bobSpeed, float bobAmount)
-    {
-      bobAmount /= 8;
-      bobSpeed /= 8;
-      timer += Time.deltaTime * bobSpeed;
+    private float timer;
+    
+    [SerializeField] private  float _breathBobAmount = 0.1f;
+    [SerializeField] private  float _breathBobSpeed = 1f;
+    
+    [SerializeField] private  float _crouchBobAmount = 0.5f;
+    [SerializeField] private  float _crouchBobSpeed = 2f;
 
+    [SerializeField] private  float _walkBobAmount = 1f;
+    [SerializeField] private  float _walkBobSpeed = 3f;
+    
+    [SerializeField] private  float _runBobAmount = 5f;
+    [SerializeField] private  float _runBobSpeed = 5f;
+    private float _bobAmount  => 
+      !_firstPersonController.GetIsGrounded() ? _walkBobAmount / 1000 :
+      !_firstPersonController.GetIsMoving() ? _breathBobAmount / 1000:
+      _firstPersonController.GetIsCrouching() ? _crouchBobAmount / 1000: 
+      _firstPersonController.GetIsRunning() ? _runBobAmount / 1000 : _walkBobAmount / 1000;
+    
+    private float _bobSpeed => 
+      !_firstPersonController.GetIsGrounded() ? _walkBobSpeed :
+      !_firstPersonController.GetIsMoving() ? _breathBobSpeed :
+      _firstPersonController.GetIsCrouching() ? _crouchBobSpeed :
+      _firstPersonController.GetIsRunning() ? _runBobSpeed : _walkBobSpeed;
+    
+    public void ApplyBob()
+    {
+      if (timer >= 360) timer = 0;
+
+      timer += Time.deltaTime * _bobSpeed;
+      
       _gunPart.transform.localPosition = new Vector3(
-        _defaultGunPosition.x + Mathf.Sin(timer) * bobAmount,
-        _defaultGunPosition.y + Mathf.Sin(timer) * bobAmount,
-        _defaultGunPosition.z + Mathf.Sin(timer) * bobAmount);
+        _defaultGunPosition.x + Mathf.Sin(timer) * _bobAmount,
+        _defaultGunPosition.y + Mathf.Sin(timer) * _bobAmount,
+        _defaultGunPosition.z + Mathf.Sin(timer) * _bobAmount);
     }
 
     #endregion
