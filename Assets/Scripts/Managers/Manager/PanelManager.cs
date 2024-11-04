@@ -50,7 +50,7 @@ namespace Managers.Manager
         case GameState.Game:
           await Utility.Delay(UserInterfaceTimes.InitialVignetteEffectTime);
           ChangePanelContainer();
-          await CreatePanel(PanelKey.InGamePanel);
+          await CreatePanel(PanelKey.PlayerScreenPanel);
           break;
       }
     }
@@ -111,7 +111,7 @@ namespace Managers.Manager
     MainMenuPanel,  
     SettingsPanel,
     LoadingPanel,
-    InGamePanel,
+    PlayerScreenPanel,
   }
   
   public struct PanelLayer

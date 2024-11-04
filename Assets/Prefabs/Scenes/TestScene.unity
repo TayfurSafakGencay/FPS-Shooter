@@ -1609,6 +1609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6dd62dd7664765ba4478a49a34e3a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scopeBobAmount: 0.01
+  _scopeBobSpeed: 2
   _breathBobAmount: 0.05
   _breathBobSpeed: 2
   _crouchBobAmount: 0.1
@@ -1629,6 +1631,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91b36a27fc040ff89fff34f5fad1bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameras:
+  - {fileID: 330585545}
+  - {fileID: 1505744605}
+  IsScoped: 0
 --- !u!1 &392783395
 GameObject:
   m_ObjectHideFlags: 0
@@ -3824,10 +3830,10 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

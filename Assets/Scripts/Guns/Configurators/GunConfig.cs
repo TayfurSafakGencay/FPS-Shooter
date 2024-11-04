@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Actor;
 using Base.Interface;
 using DG.Tweening;
 using Guns.Enum;
@@ -19,6 +20,8 @@ namespace Guns.Configurators
     public GameObject ModelPrefab;
     public Vector3 SpawnPoint;
     public Vector3 SpawnRotation;
+    public Vector3 ScopePosition;
+    public float ScopeCameraFov;
     
     [Header("Configurations")]
     public DamageConfig DamageConfig;
@@ -39,10 +42,10 @@ namespace Guns.Configurators
     
     private VisualEffect _shootSystem;
     private ObjectPool<TrailRenderer> _trailPool;
-    private Player.Player _player;
+    private Player _player;
 
 
-    public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour, Camera activeCamera, Player.Player player)
+    public void Spawn(Transform parent, MonoBehaviour activeMonoBehaviour, Camera activeCamera, Player player)
     {
       _activeMonoBehaviour = activeMonoBehaviour;
       _activeCamera = activeCamera;
@@ -60,14 +63,11 @@ namespace Guns.Configurators
       _player = player;
     }
     
-    public void UpdateCamera(Camera activeCamera)
+    public void Scope()
     {
-      _activeCamera = activeCamera;
-    }
-    
-    public void OpenScope()
-    {
-      _model.transform.DOLocalMoveZ(-0.5f, 0.1f);
+      _player.ChangeScope(ScopeCameraFov);
+
+      _model.transform.DOLocalMove(_player.GetIsScoped() ? ScopePosition : SpawnPoint, 0.1f);
     }
 
     public void TryToShoot()
@@ -238,6 +238,9 @@ namespace Guns.Configurators
       // clone.ShootConfig = ShootConfig.Clone() as ShootConfig;
       clone.TrailConfig = TrailConfig.Clone() as TrailConfig;
       clone.AudioConfig = AudioConfig.Clone() as AudioConfig;
+      
+      clone.ScopePosition = ScopePosition;
+      clone.ScopeCameraFov = ScopeCameraFov;
 
       return clone;
     }

@@ -3,7 +3,7 @@ using Guns.Configurators;
 using Guns.Enum;
 using UnityEngine;
 
-namespace Player.Gun
+namespace Actor.Gun
 {
   [DisallowMultipleComponent]
   public class PlayerGunSelector : MonoBehaviour

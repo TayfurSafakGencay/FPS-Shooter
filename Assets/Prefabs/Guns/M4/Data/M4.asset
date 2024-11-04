@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: M4
   m_EditorClassIdentifier: 
   GunType: 1
-  Name: M4
   ModelPrefab: {fileID: 8654368404059159789, guid: 5a117f1726ecf724694e09f2ae8f6ec2,
     type: 3}
   SpawnPoint: {x: 0, y: 0, z: 0}
   SpawnRotation: {x: 0, y: 0, z: 0}
+  ScopePosition: {x: -0.1765, y: 0.032, z: -0.06}
+  ScopeCameraFov: 40
   DamageConfig: {fileID: 11400000, guid: fe1777e3061d60b4580e95e473008e69, type: 2}
   AmmoConfig: {fileID: 11400000, guid: f06fdef8fa5dfcc4e8edfbdfc1c23356, type: 2}
   ShootConfig: {fileID: 11400000, guid: e2c369277bf61ad4a89ddc65b843cea6, type: 2}

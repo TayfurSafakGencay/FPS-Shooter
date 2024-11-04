@@ -2,7 +2,7 @@
 using Guns.GunParts;
 using UnityEngine;
 
-namespace Player.Gun.Animations
+namespace Actor.Gun.Animations
 {
   public class PlayerAnimationController : MonoBehaviour
   {
@@ -10,40 +10,33 @@ namespace Player.Gun.Animations
 
     private ArmAnimator _armAnimator;
     
-    private GunAnimator _gunAnimator;
-
     private PlayerAction _playerAction;
     
     private GunPart _gunPart;
+
+    private Player _player;
 
     private void Awake()
     {
       GetComponent<PlayerGunSelector>().AddEventListenerOnGunChanged(OnGunChanged);
         
       _playerAction = GetComponent<PlayerAction>();
+      _player = GetComponent<Player>();
     }
 
     private void OnGunChanged()
     {
       _armAnimator = GetComponentInChildren(typeof(ArmAnimator)) as ArmAnimator;
-      _gunAnimator = GetComponentInChildren(typeof(GunAnimator)) as GunAnimator;
-      
-      if (_armAnimator != null)
-      {
-        _animator = _armAnimator.GetAnimator();
-        Bindings();
 
-        _gunPart = GetComponentInChildren<GunPart>();
+      if (_armAnimator == null) return;
+      _animator = _armAnimator.GetAnimator();
+      _armAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
+
+      _gunPart = GetComponentInChildren<GunPart>();
         
-        SetInitialGunHeight();
-      }
+      SetInitialGunHeight();
     }
     
-    private void Bindings()
-    {
-      _armAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
-    }
-
     private void OnAnimationEventDispatch(AnimationEventKey eventKey)
     {
       switch (eventKey)
@@ -71,6 +64,8 @@ namespace Player.Gun.Animations
     public void Reload()
     {
       _animator.SetTrigger(RELOAD_TRIGGER);
+      
+      _player.GetPlayerGunSelector().ActiveGun.Scope();
     }
 
     private void DetachMagazine()
@@ -130,10 +125,16 @@ namespace Player.Gun.Animations
     private void SetInitialGunHeight()
     {
       _firstPersonController = GetComponent<FirstPersonController>();
-      _defaultGunPosition = _gunPart.transform.localPosition;
     }
     
+    #endregion
+
+    #region Bobbing
+
     private float timer;
+    
+    [SerializeField] private float _scopeBobAmount = 0.01f;
+    [SerializeField] private float _scopeBobSpeed = 2f;
     
     [SerializeField] private  float _breathBobAmount = 0.1f;
     [SerializeField] private  float _breathBobSpeed = 1f;
@@ -146,13 +147,16 @@ namespace Player.Gun.Animations
     
     [SerializeField] private  float _runBobAmount = 5f;
     [SerializeField] private  float _runBobSpeed = 5f;
+    
     private float _bobAmount  => 
+      _player.GetIsScoped() ? _scopeBobAmount / 1000 :
       !_firstPersonController.GetIsGrounded() ? _walkBobAmount / 1000 :
       !_firstPersonController.GetIsMoving() ? _breathBobAmount / 1000:
       _firstPersonController.GetIsCrouching() ? _crouchBobAmount / 1000: 
       _firstPersonController.GetIsRunning() ? _runBobAmount / 1000 : _walkBobAmount / 1000;
     
     private float _bobSpeed => 
+      _player.GetIsScoped() ? _scopeBobSpeed :
       !_firstPersonController.GetIsGrounded() ? _walkBobSpeed :
       !_firstPersonController.GetIsMoving() ? _breathBobSpeed :
       _firstPersonController.GetIsCrouching() ? _crouchBobSpeed :
@@ -161,13 +165,24 @@ namespace Player.Gun.Animations
     public void ApplyBob()
     {
       if (timer >= 360) timer = 0;
-
+      
+      _defaultGunPosition = _gunPart.transform.localPosition;
+      
       timer += Time.deltaTime * _bobSpeed;
       
       _gunPart.transform.localPosition = new Vector3(
         _defaultGunPosition.x + Mathf.Sin(timer) * _bobAmount,
         _defaultGunPosition.y + Mathf.Sin(timer) * _bobAmount,
         _defaultGunPosition.z + Mathf.Sin(timer) * _bobAmount);
+    }
+
+    #endregion
+
+    #region Getters & Setters
+
+    public GunPart GetGunPart()
+    {
+      return _gunPart;
     }
 
     #endregion

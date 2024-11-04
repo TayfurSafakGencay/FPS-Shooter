@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UserInterface.Panel;
 
 namespace UserInterface.General
 {
   public class CrosshairController : MonoBehaviour
   {
+    [Header("Player Screen Panel")]
+    [SerializeField]
+    private PlayerScreenPanel _playerScreenPanel;
+    
+    [Header("Values")]
     [Range(0, 100)]
     [SerializeField] private float _expandValue;
 
@@ -24,14 +30,16 @@ namespace UserInterface.General
     private RectTransform _top, _bottom, _left, _right, _center;
 
     private float _topValue, _bottomValue, _leftValue, _rightValue;
-    
-    private Player.Player _player;
+
+    [Header("For Scope")]
+    [SerializeField]
+    private GameObject _crossHair;
 
     private void Awake()
     {
-      _player = FindObjectOfType<Player.Player>();
-      _player.OnFire += ExpandCrossHair;
-      _player.OnHit += OnHit;
+      _playerScreenPanel.Player.OnFire += ExpandCrossHair;
+      _playerScreenPanel.Player.OnHit += OnHit;
+      _playerScreenPanel.Player.OnScopeOpened += OnScopeOpen;
       
       _hitCrosshair.enabled = false;
     }
@@ -57,19 +65,19 @@ namespace UserInterface.General
 
     private void CheckMovement()
     {
-      if (_player.GetFirstPersonController().GetIsSliding() || !_player.GetFirstPersonController().GetIsGrounded())
+      if (_playerScreenPanel.Player.GetFirstPersonController().GetIsSliding() || !_playerScreenPanel.Player.GetFirstPersonController().GetIsGrounded())
       {
         SetMargin(_otherMovements);
       }
-      else if (_player.GetFirstPersonController().GetIsRunning())
+      else if (_playerScreenPanel.Player.GetFirstPersonController().GetIsRunning())
       {
         SetMargin(_runningMargin);
       }
-      else if (_player.GetFirstPersonController().GetIsMoving())
+      else if (_playerScreenPanel.Player.GetFirstPersonController().GetIsMoving())
       {
         SetMargin(_normalMargin);
       }
-      else if (_player.GetFirstPersonController().GetIsCrouching())
+      else if (_playerScreenPanel.Player.GetFirstPersonController().GetIsCrouching())
       {
         SetMargin(_crouchingMargin);
       }
@@ -100,6 +108,7 @@ namespace UserInterface.General
       _expandValue -= _shrinkSpeed * Time.deltaTime;
     }
     
+    [Header("Margins")]
     [SerializeField]
     private float _crouchingMargin = 20f;
     [SerializeField]
@@ -151,12 +160,22 @@ namespace UserInterface.General
       _hitCrosshair.enabled = false;
     }
 
+    private const float _randomness = 2.5f;
     private void OnHit(bool headshot)
     {
       _hitCrosshair.color = headshot ? Color.red : Color.white;
       _hitCrosshair.rectTransform.localScale = headshot ? new Vector3(1.3f, 1.3f, 1) : new Vector3(1, 1, 1);
-      _hitCrosshair.rectTransform.localPosition = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0);
+      _hitCrosshair.rectTransform.localPosition = new Vector3(Random.Range(-_randomness, _randomness), Random.Range(-_randomness, _randomness), 0);
       ShowHitIndicator();
     }
+
+    #region Scope
+
+    public void OnScopeOpen(bool isScoped)
+    {
+      _crossHair.SetActive(!isScoped);
+    }
+
+    #endregion
   }
 }

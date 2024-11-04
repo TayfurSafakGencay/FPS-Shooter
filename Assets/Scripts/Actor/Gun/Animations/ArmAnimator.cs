@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Player.Gun.Animations
+namespace Actor.Gun.Animations
 {
   public class ArmAnimator : MonoBehaviour
   {

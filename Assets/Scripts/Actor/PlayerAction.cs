@@ -1,9 +1,9 @@
-﻿using Player.Gun;
-using Player.Gun.Animations;
+﻿using Actor.Gun;
+using Actor.Gun.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace Actor
 {
   public class PlayerAction : MonoBehaviour
   {
@@ -17,12 +17,15 @@ namespace Player
 
     private FirstPersonController _firstPersonController;
     
+    private Player _player;
+    
     private bool _isReloading;
 
     private void Awake()
     {
       _playerAnimationController = GetComponent<PlayerAnimationController>();
       _firstPersonController = GetComponent<FirstPersonController>();
+      _player = GetComponent<Player>();
     }
 
     private void Update()
@@ -38,6 +41,11 @@ namespace Player
       bool conditions = Mouse.current.leftButton.isPressed 
                         && Application.isFocused && _gunSelector.ActiveGun != null;
       _gunSelector.ActiveGun.Tick(conditions);
+
+      if (Mouse.current.rightButton.wasPressedThisFrame)
+      {
+        _gunSelector.ActiveGun.Scope();
+      }
 
       if (conditions)
       {
