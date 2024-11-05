@@ -4,7 +4,7 @@ using Base.Interface;
 using Managers.Manager;
 using UnityEngine;
 
-namespace Enemy
+namespace Enemy.Zombie
 {
   public class BodyPart : MonoBehaviour, IDamageable
   {
@@ -48,11 +48,13 @@ namespace Enemy
 
     public void TakeDamage(int damage, Vector3 forceDirection, Vector3 hitPoint, out bool isHeadshot)
     {
+      _enemy.Animator.Hit();
       isHeadshot = BodyPartKey == BodyPartKey.Head;
       ParticleManager.Instance.PlayParticleEffectFromPool(hitPoint, BodyPartKey == BodyPartKey.Head ? VFX.HitZombieHeadShot : VFX.HitZombie);
 
       float newDamage = damage * GetBodyPartDamageCoefficient();
       bool isDead = _enemy.Health.TakeDamage(newDamage);
+      
 
       if (!isDead) return;
       

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Enemy
+namespace Enemy.Zombie
 {
   public class EnemyRagdoll : MonoBehaviour
   {

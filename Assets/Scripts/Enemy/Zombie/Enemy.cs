@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 
-namespace Enemy
+namespace Enemy.Zombie
 {
   public class Enemy : MonoBehaviour
   {
     public EnemyHealth Health { get; private set; }
     
     public EnemyRagdoll Ragdoll { get; private set; }
+    
+    public ZombieAnimator Animator { get; private set; }
 
     private void Awake()
     {
@@ -17,6 +19,7 @@ namespace Enemy
     {
       Health = GetComponent<EnemyHealth>();
       Ragdoll = GetComponent<EnemyRagdoll>();
+      Animator = GetComponent<ZombieAnimator>();
     }
   }
 }

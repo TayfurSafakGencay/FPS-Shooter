@@ -2,7 +2,7 @@
 using Managers.Manager;
 using UnityEngine;
 
-namespace Enemy
+namespace Enemy.Zombie
 {
   public class Limb : MonoBehaviour, IDamageable
   {

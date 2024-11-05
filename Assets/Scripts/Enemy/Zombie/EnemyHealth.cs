@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Enemy
+namespace Enemy.Zombie
 {
   public class EnemyHealth : MonoBehaviour
   {
