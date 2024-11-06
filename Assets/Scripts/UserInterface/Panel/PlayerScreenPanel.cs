@@ -26,7 +26,5 @@ namespace UserInterface.Panel
       _ammoText.SetText($"{Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentClipAmmo}" +
                         $" " + "/" + Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentAmmo);
     }
-    
-    
   }
 }

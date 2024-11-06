@@ -6,21 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="899317de-2363-4c2a-b5e9-981aeff7816f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Arm.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Arm/Animation.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Arm/Arms.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Arm/Arms.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Arm/GunBase.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Arm/GunBase.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Data/AK47 Shoot Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Data/AK47 Shoot Config.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Data/M4 Shoot Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Data/M4 Shoot Config.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/MainScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/MainScene.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/LoadingManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/LoadingManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/SoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/SoundManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/PlayerScreenPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/PlayerScreenPanel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,6 +198,7 @@
       <workItem from="1730630604412" duration="8420000" />
       <workItem from="1730711517199" duration="24773000" />
       <workItem from="1730800755815" duration="7104000" />
+      <workItem from="1730898231001" duration="3067000" />
     </task>
     <servers />
   </component>

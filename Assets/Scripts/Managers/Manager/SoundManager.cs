@@ -67,7 +67,7 @@ namespace Managers.Manager
 
     private const string _uiMixerGroupKey = "UI";
     
-    private const string _ambienceMixerGroupKey = "Ambience";
+    private const string _ambienceMixerGroupKey = "Ambiance";
 
     private void Awake()
     {
