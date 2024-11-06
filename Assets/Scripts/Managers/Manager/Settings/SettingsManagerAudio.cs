@@ -38,5 +38,14 @@ namespace Managers.Manager.Settings
       
       SoundManager.Instance.SetUIVolume(volume);
     }
+    
+    public float AmbienceVolume { get; private set; }
+    
+    public void SetAmbienceVolume(float volume)
+    {
+      AmbienceVolume = volume;
+      
+      SoundManager.Instance.SetAmbienceVolume(volume);
+    }
   }
 }

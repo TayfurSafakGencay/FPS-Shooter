@@ -51,6 +51,12 @@ namespace Managers.Manager
 
     [SerializeField]
     private AudioSource _uiAudioSource2;
+    
+    [SerializeField]
+    private AudioSource _ambienceAudioSource;
+    
+    [SerializeField]
+    private AudioSource _ambienceAudioSource2;
 
     [Header("Audio Mixer Groups")]
     private const string _masterMixerGroupKey = "Master";
@@ -60,6 +66,8 @@ namespace Managers.Manager
     private const string _sfxMixerGroupKey = "SFX";
 
     private const string _uiMixerGroupKey = "UI";
+    
+    private const string _ambienceMixerGroupKey = "Ambience";
 
     private void Awake()
     {
@@ -173,6 +181,9 @@ namespace Managers.Manager
 
       _uiAudioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_uiMixerGroupKey)[0];
       _uiAudioSource2.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_uiMixerGroupKey)[0];
+      
+      _ambienceAudioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_ambienceMixerGroupKey)[0];
+      _ambienceAudioSource2.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_ambienceMixerGroupKey)[0];
     }
 
     #region Set Volume
@@ -199,6 +210,11 @@ namespace Managers.Manager
     public void SetUIVolume(float normalizedValue)
     {
       _audioMixer.SetFloat(_uiMixerGroupKey, CalculateVolume(normalizedValue));
+    }
+    
+    public void SetAmbienceVolume(float normalizedValue)
+    {
+      _audioMixer.SetFloat(_ambienceMixerGroupKey, CalculateVolume(normalizedValue));
     }
 
     private float CalculateVolume(float normalizedValue)

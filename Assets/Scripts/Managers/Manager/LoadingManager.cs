@@ -42,7 +42,7 @@ namespace Managers.Manager
       await PanelManager.Instance.CreatePanel(PanelKey.LoadingPanel);
       _loadingPanel = PanelManager.Instance.GetPanelHandle(PanelKey.LoadingPanel).Result.GetComponent<LoadingPanel>();
       
-      StartCoroutine(LoadSceneWithAdditionalOperations(SceneName.TestScene));
+      StartCoroutine(LoadSceneWithAdditionalOperations(SceneName.GameScene));
     }
 
     public IEnumerator LoadSceneWithAdditionalOperations(SceneName sceneName)

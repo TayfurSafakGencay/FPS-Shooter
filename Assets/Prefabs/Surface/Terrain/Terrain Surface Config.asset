@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0dfd50b02845279cc8b01da498b03f, type: 3}
+  m_Name: Terrain Surface Config
+  m_EditorClassIdentifier: 
+  HitParticle: {fileID: 100002, guid: 91d01363b72ab0b40be19213b4ec2acb, type: 3}
+  HitSound: {fileID: 8300000, guid: d2275ddc531c13947b813400173ec77f, type: 3}
+  AudioSource: {fileID: 1882435559410187167, guid: ccc4ffd312dee22408d634ea76461037,
+    type: 3}
+  Volume: 0.25
