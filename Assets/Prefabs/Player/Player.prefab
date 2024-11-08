@@ -245,7 +245,7 @@ MonoBehaviour:
   _jumpKey: 32
   _crouchKey: 306
   _walkSpeed: 3
-  _sprintSpeed: 6
+  _sprintSpeed: 5.5
   _crouchSpeed: 1.5
   _slopeSpeed: 8
   _mouseSensitivity: 2.5
@@ -318,8 +318,8 @@ MonoBehaviour:
   _crouchBobSpeed: 10
   _walkBobAmount: 0.5
   _walkBobSpeed: 14
-  _runBobAmount: 1
-  _runBobSpeed: 18
+  _runBobAmount: 1.5
+  _runBobSpeed: 12
 --- !u!114 &8323420934589168125
 MonoBehaviour:
   m_ObjectHideFlags: 0

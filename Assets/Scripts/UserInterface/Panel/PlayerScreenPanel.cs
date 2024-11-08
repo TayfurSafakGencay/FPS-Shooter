@@ -20,11 +20,11 @@ namespace UserInterface.Panel
     {
       Player = FindObjectOfType<Player>();
     }
-
+    
     private void Update()
     {
       _ammoText.SetText($"{Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentClipAmmo}" +
-                        $" " + "/" + Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentAmmo);
+                        " " + "/" + Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentAmmo);
     }
   }
 }
