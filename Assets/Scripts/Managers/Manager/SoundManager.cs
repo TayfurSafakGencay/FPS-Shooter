@@ -51,10 +51,10 @@ namespace Managers.Manager
 
     [SerializeField]
     private AudioSource _uiAudioSource2;
-    
+
     [SerializeField]
     private AudioSource _ambienceAudioSource;
-    
+
     [SerializeField]
     private AudioSource _ambienceAudioSource2;
 
@@ -66,7 +66,7 @@ namespace Managers.Manager
     private const string _sfxMixerGroupKey = "SFX";
 
     private const string _uiMixerGroupKey = "UI";
-    
+
     private const string _ambienceMixerGroupKey = "Ambiance";
 
     private void Awake()
@@ -106,7 +106,7 @@ namespace Managers.Manager
         asyncOperationHandle.Result.Initialize();
         return asyncOperationHandle.Result;
       }
-      
+
       Debug.LogWarning("Audio Data could not loaded!");
       return null;
     }
@@ -155,6 +155,30 @@ namespace Managers.Manager
       audioSource.Play();
     }
 
+    public void PlayAmbienceSound(SoundKey soundKey, float volume = 1, int ambienceAudioSourceIndex = 1, bool loop = false)
+    {
+      SoundDTO soundDto = SoundsData.GetSound(soundKey);
+
+      switch (ambienceAudioSourceIndex)
+      {
+        case 1:
+          PlayAmbienceSound(ref _ambienceAudioSource, soundDto, volume, loop);
+          break;
+        case 2:
+          PlayAmbienceSound(ref _ambienceAudioSource2, soundDto, volume, loop);
+          break;
+      }
+    }
+
+    private void PlayAmbienceSound(ref AudioSource audioSource, SoundDTO soundDto, float volume = 1, bool loop = false)
+    {
+      audioSource.clip = soundDto.AudioClip;
+      audioSource.volume = soundDto.Volume * volume;
+      audioSource.loop = loop;
+
+      audioSource.Play();
+    }
+
     public void PlaySound(SoundKey soundKey, ref AudioSource audioSource, float volume = 1)
     {
       SoundDTO soundDto = SoundsData.GetSound(soundKey);
@@ -173,7 +197,7 @@ namespace Managers.Manager
     {
       return _sfxAudioSource.outputAudioMixerGroup;
     }
-    
+
     private void SetMixerGroupOutputs()
     {
       _musicAudioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_musicMixerGroupKey)[0];
@@ -181,7 +205,7 @@ namespace Managers.Manager
 
       _uiAudioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_uiMixerGroupKey)[0];
       _uiAudioSource2.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_uiMixerGroupKey)[0];
-      
+
       _ambienceAudioSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_ambienceMixerGroupKey)[0];
       _ambienceAudioSource2.outputAudioMixerGroup = _audioMixer.FindMatchingGroups(_ambienceMixerGroupKey)[0];
     }
@@ -211,7 +235,7 @@ namespace Managers.Manager
     {
       _audioMixer.SetFloat(_uiMixerGroupKey, CalculateVolume(normalizedValue));
     }
-    
+
     public void SetAmbienceVolume(float normalizedValue)
     {
       _audioMixer.SetFloat(_ambienceMixerGroupKey, CalculateVolume(normalizedValue));

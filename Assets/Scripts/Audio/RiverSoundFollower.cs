@@ -1,7 +1,6 @@
 ﻿using Actor;
 using Cinemachine;
 using UnityEngine;
-using Utilities;
 
 namespace Audio
 {
@@ -19,11 +18,10 @@ namespace Audio
 
     private bool _isReady;
 
-    private async void Start()
+    private void Start()
     {
-      await Utility.Delay(1f);
-      
       _player = FindObjectOfType<Player>().transform;
+      
       _isReady = true;
     }
 
