@@ -32,5 +32,10 @@
     M4Reload1 = 11,
     M4Reload2 = 12,
     M4Reload3 = 13,
+    
+    // --- Ambiance --- //
+    
+    MorningAmbiance = 16,
+    NightAmbiance = 17,
   }
 }
