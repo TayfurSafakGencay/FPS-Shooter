@@ -28,7 +28,7 @@ namespace UserInterface.General
       SettingsManager.Instance.DisableDeviceControls();
 
         DOTween.To(() => _vignette.intensity.value, x => _vignette.intensity.Override(x), 
-          0, UserInterfaceTimes.InitialVignetteEffectTime).OnComplete(AnimationCompleted);
+          0.15f, UserInterfaceTimes.InitialVignetteEffectTime).OnComplete(AnimationCompleted);
     }
 
     private void AnimationCompleted()
