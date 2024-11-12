@@ -47,6 +47,11 @@ namespace Actor
         _gunSelector.ActiveGun.Scope();
       }
 
+      if (Keyboard.current.fKey.wasPressedThisFrame)
+      {
+        _gunSelector.GunLightSwitch();
+      }
+
       if (conditions)
       {
         _firstPersonController.ApplyRecoil(_player.GetIsScoped() ?

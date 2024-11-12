@@ -2,6 +2,7 @@
 using Guns.Configurators;
 using Guns.Enum;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace Actor.Gun
 {
@@ -26,6 +27,9 @@ namespace Actor.Gun
     private Action _onGunChanged;
     
     private Player _player;
+    
+    [SerializeField]
+    private Light _gunLight;
 
     private void Awake()
     {
@@ -55,6 +59,11 @@ namespace Actor.Gun
     public void AddEventListenerOnGunChanged(Action action)
     {
       _onGunChanged += action;
+    }
+
+    public void GunLightSwitch()
+    {
+      _gunLight.enabled = !_gunLight.enabled;
     }
   }
 }
