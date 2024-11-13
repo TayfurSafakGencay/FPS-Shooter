@@ -35,5 +35,11 @@ namespace Guns.Configurators
 
       return clone;
     }
+    
+    public void AddAmmo(int amount)
+    {
+      CurrentAmmo += amount;
+      CurrentAmmo = Mathf.Min(CurrentAmmo, MaxAmmo);
+    }
   }
 }

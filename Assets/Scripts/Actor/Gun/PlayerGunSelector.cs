@@ -2,7 +2,6 @@
 using Guns.Configurators;
 using Guns.Enum;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 namespace Actor.Gun
 {
@@ -11,9 +10,6 @@ namespace Actor.Gun
   {
     [SerializeField]
     private Camera _playerCamera;
-    
-    [SerializeField]
-    private GunType Gun;
 
     [SerializeField]
     private Transform GunParent;
@@ -21,42 +17,90 @@ namespace Actor.Gun
     [SerializeField]
     private GunsList Guns;
 
-    [Header("Runtime Filled")]
+    [HideInInspector]
     public GunConfig ActiveGun;
-    
-    private Action _onGunChanged;
-    
+
+    [HideInInspector]
+    public GunConfig SecondaryGun;
+
+    private Action<Transform> _onGunChanged;
+
     private Player _player;
-    
+
     [SerializeField]
     private Light _gunLight;
+    
+    public bool HasGun => ActiveGun != null;
+    
+    public bool HasSecondaryGun => SecondaryGun != null;
 
     private void Awake()
     {
       _player = GetComponent<Player>();
     }
 
-    private void Start()
+    public void EquipGun(GunType gunType)
     {
-      EquipGun();
-    }
-
-    private void EquipGun()
-    {
-      GunConfig gun = Guns.GunConfigs.Find(g => g.GunType == Gun);
+      GunConfig gun = Guns.GunConfigs.Find(g => g.GunType == gunType);
 
       if (gun == null)
       {
-        Debug.LogError($"No Gun found for type {Gun}");
+        Debug.LogError($"No Gun found for type {gunType}");
         return;
       }
 
-      ActiveGun = gun.Clone() as GunConfig;
-      ActiveGun?.Spawn(GunParent, this, _playerCamera, _player);
-      _onGunChanged?.Invoke();
+      if (ActiveGun == null)
+      {
+        EquipGun(gun, out ActiveGun);
+        _onGunChanged?.Invoke(ActiveGun.GetModel().transform);
+        ActiveGun.GetModel().SetActive(true);
+      }
+      else if (SecondaryGun == null)
+      {
+        EquipGun(gun, out SecondaryGun);
+      }
+      else
+      {
+        Destroy(ActiveGun);
+        EquipGun(gun, out ActiveGun);
+      }
     }
     
-    public void AddEventListenerOnGunChanged(Action action)
+    public void AddAmmo(GunType gunType, int ammo)
+    {
+      if (gunType == ActiveGun.GunType)
+      {
+        ActiveGun.AmmoConfig.AddAmmo(ammo);
+      }
+      else if (gunType == SecondaryGun.GunType)
+      {
+        SecondaryGun.AmmoConfig.AddAmmo(ammo);
+      }
+      else
+      {
+        Debug.LogError($"No Gun found for type {gunType}");
+      }
+    }
+    
+    private void EquipGun(ICloneable newGun, out GunConfig gunConfigSlot)
+    {
+      gunConfigSlot = newGun.Clone() as GunConfig;
+      gunConfigSlot.Spawn(GunParent, this, _playerCamera, _player);
+      gunConfigSlot.GetModel().SetActive(false);
+    }
+
+    public void SwitchGun()
+    {
+      if (!HasGun || !HasSecondaryGun) return;
+
+      (ActiveGun, SecondaryGun) = (SecondaryGun, ActiveGun);
+      ActiveGun.GetModel().SetActive(true);
+      SecondaryGun.GetModel().SetActive(false);
+
+      _onGunChanged?.Invoke(ActiveGun.GetModel().transform);
+    }
+
+    public void AddEventListenerOnGunChanged(Action<Transform> action)
     {
       _onGunChanged += action;
     }

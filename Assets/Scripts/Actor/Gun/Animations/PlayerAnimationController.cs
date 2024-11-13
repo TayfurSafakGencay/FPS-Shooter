@@ -22,19 +22,18 @@ namespace Actor.Gun.Animations
         
       _playerAction = GetComponent<PlayerAction>();
       _player = GetComponent<Player>();
+      _firstPersonController = GetComponent<FirstPersonController>();
     }
 
-    private void OnGunChanged()
+    private void OnGunChanged(Transform gunTransform)
     {
-      _armAnimator = GetComponentInChildren(typeof(ArmAnimator)) as ArmAnimator;
+      _armAnimator = gunTransform.GetComponentInChildren(typeof(ArmAnimator)) as ArmAnimator;
 
       if (_armAnimator == null) return;
       _animator = _armAnimator.GetAnimator();
       _armAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
 
-      _gunPart = GetComponentInChildren<GunPart>();
-        
-      SetInitialGunHeight();
+      _gunPart = gunTransform.GetComponentInChildren<GunPart>();
     }
     
     private void OnAnimationEventDispatch(AnimationEventKey eventKey)
@@ -125,11 +124,6 @@ namespace Actor.Gun.Animations
       }
     }
 
-    private void SetInitialGunHeight()
-    {
-      _firstPersonController = GetComponent<FirstPersonController>();
-    }
-    
     #endregion
 
     #region Bobbing
@@ -167,6 +161,8 @@ namespace Actor.Gun.Animations
     
     public void ApplyBob()
     {
+      if (!_player.GetPlayerGunSelector().HasGun) return;
+      
       if (timer >= 360) timer = 0;
       
       _defaultGunPosition = _gunPart.transform.localPosition;

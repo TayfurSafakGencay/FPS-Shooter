@@ -122,7 +122,7 @@ namespace DayCycle
     }
     
     
-    private async void Evening()
+    private void Evening()
     {
       SoundManager.Instance.PlayAmbienceSound(SoundKey.NightAmbiance, 1f, 1, true);
       DOTween.To(() => RenderSettings.fogDensity, x => RenderSettings.fogDensity = x, 0.175f, 20f);

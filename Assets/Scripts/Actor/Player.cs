@@ -16,6 +16,10 @@ namespace Actor
     private PlayerScreenPanel _playerScreenPanel;
 
     private PlayerGunSelector _playerGunSelector;
+    
+    private Inventory _inventory;
+    
+    private PlayerLoot _playerLoot;
 
     public Action<float> OnFire;
 
@@ -31,6 +35,8 @@ namespace Actor
       _firstPersonController = GetComponent<FirstPersonController>();
       _playerAnimationController = GetComponent<PlayerAnimationController>();
       _playerGunSelector = GetComponent<PlayerGunSelector>();
+      _playerLoot = GetComponent<PlayerLoot>();
+      _inventory = GetComponent<Inventory>();
     }
 
     public void Fire(Vector3 spread)
@@ -79,6 +85,26 @@ namespace Actor
     public PlayerGunSelector GetPlayerGunSelector()
     {
       return _playerGunSelector;
+    }
+    
+    public void SetPlayerScreenPanel(PlayerScreenPanel playerScreenPanel)
+    {
+      _playerScreenPanel = playerScreenPanel;
+    }
+    
+    public PlayerScreenPanel GetPlayerScreenPanel()
+    {
+      return _playerScreenPanel;
+    }
+    
+    public PlayerLoot GetPlayerLoot()
+    {
+      return _playerLoot;
+    }
+    
+    public Inventory GetInventory()
+    {
+      return _inventory;
     }
   }
 }

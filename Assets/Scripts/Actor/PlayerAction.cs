@@ -30,12 +30,29 @@ namespace Actor
 
     private void Update()
     {
+      if (Keyboard.current.fKey.wasPressedThisFrame)
+      {
+        _gunSelector.GunLightSwitch();
+      }
+
+      if (Keyboard.current.eKey.wasPressedThisFrame)
+      {
+        _player.GetPlayerLoot().TakeLootItem();
+      }
+
       FireAction();
       ReloadAction();
     }
 
     private void FireAction()
     {
+      if (!_gunSelector.HasGun) return;
+      
+      if (Keyboard.current.digit1Key.wasPressedThisFrame)
+      {
+        _gunSelector.SwitchGun();
+      }
+      
       if (_isReloading || _firstPersonController.GetIsRunning()) return;
       
       bool conditions = Mouse.current.leftButton.isPressed 
@@ -45,11 +62,6 @@ namespace Actor
       if (Mouse.current.rightButton.wasPressedThisFrame)
       {
         _gunSelector.ActiveGun.Scope();
-      }
-
-      if (Keyboard.current.fKey.wasPressedThisFrame)
-      {
-        _gunSelector.GunLightSwitch();
       }
 
       if (conditions)
@@ -71,6 +83,8 @@ namespace Actor
 
     private void ReloadAction()
     {
+      if (!_gunSelector.HasGun) return;
+      
       if (ShouldManualReload() || ShouldAutoReload())
       {
         _isReloading = true;

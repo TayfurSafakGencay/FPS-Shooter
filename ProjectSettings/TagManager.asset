@@ -21,8 +21,8 @@ TagManager:
   - OnlyVisual
   - Environment
   - CharacterController
-  - 
-  - 
+  - LootArea
+  - Loot
   - 
   - 
   - 

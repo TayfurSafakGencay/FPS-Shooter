@@ -246,5 +246,10 @@ namespace Guns.Configurators
 
       return clone;
     }
+
+    public GameObject GetModel()
+    {
+      return _model;
+    }
   }
 }
