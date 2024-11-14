@@ -106,5 +106,10 @@ namespace Actor
     {
       return _inventory;
     }
+    
+    public PlayerAnimationController GetPlayerAnimationController()
+    {
+      return _playerAnimationController;
+    }
   }
 }

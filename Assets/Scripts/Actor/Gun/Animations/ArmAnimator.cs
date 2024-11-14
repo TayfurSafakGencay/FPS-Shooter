@@ -28,6 +28,11 @@ namespace Actor.Gun.Animations
     {
       GunAnimationEvent.AddListener(action);
     }
+    
+    public void RemoveEventListenerOnAnimationEvent(UnityAction<AnimationEventKey> action)
+    {
+      GunAnimationEvent.RemoveListener(action);
+    }
   }
   
   public enum AnimationEventKey

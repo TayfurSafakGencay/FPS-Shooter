@@ -2,6 +2,7 @@
 using Guns.Configurators;
 using Guns.Enum;
 using UnityEngine;
+using Utilities;
 
 namespace Actor.Gun
 {
@@ -37,6 +38,7 @@ namespace Actor.Gun
     private void Awake()
     {
       _player = GetComponent<Player>();
+      _gunLight.enabled = false;
     }
 
     public void EquipGun(GunType gunType)
@@ -86,16 +88,20 @@ namespace Actor.Gun
     {
       gunConfigSlot = newGun.Clone() as GunConfig;
       gunConfigSlot.Spawn(GunParent, this, _playerCamera, _player);
+      gunConfigSlot.StopVisuals();
       gunConfigSlot.GetModel().SetActive(false);
     }
 
-    public void SwitchGun()
+    public async void SwitchGun()
     {
       if (!HasGun || !HasSecondaryGun) return;
 
+      await _player.GetPlayerAnimationController().GunChangingAnimation();
+      
       (ActiveGun, SecondaryGun) = (SecondaryGun, ActiveGun);
-      ActiveGun.GetModel().SetActive(true);
+      ActiveGun.StopVisuals();
       SecondaryGun.GetModel().SetActive(false);
+      ActiveGun.GetModel().SetActive(true);
 
       _onGunChanged?.Invoke(ActiveGun.GetModel().transform);
     }

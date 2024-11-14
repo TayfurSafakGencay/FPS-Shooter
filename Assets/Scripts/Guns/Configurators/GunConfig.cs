@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Actor;
 using Base.Interface;
 using DG.Tweening;
@@ -13,7 +14,7 @@ using UnityEngine.VFX;
 namespace Guns.Configurators
 {
   [CreateAssetMenu(fileName = "Gun", menuName = "Tools/Guns/Gun", order = 0)]
-  public class GunConfig : ScriptableObject, System.ICloneable
+  public class GunConfig : ScriptableObject, ICloneable
   {
     // public ImpactType ImpactType;
     public GunType GunType;
@@ -222,6 +223,11 @@ namespace Guns.Configurators
     public void EndReload()
     {
       AmmoConfig.Reload();
+    }
+    
+    public void StopVisuals()
+    {
+      _shootSystem.Stop();
     }
 
     public object Clone()

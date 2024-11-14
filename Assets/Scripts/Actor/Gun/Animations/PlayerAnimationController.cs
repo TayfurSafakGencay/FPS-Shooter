@@ -1,6 +1,8 @@
-﻿using Base.Enum;
+﻿using System.Threading.Tasks;
+using Base.Enum;
 using Guns.GunParts;
 using UnityEngine;
+using Utilities;
 
 namespace Actor.Gun.Animations
 {
@@ -27,13 +29,30 @@ namespace Actor.Gun.Animations
 
     private void OnGunChanged(Transform gunTransform)
     {
+      if (_armAnimator != null)
+      {
+        _armAnimator.RemoveEventListenerOnAnimationEvent(OnAnimationEventDispatch);
+      }
+      
       _armAnimator = gunTransform.GetComponentInChildren(typeof(ArmAnimator)) as ArmAnimator;
 
       if (_armAnimator == null) return;
       _animator = _armAnimator.GetAnimator();
       _armAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
+      _animator.Rebind();
+      _animator.SetTrigger("InitialGun");
+      _animator.ResetTrigger("InitialGun");
 
       _gunPart = gunTransform.GetComponentInChildren<GunPart>();
+    }
+    
+    public async Task GunChangingAnimation()
+    {
+      _animator.SetTrigger("ChangeGun");
+      float animTime = _animator.GetCurrentAnimatorStateInfo(0).length;
+      await Utility.Delay(animTime);
+      _animator.Rebind();
+      _armAnimator.GetAnimator().Rebind();
     }
     
     private void OnAnimationEventDispatch(AnimationEventKey eventKey)
@@ -72,6 +91,7 @@ namespace Actor.Gun.Animations
 
     private void DetachMagazine()
     {
+      print(_gunPart.transform.name);
       _magazine = Instantiate(_gunPart.Magazine, _gunPart.LeftHand, true);
       _gunPart.Magazine.SetActive(false);
       _playerAction.Reloading(0);
@@ -112,6 +132,9 @@ namespace Actor.Gun.Animations
     private const string _move = "Move";
     private void FixedUpdate()
     {
+      if(!_player.GetPlayerGunSelector().HasGun)
+        return;
+      
       if (_isRunning && !_movingAnimationValue)
       {
         _animator.SetBool(_move, true);
@@ -133,17 +156,17 @@ namespace Actor.Gun.Animations
     [SerializeField] private float _scopeBobAmount = 0.01f;
     [SerializeField] private float _scopeBobSpeed = 2f;
     
-    [SerializeField] private  float _breathBobAmount = 0.1f;
-    [SerializeField] private  float _breathBobSpeed = 1f;
+    [SerializeField] private float _breathBobAmount = 0.1f;
+    [SerializeField] private float _breathBobSpeed = 1f;
     
-    [SerializeField] private  float _crouchBobAmount = 0.5f;
-    [SerializeField] private  float _crouchBobSpeed = 2f;
+    [SerializeField] private float _crouchBobAmount = 0.5f;
+    [SerializeField] private float _crouchBobSpeed = 2f;
 
-    [SerializeField] private  float _walkBobAmount = 1f;
-    [SerializeField] private  float _walkBobSpeed = 3f;
+    [SerializeField] private float _walkBobAmount = 1f;
+    [SerializeField] private float _walkBobSpeed = 3f;
     
-    [SerializeField] private  float _runBobAmount = 5f;
-    [SerializeField] private  float _runBobSpeed = 5f;
+    [SerializeField] private float _runBobAmount = 5f;
+    [SerializeField] private float _runBobSpeed = 5f;
     
     private float _bobAmount  => 
       _player.GetIsScoped() ? _scopeBobAmount / 1000 :
