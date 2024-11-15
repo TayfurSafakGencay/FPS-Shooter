@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de857ad669ec4bcfb4793a38387101cc, type: 3}
   m_Name: M4 Ammo Config
   m_EditorClassIdentifier: 
-  MaxAmmo: 1200
+  MaxAmmo: 120
   ClipSize: 30
-  CurrentAmmo: 1200
-  CurrentClipAmmo: 30
+  CurrentAmmo: 0
+  CurrentClipAmmo: 0

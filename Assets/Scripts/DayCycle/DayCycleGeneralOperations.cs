@@ -95,8 +95,7 @@ namespace DayCycle
       }
     }
     
-    [SerializeField]
-    private Color _noonSkyboxColor = new(0.625f, 0.185f, 0.185f, 0.5f);
+    private readonly Color _noonSkyboxColor = new(0.5f, 0.5f, 0.5f, 0.5f);
     private async void Morning()
     {
       AnimatePostProcessing(_morningBloom, _morningColorAdjustments, 1, 0.5f);

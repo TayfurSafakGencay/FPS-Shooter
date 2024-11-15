@@ -1,5 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Base.Interface;
+using Objects;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Actor
 {
@@ -10,9 +15,9 @@ namespace Actor
 
     [SerializeField]
     private float _sprintingStepInterval = 0.3f;
-
+    
     [SerializeField]
-    private List<AudioClip> _stepSounds;
+    private LayerMask _groundLayer;
 
     [SerializeField]
     private AudioSource _audioSource;
@@ -49,7 +54,52 @@ namespace Actor
 
     private void PlayStepSound()
     {
-      _audioSource.clip = _stepSounds[Random.Range(0, _stepSounds.Count)];
+      if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 2.5f, _groundLayer))
+      {
+        if (hit.collider.TryGetComponent(out Walkable walkable))
+        {
+          switch (walkable.WalkableType)
+          {
+            case WalkableType.Water:
+              WaterSound();
+              break;
+            case WalkableType.Terrain:
+              TerrainSound();
+              break;
+            case WalkableType.Wood:
+              WoodSound();
+              break;
+            default:
+              throw new ArgumentOutOfRangeException();
+          }
+        }
+      }
+    }
+
+    [Header("Terrain Sounds")]
+    [SerializeField]
+    private List<AudioClip> _terrainStepSounds;
+    private void TerrainSound()
+    {
+      _audioSource.clip = _terrainStepSounds[Random.Range(0, _terrainStepSounds.Count)];
+      _audioSource.Play();
+    }
+    
+    [Header("Water Sounds")]
+    [SerializeField]
+    private List<AudioClip> _waterStepSounds;
+    private void WaterSound()
+    {
+      _audioSource.clip = _waterStepSounds[Random.Range(0, _waterStepSounds.Count)];
+      _audioSource.Play();
+    }
+    
+    [Header("Wood Sounds")]
+    [SerializeField]
+    private List<AudioClip> _woodStepSounds;
+    private void WoodSound()
+    {
+      _audioSource.clip = _woodStepSounds[Random.Range(0, _woodStepSounds.Count)];
       _audioSource.Play();
     }
   }
