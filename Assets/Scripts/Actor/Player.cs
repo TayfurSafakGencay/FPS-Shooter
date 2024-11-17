@@ -17,6 +17,8 @@ namespace Actor
 
     private PlayerGunSelector _playerGunSelector;
     
+    private  PlayerHealth _playerHealth;
+    
     private Inventory _inventory;
     
     private PlayerLoot _playerLoot;
@@ -37,6 +39,7 @@ namespace Actor
       _playerGunSelector = GetComponent<PlayerGunSelector>();
       _playerLoot = GetComponent<PlayerLoot>();
       _inventory = GetComponent<Inventory>();
+      _playerHealth = GetComponent<PlayerHealth>();
     }
 
     public void Fire(Vector3 spread)
@@ -110,6 +113,11 @@ namespace Actor
     public PlayerAnimationController GetPlayerAnimationController()
     {
       return _playerAnimationController;
+    }
+    
+    public PlayerHealth GetPlayerHealth()
+    {
+      return _playerHealth;
     }
   }
 }

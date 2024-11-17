@@ -124,11 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b249b1f18b5b496f8f7de9f1a677ae8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: 2
+  Key: 4
   Type: 1
   Text: x30 M4 Ammo
-  MaxQuantity: 0
-  Quantity: 0
+  MaxQuantity: 1000
+  Quantity: 30
 --- !u!65 &1949424420333661167
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -137,8 +137,8 @@ MonoBehaviour:
   Key: 0
   Type: 2
   Text: x1 Pill
-  MaxQuantity: 0
-  Quantity: 0
+  MaxQuantity: 3
+  Quantity: 1
 --- !u!65 &7323341438469522915
 BoxCollider:
   m_ObjectHideFlags: 0

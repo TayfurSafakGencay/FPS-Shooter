@@ -1,5 +1,6 @@
 ﻿using Actor.Gun;
 using Actor.Gun.Animations;
+using LootSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,6 +39,11 @@ namespace Actor
       if (Keyboard.current.eKey.wasPressedThisFrame)
       {
         _player.GetPlayerLoot().TakeLootItem();
+      }
+
+      if (Keyboard.current.digit5Key.wasPressedThisFrame)
+      {
+        _player.GetInventory().UseConsumable(LootKey.Pill);
       }
 
       FireAction();

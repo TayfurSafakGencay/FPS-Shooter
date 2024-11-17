@@ -10,8 +10,6 @@ namespace Actor
     
     private bool _scanning;
     
-    private bool _lootItemIsReady;
-    
     private Loot _lootItem;
     
     private Player _player;
@@ -44,7 +42,7 @@ namespace Actor
       if (Physics.Raycast(_camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)),
             out RaycastHit hit, 3f, LayerMask.GetMask("Loot")))
       {
-        if (_lootItemIsReady)
+        if (_lootItem != null)
         {
           if (_lootItem.gameObject == hit.collider.gameObject) return;
         }
@@ -60,7 +58,6 @@ namespace Actor
     public void NoLoot()
     {
       _lootItem = null;
-      _lootItemIsReady = false;
       
       _player.GetPlayerScreenPanel().DisableLootText();
     }
@@ -68,7 +65,6 @@ namespace Actor
     public void TargetLoot(RaycastHit hit)
     {
       _lootItem = hit.collider.GetComponent<Loot>();
-      _lootItemIsReady = true;
       
       _player.GetPlayerScreenPanel().SetLootText(_lootItem.Text);
     }
@@ -80,7 +76,6 @@ namespace Actor
       _player.GetInventory().AddItemToInventory(_lootItem);
       _lootItem.Destroy();
       _lootItem = null;
-      _lootItemIsReady = false;
     }
   }
 }

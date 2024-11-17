@@ -98,6 +98,11 @@ namespace Actor
       {
         Items.Remove(key);
       }
+
+      if (key == LootKey.Pill)
+      {
+        _player.GetPlayerHealth().Heal(100);
+      }
     }
   }
 

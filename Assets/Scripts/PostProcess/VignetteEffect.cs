@@ -3,8 +3,9 @@ using Managers.Manager.Settings;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UserInterface.General;
 
-namespace UserInterface.General
+namespace PostProcess
 {
   public class VignetteEffect : MonoBehaviour
   {
