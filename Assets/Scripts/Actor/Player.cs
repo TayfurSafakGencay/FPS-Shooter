@@ -17,7 +17,7 @@ namespace Actor
 
     private PlayerGunSelector _playerGunSelector;
     
-    private  PlayerHealth _playerHealth;
+    private PlayerHealth _playerHealth;
     
     private Inventory _inventory;
     

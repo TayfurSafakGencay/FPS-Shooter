@@ -23,6 +23,7 @@ namespace Guns.Configurators
     public Vector3 SpawnRotation;
     public Vector3 ScopePosition;
     public float ScopeCameraFov;
+    public Sprite GunIcon;
     
     [Header("Configurations")]
     public DamageConfig DamageConfig;
@@ -239,6 +240,7 @@ namespace Guns.Configurators
       clone.ModelPrefab = ModelPrefab;
       clone.SpawnPoint = SpawnPoint;
       clone.SpawnRotation = SpawnRotation;
+      clone.GunIcon = GunIcon;
       
       clone.DamageConfig = DamageConfig.Clone() as DamageConfig;
       clone.AmmoConfig = AmmoConfig.Clone() as AmmoConfig;

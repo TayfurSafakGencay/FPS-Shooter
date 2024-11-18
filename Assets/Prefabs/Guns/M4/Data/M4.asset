@@ -19,6 +19,7 @@ MonoBehaviour:
   SpawnRotation: {x: 0, y: 0, z: 0}
   ScopePosition: {x: -0.1765, y: 0.032, z: -0.06}
   ScopeCameraFov: 40
+  GunIcon: {fileID: 21300000, guid: 19047cc80cab3f143b397394f6f51d5c, type: 3}
   DamageConfig: {fileID: 11400000, guid: fe1777e3061d60b4580e95e473008e69, type: 2}
   AmmoConfig: {fileID: 11400000, guid: f06fdef8fa5dfcc4e8edfbdfc1c23356, type: 2}
   ShootConfig: {fileID: 11400000, guid: e2c369277bf61ad4a89ddc65b843cea6, type: 2}

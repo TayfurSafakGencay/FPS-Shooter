@@ -104,6 +104,13 @@ namespace Actor
         _player.GetPlayerHealth().Heal(100);
       }
     }
+
+    public object GetConsumableCount(LootKey lootKey)
+    {
+      if (!Items.ContainsKey(lootKey)) return 0;
+      
+      return Items[lootKey].Quantity;
+    }
   }
 
   public class ItemVo

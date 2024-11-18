@@ -2,7 +2,6 @@
 using Guns.Configurators;
 using Guns.Enum;
 using UnityEngine;
-using Utilities;
 
 namespace Actor.Gun
 {
@@ -68,6 +67,31 @@ namespace Actor.Gun
       }
     }
     
+    private void EquipGun(ICloneable newGun, out GunConfig gunConfigSlot)
+    {
+      gunConfigSlot = newGun.Clone() as GunConfig;
+      gunConfigSlot.Spawn(GunParent, this, _playerCamera, _player);
+      gunConfigSlot.StopVisuals();
+      gunConfigSlot.GetModel().SetActive(false);
+      _player.GetPlayerScreenPanel().OnGunSwitch();
+    }
+
+    public async void SwitchGun()
+    {
+      if (!HasGun || !HasSecondaryGun) return;
+
+      await _player.GetPlayerAnimationController().GunChangingAnimation();
+      
+      (ActiveGun, SecondaryGun) = (SecondaryGun, ActiveGun);
+      
+      _player.GetPlayerScreenPanel().OnGunSwitch();
+      ActiveGun.StopVisuals();
+      SecondaryGun.GetModel().SetActive(false);
+      ActiveGun.GetModel().SetActive(true);
+
+      _onGunChanged?.Invoke(ActiveGun.GetModel().transform);
+    }
+    
     public void AddAmmo(GunType gunType, int ammo)
     {
       if (gunType == ActiveGun.GunType)
@@ -82,28 +106,6 @@ namespace Actor.Gun
       {
         Debug.LogError($"No Gun found for type {gunType}");
       }
-    }
-    
-    private void EquipGun(ICloneable newGun, out GunConfig gunConfigSlot)
-    {
-      gunConfigSlot = newGun.Clone() as GunConfig;
-      gunConfigSlot.Spawn(GunParent, this, _playerCamera, _player);
-      gunConfigSlot.StopVisuals();
-      gunConfigSlot.GetModel().SetActive(false);
-    }
-
-    public async void SwitchGun()
-    {
-      if (!HasGun || !HasSecondaryGun) return;
-
-      await _player.GetPlayerAnimationController().GunChangingAnimation();
-      
-      (ActiveGun, SecondaryGun) = (SecondaryGun, ActiveGun);
-      ActiveGun.StopVisuals();
-      SecondaryGun.GetModel().SetActive(false);
-      ActiveGun.GetModel().SetActive(true);
-
-      _onGunChanged?.Invoke(ActiveGun.GetModel().transform);
     }
 
     public void AddEventListenerOnGunChanged(Action<Transform> action)
