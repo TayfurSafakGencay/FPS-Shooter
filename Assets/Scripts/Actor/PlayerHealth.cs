@@ -1,4 +1,5 @@
-﻿using PostProcess;
+﻿using System.Collections;
+using PostProcess;
 using UnityEngine;
 
 namespace Actor
@@ -14,7 +15,20 @@ namespace Actor
     private void Awake()
     {
       Health = MaxHealth;
+
+      // StartCoroutine(x());
     }
+    
+    // IEnumerator x()
+    // {
+    //   if (IsDead)
+    //   {
+    //     yield break;
+    //   }
+    //   yield return new WaitForSeconds(1);
+    //   TakeDamage(5);
+    //   StartCoroutine(x());
+    // }
 
     public void TakeDamage(float damage)
     {
@@ -59,6 +73,12 @@ namespace Actor
             break;
         }
       }
+    }
+
+    public float GetHealthPercentage()
+    {
+      print(Health / MaxHealth);
+      return Health / MaxHealth;
     }
   }
 }

@@ -12,6 +12,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/PlayerGunSelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/PlayerGunSelector.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Inventory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/PlayerHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/PlayerHealth.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/GunConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Guns/Configurators/GunConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/PlayerScreenPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/PlayerScreenPanel.cs" afterDir="false" />
     </list>
@@ -219,7 +220,7 @@
       <workItem from="1731611323914" duration="2326000" />
       <workItem from="1731671991450" duration="9614000" />
       <workItem from="1731853081524" duration="7139000" />
-      <workItem from="1731921183215" duration="4402000" />
+      <workItem from="1731921183215" duration="6254000" />
     </task>
     <servers />
   </component>

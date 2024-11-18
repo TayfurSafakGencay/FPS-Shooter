@@ -29,6 +29,9 @@ namespace UserInterface.Panel
     
     [SerializeField]
     private GameObject _lootBackground;
+    
+    [SerializeField]
+    private Image _healthSlider;
 
     private void Awake()
     {
@@ -47,6 +50,8 @@ namespace UserInterface.Panel
 
     private void Update()
     {
+      _healthSlider.fillAmount = Player.GetPlayerHealth().GetHealthPercentage();
+
       if(!Player.GetPlayerGunSelector().HasGun) return;
       
       _ammoText.SetText($"<size=30><color=#00FF00>{Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentClipAmmo}</color></size>\n" +
