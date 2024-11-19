@@ -77,7 +77,6 @@ namespace Actor
 
     public float GetHealthPercentage()
     {
-      print(Health / MaxHealth);
       return Health / MaxHealth;
     }
   }

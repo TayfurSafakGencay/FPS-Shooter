@@ -22,9 +22,12 @@ namespace Actor
     private Inventory _inventory;
     
     private PlayerLoot _playerLoot;
+    
+    [SerializeField]
+    private MakeSound _makeSound;
 
     public Action<float> OnFire;
-
+    
     public Action<bool> OnHit;
 
     [SerializeField]
@@ -42,11 +45,17 @@ namespace Actor
       _playerHealth = GetComponent<PlayerHealth>();
     }
 
+    private void Start()
+    {
+      _makeSound.SetPlayer(this);
+    }
+
     public void Fire(Vector3 spread)
     {
       float maxValue = Mathf.Max(spread.x, spread.y, spread.z);
 
       OnFire?.Invoke(maxValue);
+      _makeSound.MakeSoundAtPosition(SoundDistances.Fire);
     }
 
     public void Hit(bool headshot)

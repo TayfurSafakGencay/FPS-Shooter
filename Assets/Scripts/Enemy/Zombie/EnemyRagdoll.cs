@@ -10,6 +10,8 @@ namespace Enemy.Zombie
       Walk,
       Ragdoll
     }
+
+    private Enemy _enemy;
     
     private List<BodyPart> _bodyParts;
 
@@ -21,6 +23,7 @@ namespace Enemy.Zombie
     
     private void Awake()
     {
+      _enemy = GetComponent<Enemy>();
       _animator = GetComponent<Animator>();
       _bodyParts = new List<BodyPart>(GetComponentsInChildren<BodyPart>());
       _characterController = GetComponent<CharacterController>();
@@ -55,6 +58,7 @@ namespace Enemy.Zombie
       Vector3 force = damage * direction;
       EnableRagdoll();
       
+      _enemy.IsDead = true;
       // Rigidbody hitRb = _ragdollRigidbodies.OrderBy(rb => Vector3.Distance(rb.transform.position, hitPoint)).First();
       
       hitRb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);

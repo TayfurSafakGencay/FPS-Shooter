@@ -10,6 +10,8 @@ namespace Enemy.Zombie
     
     public ZombieAnimator Animator { get; private set; }
 
+    public bool IsDead;
+
     private void Awake()
     {
       Bindings();
