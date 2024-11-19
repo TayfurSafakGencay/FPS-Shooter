@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Guns.GunParts
 {
@@ -15,6 +16,17 @@ namespace Guns.GunParts
     public GameObject SightDot;
     
     public Vector3 MagazineColliderSize;
+
+    private void Awake()
+    {
+      Renderer[] renderers = GetComponentsInChildren<Renderer>();
+
+      foreach (Renderer rd in renderers)
+      {
+        rd.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        rd.receiveShadows = false;
+      }
+    }
 
     public void OnScopeOpen(bool isScopeActive)
     {

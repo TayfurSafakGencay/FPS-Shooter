@@ -33,3 +33,7 @@ MonoBehaviour:
     SoundKey: 17
     AudioClip: {fileID: 8300000, guid: b84f03fddcb7c0e42a025d7e23f960d3, type: 3}
     Volume: 1
+  - Name: ChaseHit
+    SoundKey: 18
+    AudioClip: {fileID: 8300000, guid: 3d1d3d6446db5f643a56d10954804296, type: 3}
+    Volume: 1

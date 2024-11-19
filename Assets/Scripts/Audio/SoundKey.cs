@@ -33,6 +33,8 @@
     M4Reload2 = 12,
     M4Reload3 = 13,
     
+    ChaseHit = 18,
+    
     // --- Ambiance --- //
     
     MorningAmbiance = 16,

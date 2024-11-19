@@ -1,4 +1,5 @@
 ﻿using Base.Interface;
+using Systems.Chase;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -61,6 +62,7 @@ namespace Enemy.Zombie
     public void NoticeSound()
     {
       if (_noticed) return;
+      ChaseSystem.ChaseHit();
       _noticed = true;
       _navMeshAgent.isStopped = false;
       

@@ -193,6 +193,11 @@ namespace Managers.Manager
       audioSource.PlayOneShot(SoundsData.GetSound(soundKey).AudioClip, volume);
     }
 
+    public void PlaySoundEffect(SoundKey soundKey, float volume = 1)
+    {
+      _sfxAudioSource.PlayOneShot(SoundsData.GetSound(soundKey).AudioClip, volume);
+    }
+
     public AudioMixerGroup GetMixerGroupToAudioSourceForSFX()
     {
       return _sfxAudioSource.outputAudioMixerGroup;

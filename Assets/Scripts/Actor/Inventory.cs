@@ -19,7 +19,6 @@ namespace Actor
 
     public void AddItemToInventory(Loot loot)
     {
-      print(loot.Key);
       switch (loot.Type)
       {
         case LootType.Weapon:
