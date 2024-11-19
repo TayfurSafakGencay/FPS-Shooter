@@ -22,13 +22,12 @@ namespace Enemy.Zombie
       
       _navMeshAgent = GetComponent<NavMeshAgent>();
       _target = GameObject.FindWithTag("Player").transform;
+
+      _navMeshAgent.speed = 4;
     }
 
     private void Update()
     {
-      if (_enemy.IsDead)
-        enabled = false;
-      
       if (!_noticed) return;
       
       Chase();        
@@ -59,11 +58,18 @@ namespace Enemy.Zombie
     }
 
 
-    public void GetSound()
+    public void NoticeSound()
     {
       if (_noticed) return;
       _noticed = true;
       _navMeshAgent.isStopped = false;
+      
+      _enemy.Animator.Scream();
+    }
+    
+    public bool IsNoticed()
+    {
+      return _noticed;
     }
   }
 }

@@ -67,7 +67,7 @@ namespace Actor
     {
       if (other.TryGetComponent(out ISoundDetector soundDetector))
       {
-        soundDetector.GetSound();
+        soundDetector.NoticeSound();
       }
     }
   }

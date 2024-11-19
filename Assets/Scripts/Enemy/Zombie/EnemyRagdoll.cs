@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Enemy.Zombie
 {
@@ -55,11 +56,30 @@ namespace Enemy.Zombie
 
     public void Death(float damage, Vector3 direction, Vector3 hitPoint, Rigidbody hitRb)
     {
-      Vector3 force = damage * direction;
+      Vector3 force = damage * direction * 3;
       EnableRagdoll();
       
       _enemy.IsDead = true;
-      // Rigidbody hitRb = _ragdollRigidbodies.OrderBy(rb => Vector3.Distance(rb.transform.position, hitPoint)).First();
+      
+      Component[] components = gameObject.GetComponents<Component>();
+
+      foreach (Component component in components)
+      {
+        switch (component)
+        {
+          case Transform:
+            continue;
+          case MonoBehaviour monoBehaviour:
+            monoBehaviour.enabled = false;
+            break;
+          case NavMeshAgent navMeshAgent:
+            navMeshAgent.enabled = false;
+            break;
+          case Collider col:
+            col.enabled = false;
+            break;
+        }
+      }
       
       hitRb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
 

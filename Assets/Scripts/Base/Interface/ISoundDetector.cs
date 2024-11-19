@@ -2,6 +2,6 @@
 {
   public interface ISoundDetector
   {
-    public void GetSound();
+    public void NoticeSound();
   }
 }

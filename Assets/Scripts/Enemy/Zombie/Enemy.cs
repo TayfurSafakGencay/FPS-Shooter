@@ -10,6 +10,10 @@ namespace Enemy.Zombie
     
     public ZombieAnimator Animator { get; private set; }
 
+    public EnemyAI AI { get; private set; }
+    
+    public ZombieSound Sound { get; private set; }
+
     public bool IsDead;
 
     private void Awake()
@@ -22,6 +26,8 @@ namespace Enemy.Zombie
       Health = GetComponent<EnemyHealth>();
       Ragdoll = GetComponent<EnemyRagdoll>();
       Animator = GetComponent<ZombieAnimator>();
+      AI = GetComponent<EnemyAI>();
+      Sound = GetComponent<ZombieSound>();
     }
   }
 }

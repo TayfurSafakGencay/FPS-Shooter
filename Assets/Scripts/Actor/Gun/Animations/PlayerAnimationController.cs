@@ -91,7 +91,6 @@ namespace Actor.Gun.Animations
 
     private void DetachMagazine()
     {
-      print(_gunPart.transform.name);
       _magazine = Instantiate(_gunPart.Magazine, _gunPart.LeftHand, true);
       _gunPart.Magazine.SetActive(false);
       _playerAction.Reloading(0);
