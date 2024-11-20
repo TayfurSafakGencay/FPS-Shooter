@@ -65,7 +65,7 @@ namespace Enemy.Zombie
       ChaseSystem.ChaseHit();
       _noticed = true;
       _navMeshAgent.isStopped = false;
-      
+
       _enemy.Animator.Scream();
     }
     

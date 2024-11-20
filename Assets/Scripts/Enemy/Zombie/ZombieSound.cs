@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Systems.Chase;
 using UnityEngine;
 using Utilities;
 using Random = UnityEngine.Random;
@@ -46,9 +46,12 @@ namespace Enemy.Zombie
 
     public async void PlayScreamSound()
     {
-      _isScreaming = true;
       float screamSoundLength = ScreamSound.length;
+      if (ChaseSystem.Screaming) return; 
+      ChaseSystem.Screamed(screamSoundLength);
       
+      _isScreaming = true;
+
       AudioSource.volume = Random.Range(0.3f, 0.75f);
       AudioSource.clip = ScreamSound;
       AudioSource.Play();

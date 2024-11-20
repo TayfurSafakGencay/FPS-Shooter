@@ -36,7 +36,8 @@ namespace Actor
 
       Health -= damage;
 
-      DamageEffect.OnHealthChange(Health, MaxHealth);
+      //TODO: Safak
+      // StaminaEffect.OnHealthChange(Health, MaxHealth);
 
       if (Health <= 0)
       {
@@ -55,7 +56,7 @@ namespace Actor
         Health = MaxHealth;
       }
       
-      DamageEffect.OnHealthChange(Health, MaxHealth);
+      // StaminaEffect.OnHealthChange(Health, MaxHealth);
     }
 
     public void Die()

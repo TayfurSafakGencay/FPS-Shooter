@@ -23,6 +23,8 @@ namespace Actor
     
     private PlayerLoot _playerLoot;
     
+    private PlayerStamina _playerStamina;
+    
     [SerializeField]
     private MakeSound _makeSound;
 
@@ -43,6 +45,7 @@ namespace Actor
       _playerLoot = GetComponent<PlayerLoot>();
       _inventory = GetComponent<Inventory>();
       _playerHealth = GetComponent<PlayerHealth>();
+      _playerStamina = GetComponent<PlayerStamina>();
     }
 
     private void Start()
@@ -127,6 +130,11 @@ namespace Actor
     public PlayerHealth GetPlayerHealth()
     {
       return _playerHealth;
+    }
+    
+    public PlayerStamina GetPlayerStamina()
+    {
+      return _playerStamina;
     }
   }
 }

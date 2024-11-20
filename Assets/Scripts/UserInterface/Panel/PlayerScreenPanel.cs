@@ -32,6 +32,9 @@ namespace UserInterface.Panel
     
     [SerializeField]
     private Image _healthSlider;
+    
+    [SerializeField]
+    private Image _staminaSlider;
 
     private void Awake()
     {
@@ -51,6 +54,7 @@ namespace UserInterface.Panel
     private void Update()
     {
       _healthSlider.fillAmount = Player.GetPlayerHealth().GetHealthPercentage();
+      _staminaSlider.fillAmount = Player.GetPlayerStamina().GetStaminaPercentage();
 
       if(!Player.GetPlayerGunSelector().HasGun) return;
       

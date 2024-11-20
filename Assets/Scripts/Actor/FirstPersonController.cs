@@ -19,101 +19,54 @@ namespace Actor
     private Camera _camera;
 
     [Header("Functional Options")]
-    [SerializeField]
-    private bool _canSprint = true;
+    [SerializeField] private bool _canSprint = true;
+    [SerializeField] private bool _canJump = true;
+    [SerializeField] private bool _canCrouch = true;
+    [SerializeField] private bool _canHeadBob = true;
 
-    [SerializeField]
-    private bool _canJump = true;
-
-    [SerializeField]
-    private bool _canCrouch = true;
-
-    [SerializeField]
-    private bool _canHeadBob = true;
-
-    [SerializeField]
-    private bool _willSlideOnSlope = true;
+    [SerializeField] private bool _willSlideOnSlope = true;
 
     [Header("Controls")]
-    [SerializeField]
-    private KeyCode _sprintKey = KeyCode.LeftShift;
-
-    [SerializeField]
-    private KeyCode _jumpKey = KeyCode.Space;
-
-    [SerializeField]
-    private KeyCode _crouchKey = KeyCode.LeftControl;
+    [SerializeField] private KeyCode _sprintKey = KeyCode.LeftShift;
+    [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
+    [SerializeField] private KeyCode _crouchKey = KeyCode.LeftControl;
 
     [Header("Movement Parameters")]
-    [SerializeField]
-    private float _walkSpeed = 3f;
-
-    [SerializeField]
-    private float _sprintSpeed = 6f;
-
-    [SerializeField]
-    private float _crouchSpeed = 1.5f;
-
-    [SerializeField]
-    private float _slopeSpeed = 8f;
+    [SerializeField] private float _walkSpeed = 3f;
+    [SerializeField] private float _sprintSpeed = 6f;
+    [SerializeField] private float _crouchSpeed = 1.5f;
+    [SerializeField] private float _slopeSpeed = 8f;
 
     private float _currentSpeed => _isCrouching ? _crouchSpeed : _isSprinting ? _sprintSpeed : _walkSpeed;
 
     [Header("Look Parameters")]
-    [SerializeField, Range(1, 3)]
-    private float _mouseSensitivity = 3f;
-
-    [SerializeField, Range(1, 180)]
-    private float _upperLookLimit = 80f;
-
-    [SerializeField, Range(1, 180)]
-    private float _lowerLookLimit = 80f;
+    [SerializeField, Range(1, 3)] private float _mouseSensitivity = 3f;
+    [SerializeField, Range(1, 180)] private float _upperLookLimit = 80f;
+    [SerializeField, Range(1, 180)] private float _lowerLookLimit = 80f;
 
     [Header("Jump Parameters")]
-    [SerializeField]
-    private float _jumpForce = 8f;
-
-    [SerializeField]
-    private float _gravity = 30f;
+    [SerializeField] private float _jumpForce = 8f;
+    [SerializeField] private float _gravity = 30f;
 
     [Header("Crouch Parameters")]
-    [SerializeField]
-    private float _crouchHeight = 0.5f;
+    [SerializeField] private float _crouchHeight = 0.5f;
+    [SerializeField] private float _standingHeight = 2f;
+    [SerializeField] private float _timeToCrouch = 0.25f;
 
-    [SerializeField]
-    private float _standingHeight = 2f;
-
-    [SerializeField]
-    private float _timeToCrouch = 0.25f;
-
-    [SerializeField]
-    private Vector3 _crouchingCenter = new(0, 0.5f, 0);
-
-    [SerializeField]
-    private Vector3 _standingCenter = new(0, 0, 0);
+    [SerializeField] private Vector3 _crouchingCenter = new(0, 0.5f, 0);
+    [SerializeField] private Vector3 _standingCenter = new(0, 0, 0);
 
     private bool _isCrouching;
     private bool _duringCrouchAnimation;
 
     [Header("Head Bob Parameters")]
-    [SerializeField]
-    private float _walkBobSpeed = 10f;
-
-    [SerializeField]
-    private float _walkBobAmount = 0.035f;
-
-    [SerializeField]
-    private float _runBobSpeed = 18f;
-
-    [SerializeField]
-    private float _runBobAmount = 0.1f;
-
-    [SerializeField]
-    private float _crouchBobSpeed = 8f;
-
-    [SerializeField]
-    private float _crouchBobAmount = 0.025f;
-
+    [SerializeField] private float _walkBobSpeed = 10f;
+    [SerializeField] private float _walkBobAmount = 0.035f;
+    [SerializeField] private float _runBobSpeed = 18f;
+    [SerializeField] private float _runBobAmount = 0.1f;
+    [SerializeField] private float _crouchBobSpeed = 8f;
+    [SerializeField] private float _crouchBobAmount = 0.025f;
+    
     private float _defaultYPos;
     private float _timer;
     private float _bobSpeed => _isCrouching ? _crouchBobSpeed : _isSprinting ? _runBobSpeed : _walkBobSpeed;
@@ -143,6 +96,8 @@ namespace Actor
     private Vector2 _currentInput;
 
     private float _rotationX;
+    
+    private float _sprintSpeedInitial;
 
     private void Awake()
     {
@@ -154,6 +109,8 @@ namespace Actor
       Cursor.visible = false;
 
       _originalRotation = _camera.transform.localRotation;
+      
+      _sprintSpeedInitial = _sprintSpeed;
     }
 
     private void Update()
@@ -329,7 +286,16 @@ namespace Actor
     public bool GetIsSliding() => _isSliding;
 
     public bool GetIsGrounded() => _characterController.isGrounded;
-
+    
+    public void SetCanMove(bool canMove) => CanMove = canMove;
+    
+    public void SetCanSprint(bool canSprint) => _canSprint = canSprint;
+    
+    public float GetInitialSprintSpeed() => _sprintSpeedInitial;
+    
+    public void SetSprintSpeed(float sprintSpeed) => _sprintSpeed = sprintSpeed;
+    
+    public float GetWalkSpeed() => _walkSpeed;
     #endregion
   }
 }

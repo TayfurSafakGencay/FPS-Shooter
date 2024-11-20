@@ -6,7 +6,7 @@ using UserInterface.General;
 
 namespace PostProcess
 {
-  public class DamageEffect : MonoBehaviour
+  public class StaminaEffect : MonoBehaviour
   {
     [SerializeField]
     private VolumeProfile _volumeProfile;
@@ -15,7 +15,7 @@ namespace PostProcess
 
     private void Awake()
     {
-      if(_volumeProfile.TryGet<Vignette>(out Vignette vignette))
+      if (_volumeProfile.TryGet<Vignette>(out Vignette vignette))
       {
         _vignette = vignette;
       }
@@ -30,6 +30,12 @@ namespace PostProcess
       
       DOTween.To(() => _vignette.intensity.value, x => _vignette.intensity.Override(x), 
         damagePercentage, UserInterfaceTimes.DamageEffectTime);
+    }
+
+    public static void OnStaminaChanged(float stamina)
+    {
+     float vignetteValue = 0.375f * (1 - stamina / 100f);
+     _vignette.intensity.value = vignetteValue;
     }
   }
 }
