@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UserInterface.General;
+using Utilities;
 
 namespace PostProcess
 {
@@ -32,10 +33,15 @@ namespace PostProcess
         damagePercentage, UserInterfaceTimes.DamageEffectTime);
     }
 
-    public static void OnStaminaChanged(float stamina)
+    public static async void OnStaminaChanged()
     {
-     float vignetteValue = 0.375f * (1 - stamina / 100f);
-     _vignette.intensity.value = vignetteValue;
+      DOTween.To(() => _vignette.intensity.value, x => _vignette.intensity.Override(x), 
+        0.2f, UserInterfaceTimes.BreathEffectTime);
+
+      await Utility.Delay(4f);
+      
+      DOTween.To(() => _vignette.intensity.value, x => _vignette.intensity.Override(x), 
+        0f, UserInterfaceTimes.BreathEffectTime * 1.5f);
     }
   }
 }

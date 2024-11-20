@@ -9,7 +9,7 @@ namespace Actor
 
     private const float _maxStamina = 100f;
     private float _currentStamina;
-    private const float _staminaDrainRate = 10f;
+    private const float _staminaDrainRate = 5f;
     private const float _staminaRegenRate = 5f;
 
     private const float _slowDownThreshold = 25;
@@ -41,11 +41,13 @@ namespace Actor
       {
         case <= _stopRunningThreshold:
           _player.GetFirstPersonController().SetCanSprint(false);
+          _player.GetBreathSound().PlayBreathSound();
+          StaminaEffect.OnStaminaChanged();
           break;
         case <= _slowDownThreshold:
         {
           float speed = Mathf.Lerp((
-              _player.GetFirstPersonController().GetWalkSpeed() + _player.GetFirstPersonController().GetInitialSprintSpeed()) / 2,
+              _player.GetFirstPersonController().GetWalkSpeed() + _player.GetFirstPersonController().GetInitialSprintSpeed()) / 1.75f,
             _player.GetFirstPersonController().GetInitialSprintSpeed(), (_currentStamina - 10f) / 20f);
         
           _player.GetFirstPersonController().SetSprintSpeed(speed);
@@ -57,7 +59,7 @@ namespace Actor
           break;
       }
       
-      StaminaEffect.OnStaminaChanged(_currentStamina);
+      
     }
   }
 }
