@@ -1,9 +1,13 @@
 ﻿using Actor;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using LootSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UserInterface.General;
+using Utilities;
 
 namespace UserInterface.Panel
 {
@@ -35,6 +39,9 @@ namespace UserInterface.Panel
     
     [SerializeField]
     private Image _staminaSlider;
+    
+    [SerializeField]
+    private Image _bloodScreen;
 
     private void Awake()
     {
@@ -44,6 +51,7 @@ namespace UserInterface.Panel
       
       _ammoText.SetText("");
       _gunImage.enabled = false;
+      _bloodScreen.enabled = false;
     }
 
     private void Start()
@@ -79,6 +87,40 @@ namespace UserInterface.Panel
     public void DisableLootText()
     {
       _lootBackground.SetActive(false);
+    }
+
+    private TweenerCore<Color, Color, ColorOptions> _bloodFadeAnimation;
+    public async void OnGetPlayerDamage(float health)
+    {
+      if (_bloodFadeAnimation != null && _bloodFadeAnimation.IsActive())
+        _bloodFadeAnimation.Kill();
+      
+      _bloodScreen.enabled = true;
+      if (health <= 20)
+      {
+        OnHealthCritical();
+      }
+      else
+      {
+        _bloodScreen.color = new Color(1, 1, 1, 1 - health / 100);
+
+        await Utility.Delay(0.5f);
+          
+        _bloodFadeAnimation = _bloodScreen.DOColor(new Color(1,1,1,0), 0.5f).OnComplete(() => _bloodScreen.enabled = false);
+      }
+    }
+
+    private TweenerCore<Vector3, Vector3, VectorOptions> _criticalHealthAnimation;
+    public void OnHealthCritical()
+    {
+      if (_criticalHealthAnimation != null && _criticalHealthAnimation.IsActive() && _criticalHealthAnimation.IsPlaying())
+        return;
+
+      _bloodScreen.enabled = true;
+      _bloodScreen.color = new Color(1, 1, 1, 1);
+      
+      _criticalHealthAnimation = _bloodScreen.transform.DOScale(1.05f, 0.25f)
+        .SetLoops(-1, LoopType.Yoyo);
     }
   }
 }
