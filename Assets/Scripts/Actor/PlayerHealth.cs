@@ -78,6 +78,8 @@ namespace Actor
       if (Health <= 20) _hearthBeatAudioSource.Play(); 
       else _hearthBeatAudioSource.Stop();
       
+      _player.GetPlayerScreenPanel().OnGetPlayerDamage(Health);
+      
       _damageAudioSource.clip = _healAudioClip;
       _damageAudioSource.Play();
 

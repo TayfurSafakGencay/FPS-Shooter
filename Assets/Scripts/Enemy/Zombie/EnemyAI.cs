@@ -25,6 +25,8 @@ namespace Enemy.Zombie
       _target = GameObject.FindWithTag("Player").transform;
 
       _navMeshAgent.speed = 4;
+      _navMeshAgent.angularSpeed = 360;
+      _navMeshAgent.stoppingDistance = 2;
     }
 
     private void Update()
@@ -42,6 +44,8 @@ namespace Enemy.Zombie
       {
         _noticed = false;
         _navMeshAgent.isStopped = true;
+        _enemy.Animator.Idle();
+
         return;
       }
       
@@ -51,13 +55,36 @@ namespace Enemy.Zombie
       {
         Attack();
       }
+      else
+      {
+        _navMeshAgent.updateRotation = true;
+
+        _enemy.Animator.Walk();
+      }
     }
     
     private void Attack()
     {
-      // Attack
-    }
+      _enemy.Animator.Attack();
+      
+      _navMeshAgent.updateRotation = false;
+      
+      Vector3 direction = _target.position - transform.position; 
+      direction.y = 0;
 
+      if (direction != Vector3.zero)
+      {
+        Quaternion targetRotation = Quaternion.LookRotation(direction); 
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f); 
+      }
+    }
+    
+    public bool CheckDistance()
+    {
+      float distance = Vector3.Distance(transform.position, _target.position);
+
+      return !(distance > _navMeshAgent.stoppingDistance + 1f);
+    }
 
     public void NoticeSound()
     {

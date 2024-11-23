@@ -56,30 +56,35 @@ namespace Enemy.Zombie
 
     public void Death(float damage, Vector3 direction, Vector3 hitPoint, Rigidbody hitRb)
     {
-      Vector3 force = damage * direction * 3;
-      EnableRagdoll();
-      
-      _enemy.IsDead = true;
-      
-      Component[] components = gameObject.GetComponents<Component>();
-
-      foreach (Component component in components)
+      if (!_enemy.IsDead) 
       {
-        switch (component)
+        EnableRagdoll();
+        _enemy.Sound.PlayDeadSound();
+        
+        Component[] components = gameObject.GetComponents<Component>();
+
+        foreach (Component component in components)
         {
-          case Transform:
-            continue;
-          case MonoBehaviour monoBehaviour:
-            monoBehaviour.enabled = false;
-            break;
-          case NavMeshAgent navMeshAgent:
-            navMeshAgent.enabled = false;
-            break;
-          case Collider col:
-            col.enabled = false;
-            break;
+          switch (component)
+          {
+            case Transform:
+              continue;
+            case MonoBehaviour monoBehaviour:
+              monoBehaviour.enabled = false;
+              break;
+            case NavMeshAgent navMeshAgent:
+              navMeshAgent.enabled = false;
+              break;
+            case Collider col:
+              col.enabled = false;
+              break;
+          }
         }
       }
+      
+      Vector3 force = damage * direction * 3;
+      
+      _enemy.IsDead = true;
       
       hitRb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
 

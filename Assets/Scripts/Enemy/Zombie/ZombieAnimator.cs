@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Actor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,9 +27,13 @@ namespace Enemy.Zombie
       _enemy = GetComponent<Enemy>();
     }
 
-    private void Start()
+    public void Idle()
     {
-      // _animator.SetTrigger(AnimationType.Walk.ToString());
+      _animator.ResetTrigger(AnimationType.Hit.ToString());
+      _animator.ResetTrigger(AnimationType.Scream.ToString());
+      _animator.ResetTrigger(AnimationType.Attack.ToString());
+      _animator.ResetTrigger(AnimationType.Walk.ToString());
+      _animator.SetTrigger(AnimationType.Idle.ToString());
     }
 
     public void Hit()
@@ -43,8 +48,38 @@ namespace Enemy.Zombie
       _enemy.Sound.PlayScreamSound();
     }
     
+    public void Attack()
+    {
+      _animator.ResetTrigger(AnimationType.Walk.ToString());
+      _animator.SetTrigger(AnimationType.Attack.ToString());
+    }
+    
+    public void AttackAnimationStarted()
+    {
+      _enemy.Sound.PlayAttackSound();
+    }
+    
+    public void AttackAnimationEnded()
+    {
+      bool success = _enemy.AI.CheckDistance();
+
+      if (!success) return;
+        
+      if (_enemy.Player.TryGetComponent(out PlayerHealth playerHealth))
+      {
+        playerHealth.TakeDamage(Random.Range(10, 20));
+      }
+    }
+    
+    public void Walk()
+    {
+      _animator.ResetTrigger(AnimationType.Attack.ToString());
+      _animator.SetTrigger(AnimationType.Walk.ToString());
+    }
+    
     private enum AnimationType
     {
+      Idle,
       Walk,
       Hit,
       Scream,

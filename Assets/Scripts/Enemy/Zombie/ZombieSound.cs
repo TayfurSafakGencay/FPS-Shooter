@@ -14,6 +14,10 @@ namespace Enemy.Zombie
     public AudioClip ScreamSound;
 
     public List<AudioClip> GrumbleSounds;
+    
+    public List<AudioClip> AttackSounds;
+    
+    public List<AudioClip> DeathSounds;
 
     private Enemy _enemy;
     
@@ -37,27 +41,55 @@ namespace Enemy.Zombie
 
         if (_enemy.IsDead) break;
         if (_isScreaming) continue;
+        if (_isAttacking) continue;
 
         AudioSource.volume = Random.Range(0.5f, 1f);
         int index = Random.Range(0, GrumbleSounds.Count);
-        AudioSource.PlayClipAtPoint(GrumbleSounds[index], transform.position);
+        AudioSource.clip = GrumbleSounds[index];
+        AudioSource.Play();
       }
     }
 
     public async void PlayScreamSound()
     {
+      if (_enemy.IsDead) return;
+      
       float screamSoundLength = ScreamSound.length;
       if (ChaseSystem.Screaming) return; 
       ChaseSystem.Screamed(screamSoundLength);
       
       _isScreaming = true;
 
-      AudioSource.volume = Random.Range(0.3f, 0.75f);
+      AudioSource.volume = 1;
       AudioSource.clip = ScreamSound;
       AudioSource.Play();
 
       await Utility.Delay(screamSoundLength);
       _isScreaming = false;
+    }
+
+    private bool _isAttacking;
+    public async void PlayAttackSound()
+    {
+      if (_enemy.IsDead) return;
+      if (_isAttacking) return;
+
+      AudioSource.volume = 0.75f;
+      int index = Random.Range(0, AttackSounds.Count);
+      AudioSource.clip = AttackSounds[index];
+      AudioSource.Play();
+      
+      _isAttacking = true;
+      await Utility.Delay(AttackSounds[index].length + 0.5f);
+      _isAttacking = false;
+    }
+    
+    public void PlayDeadSound()
+    {
+      AudioSource.volume = 1;
+      int index = Random.Range(0, DeathSounds.Count);
+      AudioSource.clip = DeathSounds[index];
+      AudioSource.Play();
     }
   }
 }

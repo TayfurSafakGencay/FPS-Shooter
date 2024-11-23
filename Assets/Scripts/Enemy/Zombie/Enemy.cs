@@ -15,9 +15,13 @@ namespace Enemy.Zombie
     public ZombieSound Sound { get; private set; }
 
     public bool IsDead;
+    
+    public GameObject Player { get; private set; }
 
     private void Awake()
     {
+      Player = GameObject.FindWithTag("Player");
+      
       Bindings();
     }
 
