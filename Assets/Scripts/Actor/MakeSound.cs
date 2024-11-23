@@ -74,7 +74,7 @@ namespace Actor
 
   public record SoundDistances
   {
-    public const float Fire = 10f;
+    public const float Fire = 30f;
     
     public const float FootstepWalk = 2f;
     

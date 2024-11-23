@@ -13,7 +13,7 @@ namespace Enemy.Zombie
 
     private bool _noticed;
     
-    private const float _maxDistanceForChase = 10;
+    private const float _maxDistanceForChase = 40;
 
     private Enemy _enemy;
 

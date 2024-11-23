@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Base.Interface;
 using Objects;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Actor
@@ -81,6 +80,8 @@ namespace Actor
     private List<AudioClip> _terrainStepSounds;
     private void TerrainSound()
     {
+      SetInterval(0.5f, 0.3f);
+      _audioSource.volume = Random.Range(0.25f, 0.45f);
       _audioSource.clip = _terrainStepSounds[Random.Range(0, _terrainStepSounds.Count)];
       _audioSource.Play();
     }
@@ -90,6 +91,8 @@ namespace Actor
     private List<AudioClip> _waterStepSounds;
     private void WaterSound()
     {
+      SetInterval(0.75f, 0.5f);
+      _audioSource.volume = Random.Range(0.1f, 0.15f);
       _audioSource.clip = _waterStepSounds[Random.Range(0, _waterStepSounds.Count)];
       _audioSource.Play();
     }
@@ -99,8 +102,16 @@ namespace Actor
     private List<AudioClip> _woodStepSounds;
     private void WoodSound()
     {
+      SetInterval(0.5f, 0.3f);
+      _audioSource.volume = Random.Range(0.25f, 0.45f);
       _audioSource.clip = _woodStepSounds[Random.Range(0, _woodStepSounds.Count)];
       _audioSource.Play();
+    }
+    
+    private void SetInterval(float walkingInterval, float sprintingInterval)
+    {
+      _walkingStepInterval = walkingInterval;
+      _sprintingStepInterval = sprintingInterval;
     }
   }
 }

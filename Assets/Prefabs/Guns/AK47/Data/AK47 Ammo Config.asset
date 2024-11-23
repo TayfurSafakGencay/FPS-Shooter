@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de857ad669ec4bcfb4793a38387101cc, type: 3}
   m_Name: AK47 Ammo Config
   m_EditorClassIdentifier: 
-  MaxAmmo: 120
+  MaxAmmo: 1500
   ClipSize: 30
   CurrentAmmo: 0
   CurrentClipAmmo: 0
