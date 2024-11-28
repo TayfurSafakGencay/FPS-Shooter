@@ -22,6 +22,10 @@ namespace Enemy.Zombie
     private Enemy _enemy;
     
     private bool _isScreaming;
+    
+    private const float _normalMaxDistance = 10;
+    
+    private const float _screamMaxDistance = 35;
 
     private void Awake()
     {
@@ -43,6 +47,7 @@ namespace Enemy.Zombie
         if (_isScreaming) continue;
         if (_isAttacking) continue;
 
+        AudioSource.maxDistance = _normalMaxDistance;
         AudioSource.volume = Random.Range(0.5f, 1f);
         int index = Random.Range(0, GrumbleSounds.Count);
         AudioSource.clip = GrumbleSounds[index];
@@ -60,6 +65,7 @@ namespace Enemy.Zombie
       
       _isScreaming = true;
 
+      AudioSource.maxDistance = _screamMaxDistance;
       AudioSource.volume = 1;
       AudioSource.clip = ScreamSound;
       AudioSource.Play();
@@ -74,6 +80,7 @@ namespace Enemy.Zombie
       if (_enemy.IsDead) return;
       if (_isAttacking) return;
 
+      AudioSource.maxDistance = _normalMaxDistance;
       AudioSource.volume = 0.75f;
       int index = Random.Range(0, AttackSounds.Count);
       AudioSource.clip = AttackSounds[index];
@@ -86,7 +93,8 @@ namespace Enemy.Zombie
     
     public void PlayDeadSound()
     {
-      AudioSource.volume = 1;
+      AudioSource.maxDistance = _normalMaxDistance;
+      AudioSource.volume = Random.Range(0.75f, 1f);
       int index = Random.Range(0, DeathSounds.Count);
       AudioSource.clip = DeathSounds[index];
       AudioSource.Play();

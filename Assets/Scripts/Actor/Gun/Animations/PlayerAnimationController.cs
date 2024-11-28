@@ -35,7 +35,7 @@ namespace Actor.Gun.Animations
       }
       
       _armAnimator = gunTransform.GetComponentInChildren(typeof(ArmAnimator)) as ArmAnimator;
-
+      
       if (_armAnimator == null) return;
       _animator = _armAnimator.GetAnimator();
       _armAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
@@ -44,6 +44,7 @@ namespace Actor.Gun.Animations
       _animator.ResetTrigger("InitialGun");
 
       _gunPart = gunTransform.GetComponentInChildren<GunPart>();
+      _gunPart.SetInitialPosition(gunTransform.localPosition);
     }
     
     public async Task GunChangingAnimation()
@@ -123,6 +124,8 @@ namespace Actor.Gun.Animations
     private bool _isRunning => _firstPersonController.GetIsRunning();
 
     private bool _movingAnimationValue;
+    
+    private Vector3 _initialGunPosition;
 
     private Vector3 _defaultGunPosition;
     
@@ -143,6 +146,7 @@ namespace Actor.Gun.Animations
       {
         _animator.SetBool(_move, false);
         _movingAnimationValue = false;
+        _defaultGunPosition = _gunPart.GetInitialPosition();
       }
     }
 
@@ -187,7 +191,7 @@ namespace Actor.Gun.Animations
       
       if (timer >= 360) timer = 0;
       
-      _defaultGunPosition = _gunPart.transform.localPosition;
+      _defaultGunPosition = _gunPart.GetInitialPosition();
       
       timer += Time.deltaTime * _bobSpeed;
       

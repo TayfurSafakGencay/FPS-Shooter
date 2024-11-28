@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: M4
   m_EditorClassIdentifier: 
   GunType: 1
-  ModelPrefab: {fileID: 8654368404059159789, guid: 5a117f1726ecf724694e09f2ae8f6ec2,
+  ModelPrefab: {fileID: 251560546862186398, guid: 5a117f1726ecf724694e09f2ae8f6ec2,
     type: 3}
   SpawnPoint: {x: 0, y: 0, z: 0}
   SpawnRotation: {x: 0, y: 0, z: 0}

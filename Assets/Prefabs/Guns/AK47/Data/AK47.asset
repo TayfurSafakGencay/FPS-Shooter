@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AK47
   m_EditorClassIdentifier: 
   GunType: 0
-  ModelPrefab: {fileID: 8654368404059159789, guid: 4dbbf6493eb87fb45a5e103d3dcb2dde,
+  ModelPrefab: {fileID: 4686924135313911059, guid: 780a5a55c04aaf64788bdb5dcfdb96c9,
     type: 3}
   SpawnPoint: {x: 0, y: 0, z: 0}
   SpawnRotation: {x: -0.01, y: -0.01, z: 0}

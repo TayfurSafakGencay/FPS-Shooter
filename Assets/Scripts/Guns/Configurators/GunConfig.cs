@@ -100,10 +100,10 @@ namespace Guns.Configurators
         
         _model.transform.forward += _model.transform.TransformDirection(spreadAmount);
         
-        _model.transform.DOLocalMoveZ(_model.transform.localPosition.z - 0.05f, 0.05f)
+        _model.transform.parent.DOLocalMoveZ(_model.transform.localPosition.z - 0.05f, 0.05f)
           .OnComplete(() =>
           {
-            _model.transform.DOLocalMoveZ(0, 0.05f);
+            _model.transform.parent.DOLocalMoveZ(0, 0.05f);
           });
         
         Vector3 shootDirection = _activeCamera.transform.forward + _activeCamera.transform.TransformDirection(spreadAmount);

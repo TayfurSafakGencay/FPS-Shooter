@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Guns.GunParts
 {
@@ -16,6 +15,10 @@ namespace Guns.GunParts
     public GameObject SightDot;
     
     public Vector3 MagazineColliderSize;
+    
+    private bool _initialPositionSet;
+    
+    private Vector3 _initialGunPosition;
 
     private void Awake()
     {
@@ -36,6 +39,19 @@ namespace Guns.GunParts
       }
 
       GunHolder.localRotation = Quaternion.Euler(isScopeActive ? new Vector3(6, 0, 0) : new Vector3(6, -2, 0));
+    }
+
+    public void SetInitialPosition(Vector3 position)
+    {
+      if (_initialPositionSet) return;
+      
+      _initialGunPosition = position;
+      _initialPositionSet = true;
+    }
+    
+    public Vector3 GetInitialPosition()
+    {
+      return _initialGunPosition;
     }
   }
 }
