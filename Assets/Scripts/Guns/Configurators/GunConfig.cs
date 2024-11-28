@@ -43,6 +43,7 @@ namespace Guns.Configurators
     private bool _lastFrameWantedToShoot;
     
     private VisualEffect _shootSystem;
+    private Transform _shootPoint;
     private ObjectPool<TrailRenderer> _trailPool;
     private Player _player;
 
@@ -59,6 +60,7 @@ namespace Guns.Configurators
 
       _shootSystem = _model.GetComponentInChildren<VisualEffect>();
       _audioSource = _model.GetComponent<AudioSource>();
+      _shootPoint = _shootSystem.transform.GetChild(0);
       _audioSource.outputAudioMixerGroup = SoundManager.Instance.GetMixerGroupToAudioSourceForSFX();
 
       _player = player;
@@ -127,7 +129,7 @@ namespace Guns.Configurators
     public Vector3 GetRaycastOrigin()
     {
       Vector3 origin = _activeCamera.transform.position + _activeCamera.transform.forward *
-        Vector3.Distance(_activeCamera.transform.position, _shootSystem.transform.position);
+        Vector3.Distance(_activeCamera.transform.position, _shootPoint.position);
 
       return origin;
     }
@@ -251,6 +253,7 @@ namespace Guns.Configurators
       
       clone.ScopePosition = ScopePosition;
       clone.ScopeCameraFov = ScopeCameraFov;
+      clone._shootSystem = _shootSystem;
 
       return clone;
     }

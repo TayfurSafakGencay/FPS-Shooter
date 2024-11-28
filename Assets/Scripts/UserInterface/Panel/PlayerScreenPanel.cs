@@ -63,13 +63,13 @@ namespace UserInterface.Panel
     {
       _healthSlider.fillAmount = Player.GetPlayerHealth().GetHealthPercentage();
       _staminaSlider.fillAmount = Player.GetPlayerStamina().GetStaminaPercentage();
+      _pillCountText.text = "x" + Player.GetInventory().GetConsumableCount(LootKey.Pill);
 
       if(!Player.GetPlayerGunSelector().HasGun) return;
       
       _ammoText.SetText($"<size=30><color=#00FF00>{Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentClipAmmo}</color></size>\n" +
                         $"<size=15><color=#FFFFFF>{Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentAmmo}</color></size>");
       
-      _pillCountText.text = "x" + Player.GetInventory().GetConsumableCount(LootKey.Pill);
     }
     
     public void OnGunSwitch()
@@ -121,6 +121,15 @@ namespace UserInterface.Panel
       
       _criticalHealthAnimation = _bloodScreen.transform.DOScale(1.05f, 0.25f)
         .SetLoops(-1, LoopType.Yoyo);
+    }
+
+    public void OnHealthRecovered(float health)
+    {
+      if (_criticalHealthAnimation == null || !_criticalHealthAnimation.IsActive()) return;
+      if (!(health > 20)) return;
+      
+      _criticalHealthAnimation.Kill();
+      _bloodScreen.enabled = false;
     }
   }
 }

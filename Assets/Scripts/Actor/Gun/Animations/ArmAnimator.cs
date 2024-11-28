@@ -41,6 +41,8 @@ namespace Actor.Gun.Animations
     Drop_Magazine,
     Attach_Magazine,
     END_RELOAD,
+    
+    End_Pill,
   }
   public class AnimationEvent : UnityEvent<AnimationEventKey>
   {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Guns.Configurators;
 using Guns.Enum;
 using UnityEngine;
@@ -29,6 +30,9 @@ namespace Actor.Gun
 
     [SerializeField]
     private Light _gunLight;
+
+    [SerializeField]
+    private GameObject _emptyHand;
     
     public bool HasGun => ActiveGun != null;
     
@@ -90,6 +94,34 @@ namespace Actor.Gun
       ActiveGun.GetModel().SetActive(true);
 
       _onGunChanged?.Invoke(ActiveGun.GetModel().transform);
+    }
+    
+    public void GetFirstGun()
+    {
+      if (!HasGun) return;
+      
+      ActiveGun.GetModel().SetActive(true);
+      _emptyHand.SetActive(false);
+      
+      _onGunChanged?.Invoke(ActiveGun.GetModel().transform);
+    }
+    
+    public async Task EmptyHand()
+    {
+      if (HasGun)
+      {
+        await _player.GetPlayerAnimationController().GunChangingAnimation();
+
+        ActiveGun.GetModel().SetActive(false);
+      }
+
+      if (HasSecondaryGun)
+      {
+        SecondaryGun.GetModel().SetActive(false);
+      }
+      
+      _emptyHand.SetActive(true);
+      _player.GetPlayerAnimationController().ChangeArmAnimator(_emptyHand.transform);
     }
     
     public void AddAmmo(GunType gunType, int ammo)

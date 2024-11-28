@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utilities;
+using Random = UnityEngine.Random;
 
 namespace Actor
 {
@@ -37,17 +39,6 @@ namespace Actor
       _hearthBeatAudioSource.playOnAwake = false;
       _hearthBeatAudioSource.Stop();
     }
-    
-    IEnumerator x()
-    {
-      if (IsDead)
-      {
-        yield break;
-      }
-      yield return new WaitForSeconds(1);
-      TakeDamage(5);
-      StartCoroutine(x());
-    }
 
     public void TakeDamage(float damage)
     {
@@ -69,7 +60,17 @@ namespace Actor
       }
     }
 
-    public void Heal(int healAmount)
+    private const float _healthRegenRate = 0.5f;
+    public async void HealingOverTime(bool sound = true)
+    {
+      if (Health >= MaxHealth) return;
+      
+      Heal(10, sound);
+      await Utility.Delay(_healthRegenRate);
+      HealingOverTime(false);
+    }
+    
+    public void Heal(int healAmount, bool sound = true)
     {
       if (IsDead) return;
 
@@ -78,10 +79,13 @@ namespace Actor
       if (Health <= 20) _hearthBeatAudioSource.Play(); 
       else _hearthBeatAudioSource.Stop();
       
-      _player.GetPlayerScreenPanel().OnGetPlayerDamage(Health);
-      
-      _damageAudioSource.clip = _healAudioClip;
-      _damageAudioSource.Play();
+      _player.GetPlayerScreenPanel().OnHealthRecovered(Health);
+
+      if (sound)
+      {
+        _damageAudioSource.clip = _healAudioClip;
+        _damageAudioSource.Play();
+      }
 
       if (Health > MaxHealth)
       {
@@ -109,6 +113,11 @@ namespace Actor
     public float GetHealthPercentage()
     {
       return Health / MaxHealth;
+    }
+
+    public bool IsFullHealth()
+    {
+      return Math.Abs(Health - MaxHealth) < 0.5f;
     }
   }
 }

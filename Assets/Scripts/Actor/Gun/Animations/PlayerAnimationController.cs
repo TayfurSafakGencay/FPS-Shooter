@@ -39,12 +39,18 @@ namespace Actor.Gun.Animations
       if (_armAnimator == null) return;
       _animator = _armAnimator.GetAnimator();
       _armAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
-      _animator.Rebind();
-      _animator.SetTrigger("InitialGun");
-      _animator.ResetTrigger("InitialGun");
 
       _gunPart = gunTransform.GetComponentInChildren<GunPart>();
       _gunPart.SetInitialPosition(gunTransform.localPosition);
+    }
+    
+    public void ChangeArmAnimator(Transform gunTransform)
+    {
+      _armAnimator = gunTransform.GetComponentInChildren(typeof(ArmAnimator)) as ArmAnimator;
+      
+      if (_armAnimator == null) return;
+      _animator = _armAnimator.GetAnimator();
+      _armAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
     }
     
     public async Task GunChangingAnimation()
@@ -52,6 +58,7 @@ namespace Actor.Gun.Animations
       _animator.SetTrigger("ChangeGun");
       float animTime = _animator.GetCurrentAnimatorStateInfo(0).length;
       await Utility.Delay(animTime);
+      _armAnimator.RemoveEventListenerOnAnimationEvent(OnAnimationEventDispatch);
       _animator.Rebind();
       _armAnimator.GetAnimator().Rebind();
     }
@@ -72,8 +79,28 @@ namespace Actor.Gun.Animations
         case AnimationEventKey.END_RELOAD:
           EndReload();
           break;
+        case AnimationEventKey.End_Pill:
+          PillEnd();
+          break;
       }
     }
+
+    #region Pill
+
+    private const string PILL_TRIGGER = "UsePill";
+    public void Pill()
+    {
+      _animator.SetTrigger(PILL_TRIGGER);
+    }
+    
+    private void PillEnd()
+    {
+      _player.GetPlayerHealth().HealingOverTime();
+      
+      _player.GetPlayerGunSelector().GetFirstGun();
+    }
+
+    #endregion
 
     #region Reload
 

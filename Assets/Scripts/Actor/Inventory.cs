@@ -85,9 +85,18 @@ namespace Actor
       }
     }
     
-    public void UseConsumable(LootKey key)
+    public async void UseConsumable(LootKey key)
     {
       if (!Items.ContainsKey(key)) return;
+      
+      if (key == LootKey.Pill)
+      {
+        if (_player.GetPlayerHealth().IsFullHealth()) return;
+        
+        await _player.GetPlayerGunSelector().EmptyHand();
+        
+        _player.GetPlayerAnimationController().Pill();
+      }
       
       ItemVo item = Items[key];
       
@@ -96,11 +105,6 @@ namespace Actor
       if (item.Quantity == 0)
       {
         Items.Remove(key);
-      }
-
-      if (key == LootKey.Pill)
-      {
-        _player.GetPlayerHealth().Heal(100);
       }
     }
 
