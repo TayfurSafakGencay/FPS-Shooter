@@ -66,7 +66,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557bfb44491abf04b8f6b2f32c73426c,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8347455936191241528, guid: 557bfb44491abf04b8f6b2f32c73426c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 8347455936191241528, guid: 557bfb44491abf04b8f6b2f32c73426c,
         type: 3}
@@ -273,6 +278,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: wound (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7393045992319397730, guid: adfd3a4c671647242ac8a362a3d9f9f6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -366,6 +376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: wound
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393045992319397730, guid: adfd3a4c671647242ac8a362a3d9f9f6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

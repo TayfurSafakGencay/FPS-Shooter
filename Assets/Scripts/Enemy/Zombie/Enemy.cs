@@ -33,5 +33,6 @@ namespace Enemy.Zombie
       AI = GetComponent<EnemyAI>();
       Sound = GetComponent<ZombieSound>();
     }
+    
   }
 }

@@ -54,7 +54,6 @@ namespace Enemy.Zombie
 
       float newDamage = damage * GetBodyPartDamageCoefficient();
       bool isDead = _enemy.Health.TakeDamage(newDamage);
-      
 
       if (!isDead) return;
       
@@ -111,6 +110,24 @@ namespace Enemy.Zombie
         default:
           return 0.75f;
       }
+    }
+
+    private const string targetLayer = "DeadBody";
+
+    public void DisableCollisions()
+    {
+      int targetLayerIndex = LayerMask.NameToLayer(targetLayer);
+      gameObject.layer = targetLayerIndex;
+      
+      int deadBodyLayer = LayerMask.NameToLayer("DeadBody");
+      
+      int playerLayer = LayerMask.NameToLayer("Player");
+      int characterControllerLayer = LayerMask.NameToLayer("CharacterController");
+      int enemyLayer = LayerMask.NameToLayer("Enemy");
+
+      Physics.IgnoreLayerCollision(deadBodyLayer, playerLayer, true);
+      Physics.IgnoreLayerCollision(deadBodyLayer, characterControllerLayer, true);
+      Physics.IgnoreLayerCollision(deadBodyLayer, enemyLayer, true);
     }
   }
   public enum BodyPartKey

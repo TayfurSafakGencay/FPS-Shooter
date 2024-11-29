@@ -79,7 +79,8 @@ namespace Actor
     {
       get
       {
-        if (_characterController.isGrounded && Physics.Raycast(transform.position, Vector3.down, out RaycastHit slopeHit, 2f))
+        if (_characterController.isGrounded && Physics.Raycast(transform.position, Vector3.down, out RaycastHit slopeHit, 2f,
+              ~LayerMask.GetMask("DeadBody")))
         {
           _hitPointNormal = slopeHit.normal;
           return Vector3.Angle(_hitPointNormal, Vector3.up) > _characterController.slopeLimit;

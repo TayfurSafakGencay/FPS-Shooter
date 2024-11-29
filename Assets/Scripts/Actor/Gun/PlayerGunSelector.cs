@@ -98,10 +98,11 @@ namespace Actor.Gun
     
     public void GetFirstGun()
     {
+      _emptyHand.SetActive(false);
+
       if (!HasGun) return;
       
       ActiveGun.GetModel().SetActive(true);
-      _emptyHand.SetActive(false);
       
       _onGunChanged?.Invoke(ActiveGun.GetModel().transform);
     }

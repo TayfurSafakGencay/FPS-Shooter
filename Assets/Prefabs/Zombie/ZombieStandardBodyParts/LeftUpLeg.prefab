@@ -58,30 +58,55 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8594114172075125833, guid: af719f1f3b5c36c41ae352f2285b34ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: -8212105049269138157, guid: af719f1f3b5c36c41ae352f2285b34ba,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: -7379991069318578728, guid: af719f1f3b5c36c41ae352f2285b34ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: -1540863315726879205, guid: af719f1f3b5c36c41ae352f2285b34ba,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: -1515851686231903041, guid: af719f1f3b5c36c41ae352f2285b34ba,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: af719f1f3b5c36c41ae352f2285b34ba,
         type: 3}
       propertyPath: m_Name
       value: LeftUpLeg
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: af719f1f3b5c36c41ae352f2285b34ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 1076101080782088333, guid: af719f1f3b5c36c41ae352f2285b34ba,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3088223475213579975, guid: af719f1f3b5c36c41ae352f2285b34ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: af719f1f3b5c36c41ae352f2285b34ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -672,6 +697,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: wound
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393045992319397730, guid: adfd3a4c671647242ac8a362a3d9f9f6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

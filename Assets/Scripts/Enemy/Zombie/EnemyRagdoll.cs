@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Utilities;
 
 namespace Enemy.Zombie
 {
@@ -60,7 +61,9 @@ namespace Enemy.Zombie
       {
         EnableRagdoll();
         _enemy.Sound.PlayDeadSound();
-        
+
+        ChangeAllChildLayers();
+
         Component[] components = gameObject.GetComponents<Component>();
 
         foreach (Component component in components)
@@ -124,6 +127,27 @@ namespace Enemy.Zombie
     public void RemoveBodyPart(BodyPart bodyPart)
     {
       _bodyParts.Remove(bodyPart);
+    }
+    
+    private const string targetLayer = "DeadBody";
+    public void ChangeAllChildLayers()
+    {
+      int targetLayerIndex = LayerMask.NameToLayer(targetLayer);
+      gameObject.layer = targetLayerIndex;
+      
+      foreach (BodyPart bodyPart in _bodyParts)
+      {
+        bodyPart.DisableCollisions();
+      }
+      
+      int deadBodyLayer = LayerMask.NameToLayer("DeadBody");
+      int playerLayer = LayerMask.NameToLayer("Player");
+      int characterControllerLayer = LayerMask.NameToLayer("CharacterController");
+      int enemyLayer = LayerMask.NameToLayer("Enemy");
+
+      Physics.IgnoreLayerCollision(deadBodyLayer, playerLayer, true);
+      Physics.IgnoreLayerCollision(deadBodyLayer, characterControllerLayer, true);
+      Physics.IgnoreLayerCollision(deadBodyLayer, enemyLayer, true);
     }
   }
 }
