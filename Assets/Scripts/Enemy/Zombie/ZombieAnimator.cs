@@ -33,6 +33,7 @@ namespace Enemy.Zombie
       _animator.ResetTrigger(AnimationType.Scream.ToString());
       _animator.ResetTrigger(AnimationType.Attack.ToString());
       _animator.ResetTrigger(AnimationType.Walk.ToString());
+      _animator.ResetTrigger(AnimationType.Run.ToString());
       _animator.SetTrigger(AnimationType.Idle.ToString());
     }
 
@@ -50,7 +51,7 @@ namespace Enemy.Zombie
     
     public void Attack()
     {
-      _animator.ResetTrigger(AnimationType.Walk.ToString());
+      _animator.ResetTrigger(AnimationType.Run.ToString());
       _animator.SetTrigger(AnimationType.Attack.ToString());
     }
     
@@ -71,9 +72,15 @@ namespace Enemy.Zombie
       }
     }
     
-    public void Walk()
+    public void Run()
     {
       _animator.ResetTrigger(AnimationType.Attack.ToString());
+      _animator.ResetTrigger(AnimationType.Idle.ToString());
+      _animator.SetTrigger(AnimationType.Run.ToString());
+    }
+    
+    public void Walk()
+    {
       _animator.SetTrigger(AnimationType.Walk.ToString());
     }
     
@@ -84,6 +91,7 @@ namespace Enemy.Zombie
       Hit,
       Scream,
       Attack,
+      Run,
     }
   }
 }

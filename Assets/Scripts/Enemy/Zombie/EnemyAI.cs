@@ -1,7 +1,10 @@
 ﻿using Base.Interface;
+using DG.Tweening;
 using Systems.Chase;
 using UnityEngine;
 using UnityEngine.AI;
+using Utilities;
+using Random = UnityEngine.Random;
 
 namespace Enemy.Zombie
 {
@@ -27,6 +30,11 @@ namespace Enemy.Zombie
       _navMeshAgent.speed = 4;
       _navMeshAgent.angularSpeed = 360;
       _navMeshAgent.stoppingDistance = 2;
+    }
+
+    private void Start()
+    {
+      WalkRandomly();
     }
 
     private void Update()
@@ -59,7 +67,7 @@ namespace Enemy.Zombie
       {
         _navMeshAgent.updateRotation = true;
 
-        _enemy.Animator.Walk();
+        _enemy.Animator.Run();
       }
     }
     
@@ -94,6 +102,64 @@ namespace Enemy.Zombie
       _navMeshAgent.isStopped = false;
 
       _enemy.Animator.Scream();
+    }
+
+    private bool _isWalkingRandomly;
+    
+    private const float _minTimeForRandomWalk = 20;
+    
+    private const float _maxTimeForRandomWalk = 50;
+    
+    private const float _repeatTimeForRandomWalk = 60;
+    public async void WalkRandomly()
+    {
+      if (_enemy.IsDead) return;
+      
+      await Utility.Delay(Random.Range(_minTimeForRandomWalk, _maxTimeForRandomWalk));
+      
+      if (_noticed)
+      {
+        await Utility.Delay(_repeatTimeForRandomWalk);
+        WalkRandomly();
+        return;
+      }
+
+      if (_isWalkingRandomly)
+      {
+        if (Random.Range(0, 3) == 0)
+        {
+          StopWalkingRandomly();
+        }
+        
+        await Utility.Delay(_repeatTimeForRandomWalk);
+        WalkRandomly();
+      }
+
+      float randomYRotation = Random.Range(0f, 360f);
+
+      Quaternion targetRotation = Quaternion.Euler(0, randomYRotation, 0);
+
+      transform.DORotateQuaternion(targetRotation, 0.5f).SetEase(Ease.InOutSine);
+      
+      _enemy.Animator.Walk();
+      _isWalkingRandomly = true;
+      
+      WalkRandomly();
+    }
+    
+    public void ObstacleDetected()
+    {
+      if (!_isWalkingRandomly) return;
+      
+      StopWalkingRandomly();
+    }
+    
+    private void StopWalkingRandomly()
+    {
+      if (_enemy.IsDead) return;
+      
+      _enemy.Animator.Idle();
+      _isWalkingRandomly = false;
     }
     
     public bool IsNoticed()
