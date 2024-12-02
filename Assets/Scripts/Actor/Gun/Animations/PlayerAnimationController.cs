@@ -110,6 +110,7 @@ namespace Actor.Gun.Animations
     public void Reload()
     {
       _animator.SetTrigger(RELOAD_TRIGGER);
+      _animator.SetBool(SCOPE_TRIGGER, false);
 
       if (_player.GetIsScoped())
       {
@@ -226,6 +227,17 @@ namespace Actor.Gun.Animations
         _defaultGunPosition.x + Mathf.Sin(timer) * _bobAmount,
         _defaultGunPosition.y + Mathf.Sin(timer) * _bobAmount,
         _defaultGunPosition.z + Mathf.Sin(timer) * _bobAmount);
+    }
+
+    #endregion
+
+    #region Scope
+    
+    private const string SCOPE_TRIGGER = "Scope";
+    
+    public void OnScopeOpen(bool isScoped)
+    {
+      _animator.SetBool(SCOPE_TRIGGER, isScoped);
     }
 
     #endregion

@@ -180,6 +180,8 @@ namespace Actor
     private Quaternion _originalRotation;
 
     public Transform _cameraParent;
+    
+    public float CameraShakeCoefficient = 1.5f;
 
     public void ApplyRecoil(Vector3 spread)
     {
@@ -189,7 +191,7 @@ namespace Actor
         _isFiring = true;
       }
 
-      _cameraParent.DOShakeRotation(_recoilDuration, spread, 1, _recoilRandomness)
+      _cameraParent.DOShakeRotation(_recoilDuration, spread * CameraShakeCoefficient, 1, _recoilRandomness).SetEase(Ease.OutElastic)
         .OnComplete(() => { _cameraParent.transform.localRotation = _originalRotation; });
     }
 

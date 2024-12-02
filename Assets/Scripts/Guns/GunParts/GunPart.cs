@@ -37,8 +37,7 @@ namespace Guns.GunParts
       {
         SightDot.SetActive(isScopeActive);
       }
-
-      GunHolder.localRotation = Quaternion.Euler(isScopeActive ? new Vector3(6, 0, 0) : new Vector3(6, -2, 0));
+      // GunHolder.localRotation = Quaternion.Euler(isScopeActive ? new Vector3(6, 0, 0) : new Vector3(6, -2, 0));
     }
 
     public void SetInitialPosition(Vector3 position)

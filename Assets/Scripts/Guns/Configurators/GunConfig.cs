@@ -21,7 +21,6 @@ namespace Guns.Configurators
     public GameObject ModelPrefab;
     public Vector3 SpawnPoint;
     public Vector3 SpawnRotation;
-    public Vector3 ScopePosition;
     public float ScopeCameraFov;
     public Sprite GunIcon;
     
@@ -69,15 +68,13 @@ namespace Guns.Configurators
     public void Scope()
     {
       _player.ChangeScope(ScopeCameraFov);
-
-      _model.transform.DOLocalMove(_player.GetIsScoped() ? ScopePosition : SpawnPoint, 0.1f);
     }
 
     public void TryToShoot()
     {
       if (Time.time - _lastShotTime - ShootConfig.FireRate > Time.deltaTime)
       {
-        float lastDuration = Mathf.Clamp(0, (_stopShootingTime - _initialClickTime), ShootConfig.MaxSpreadTime);
+        float lastDuration = Mathf.Clamp(0, _stopShootingTime - _initialClickTime, ShootConfig.MaxSpreadTime);
         float lerpTime = (ShootConfig.RecoilRecoverySpeed - (Time.time - _stopShootingTime)) / ShootConfig.RecoilRecoverySpeed;
 
         _initialClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
@@ -149,6 +146,7 @@ namespace Guns.Configurators
       }
       else if (!wantsToShoot && _lastFrameWantedToShoot)
       {
+        _initialClickTime = Time.time;
         _stopShootingTime = Time.time;
         _lastFrameWantedToShoot = false;
       }
@@ -251,7 +249,6 @@ namespace Guns.Configurators
       clone.TrailConfig = TrailConfig.Clone() as TrailConfig;
       clone.AudioConfig = AudioConfig.Clone() as AudioConfig;
       
-      clone.ScopePosition = ScopePosition;
       clone.ScopeCameraFov = ScopeCameraFov;
       clone._shootSystem = _shootSystem;
 

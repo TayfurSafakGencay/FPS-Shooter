@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Actor.Gun;
 using Actor.Gun.Animations;
+using DG.Tweening;
 using UnityEngine;
 using UserInterface.Panel;
 
@@ -70,12 +71,14 @@ namespace Actor
     }
 
     private const float _standardFov = 60;
+    private const float _scopeAnimationTime = 0.1f;
 
     private void SetCameraFov(float fov = _standardFov)
     {
       foreach (Camera cam in _cameras)
       {
-        cam.fieldOfView = fov;
+        DOTween.To(() => cam.fieldOfView, x => cam.fieldOfView = x, fov, _scopeAnimationTime)
+          .SetEase(Ease.InOutSine);
       }
     }
 
@@ -83,11 +86,14 @@ namespace Actor
     public void ChangeScope(float fov = _standardFov)
     {
       _isScoped = !_isScoped;
+      _playerAnimationController.OnScopeOpen(_isScoped);
+
       SetCameraFov(_isScoped ? fov : _standardFov);
 
       _playerAnimationController.GetGunPart().OnScopeOpen(_isScoped);
       
       OnScopeOpened?.Invoke(_isScoped);
+      
     }
 
     public bool GetIsScoped()
