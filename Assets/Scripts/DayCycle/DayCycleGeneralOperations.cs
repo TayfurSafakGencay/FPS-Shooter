@@ -132,7 +132,7 @@ namespace DayCycle
     private async void Night()
     {
       DOTween.To(() => RenderSettings.fogColor, x => RenderSettings.fogColor = x, Color.black, 30).SetEase(Ease.Linear);   
-      DOTween.To(() => RenderSettings.fogDensity, x => RenderSettings.fogDensity = x, 0.175f, 20f);
+      DOTween.To(() => RenderSettings.fogDensity, x => RenderSettings.fogDensity = x, 0.05f, 20f);
       
       await Utility.Delay(_waitingBeforeSkyboxChange);
       await SmoothTransition(new Color(0.9f, 0.9f, 0.9f, 0.5f), _nightSkybox, _morningSkybox);

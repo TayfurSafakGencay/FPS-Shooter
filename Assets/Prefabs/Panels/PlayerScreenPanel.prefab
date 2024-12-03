@@ -184,8 +184,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 0}
-  m_SizeDelta: {x: 1, y: 7.5}
+  m_AnchoredPosition: {x: 15, y: 0}
+  m_SizeDelta: {x: 1, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4878523552610043992
 CanvasRenderer:
@@ -410,8 +410,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 1, y: 7.5}
+  m_AnchoredPosition: {x: 0, y: 15}
+  m_SizeDelta: {x: 1, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9135728161357551836
 CanvasRenderer:
@@ -672,8 +672,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 1, y: 7.5}
+  m_AnchoredPosition: {x: 0, y: -15}
+  m_SizeDelta: {x: 1, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6948295205491613112
 CanvasRenderer:
@@ -1164,7 +1164,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 64, y: 64}
+  m_SizeDelta: {x: 48, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1071710732085180779
 CanvasRenderer:
@@ -1523,8 +1523,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: 0}
-  m_SizeDelta: {x: 1, y: 7.5}
+  m_AnchoredPosition: {x: -15, y: 0}
+  m_SizeDelta: {x: 1, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3352528881830144216
 CanvasRenderer:
@@ -1595,8 +1595,8 @@ RectTransform:
   - {fileID: 5687031734860348714}
   - {fileID: 36820589294163830}
   - {fileID: 5719333157352223222}
-  - {fileID: 8632273676172090131}
   - {fileID: 908207833513949834}
+  - {fileID: 8632273676172090131}
   m_Father: {fileID: 485468401611433131}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1657,7 +1657,7 @@ MonoBehaviour:
   _playerScreenPanel: {fileID: 6656685700108605098}
   _expandValue: 0
   _speed: 10
-  _margin: 20
+  _margin: 10
   _expandSpeed: 20
   _shrinkSpeed: 100
   _top: {fileID: 5687031734860348714}
@@ -1666,8 +1666,8 @@ MonoBehaviour:
   _right: {fileID: 5719333157352223222}
   _center: {fileID: 8632273676172090131}
   _crossHair: {fileID: 7829053491521666598}
-  _crouchingMargin: 20
-  _normalMargin: 25
+  _crouchingMargin: 10
+  _normalMargin: 15
   _runningMargin: 90
   _otherMovements: 125
   _hitCrosshair: {fileID: 8891418433938019810}
