@@ -35,10 +35,16 @@ namespace Actor.Gun.Animations
       }
       
       _armAnimator = gunTransform.GetComponentInChildren(typeof(ArmAnimator)) as ArmAnimator;
-      
+
       if (_armAnimator == null) return;
+      
       _animator = _armAnimator.GetAnimator();
       _armAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
+      
+      _animator.Rebind();
+      _animator.Update(0);
+      _armAnimator.GetAnimator().Rebind();
+      _armAnimator.GetAnimator().Update(0);
 
       _gunPart = gunTransform.GetComponentInChildren<GunPart>();
       _gunPart.SetInitialPosition(gunTransform.localPosition);

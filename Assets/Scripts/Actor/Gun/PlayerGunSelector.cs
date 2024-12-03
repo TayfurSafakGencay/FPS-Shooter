@@ -116,11 +116,6 @@ namespace Actor.Gun
         ActiveGun.GetModel().SetActive(false);
       }
 
-      if (HasSecondaryGun)
-      {
-        SecondaryGun.GetModel().SetActive(false);
-      }
-      
       _emptyHand.SetActive(true);
       _player.GetPlayerAnimationController().ChangeArmAnimator(_emptyHand.transform);
     }

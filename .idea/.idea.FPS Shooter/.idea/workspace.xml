@@ -6,15 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="899317de-2363-4c2a-b5e9-981aeff7816f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Animation/AK47 - Reload.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Animation/AK47 - Reload.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Panels/PlayerScreenPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Panels/PlayerScreenPanel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PostProcess/MorningForest Post Process.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PostProcess/MorningForest Post Process.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightForeArm.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombie/ZombieStandardBodyParts/RightForeArm.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DayCycle/DayCycleGeneralOperations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DayCycle/DayCycleGeneralOperations.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DayCycle/DayCycleSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DayCycle/DayCycleSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Animation/AK47.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/AK47/Animation/AK47.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Animation/M4.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/M4/Animation/M4.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/Animations/PlayerAnimationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/Animations/PlayerAnimationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/PlayerGunSelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/PlayerGunSelector.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/LoadingManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/LoadingManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,6 +238,8 @@
       <workItem from="1732888298426" duration="9896000" />
       <workItem from="1732979703968" duration="9821000" />
       <workItem from="1733136151530" duration="13099000" />
+      <workItem from="1733212256966" duration="2410000" />
+      <workItem from="1733234294008" duration="6348000" />
     </task>
     <servers />
   </component>
