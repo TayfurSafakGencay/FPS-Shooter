@@ -57,6 +57,7 @@ namespace Managers.Manager
     MainMenu,
     LoadAssets,
     Game,
+    Death,
     TestScene,
   }
 

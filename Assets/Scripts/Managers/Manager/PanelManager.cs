@@ -21,8 +21,6 @@ namespace Managers.Manager
     {
       if (Instance == null) Instance = this;
       else Destroy(gameObject);
-      
-      ChangePanelContainer();
     }
     
     public override void Initialize()
@@ -30,8 +28,10 @@ namespace Managers.Manager
       AddAction(ref GameManager.Instance.GameStateChanged, OnGameStateChange);
     }
     
-    private void ChangePanelContainer()
+    public void ChangePanelContainer()
     {
+      ReleaseAllPanelsAsync();
+      
       _panelContainer = Root.Instance.Canvas.transform;
     }
 
@@ -45,12 +45,16 @@ namespace Managers.Manager
       switch (GameManager.Instance.CurrentGameState)
       {
         case GameState.MainMenu:
+          ChangePanelContainer();
           await CreatePanel(PanelKey.MainMenuPanel);
           break;
         case GameState.Game:
           await Utility.Delay(UserInterfaceTimes.InitialVignetteEffectTime);
           ChangePanelContainer();
           await CreatePanel(PanelKey.PlayerScreenPanel);
+          break;
+        case GameState.Death:
+          await CreatePanel(PanelKey.DeathPanel);
           break;
       }
     }
@@ -99,7 +103,8 @@ namespace Managers.Manager
     {
       foreach (KeyValuePair<PanelKey, AsyncOperationHandle<GameObject>> panelHandle in _panelHandles)
       {
-        Addressables.ReleaseInstance(panelHandle.Value);
+        if (panelHandle.Value.IsValid())
+          Addressables.ReleaseInstance(panelHandle.Value);
       }
 
       _panelHandles.Clear();     
@@ -112,11 +117,13 @@ namespace Managers.Manager
     SettingsPanel,
     LoadingPanel,
     PlayerScreenPanel,
+    DeathPanel,
   }
   
   public struct PanelLayer
   {
     public const int MainMenuPanel = 10;
+    public const int DeathPanel = 15;
     public const int SettingsPanel = 20;
     public const int SettingsPanelContent = 30;
     public const int LoadingPanel = 1000;

@@ -50,6 +50,7 @@ namespace UserInterface.Panel
       _lootBackground.SetActive(false);
       
       _ammoText.SetText("");
+      _crosshairController.gameObject.SetActive(true);
       _gunImage.enabled = false;
       _bloodScreen.enabled = false;
     }
@@ -67,8 +68,8 @@ namespace UserInterface.Panel
 
       if(!Player.GetPlayerGunSelector().HasGun) return;
       
-      _ammoText.SetText($"<size=30><color=#00FF00>{Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentClipAmmo}</color></size>\n" +
-                        $"<size=15><color=#FFFFFF>{Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentAmmo}</color></size>");
+      _ammoText.SetText($"<size=34><color=#00FF00>{Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentClipAmmo}</color></size>\n" +
+                        $"<size=17><color=#FFFFFF>{Player.GetPlayerGunSelector().ActiveGun.AmmoConfig.CurrentAmmo}</color></size>");
       
     }
     
@@ -130,6 +131,13 @@ namespace UserInterface.Panel
       
       _criticalHealthAnimation.Kill();
       _bloodScreen.enabled = false;
+    }
+    
+    public void OnDeath()
+    {
+      _bloodScreen.enabled = false;
+      
+      gameObject.SetActive(false);
     }
   }
 }

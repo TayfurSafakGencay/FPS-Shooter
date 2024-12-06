@@ -41,10 +41,10 @@ namespace Actor.Gun.Animations
       _animator = _armAnimator.GetAnimator();
       _armAnimator.AddEventListenerOnAnimationEvent(OnAnimationEventDispatch);
       
-      _animator.Rebind();
-      _animator.Update(0);
+      if (_armAnimator.gameObject.activeInHierarchy)
+        _armAnimator.GetAnimator().Update(0);
       _armAnimator.GetAnimator().Rebind();
-      _armAnimator.GetAnimator().Update(0);
+      _animator.Rebind();
 
       _gunPart = gunTransform.GetComponentInChildren<GunPart>();
       _gunPart.SetInitialPosition(gunTransform.localPosition);

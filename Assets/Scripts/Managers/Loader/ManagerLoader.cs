@@ -22,19 +22,23 @@ namespace Managers.Loader
     private readonly List<ManagerKey> _initializedManagers = new();
     
     private readonly List<ManagerKey> _activatedManagers = new();
+    
+    private bool _isAllManagersInitialized;
 
     private void Awake()
     {
       if (Instance == null) Instance = this;
-      else Destroy(Instance);
+      else return;
 
       LoadManagersAccordingToGameState();
       
-      DontDestroyOnLoad(this);
+      DontDestroyOnLoad(gameObject);
     }
     
     private async void LoadManagersAccordingToGameState()
     {
+      if (_isAllManagersInitialized) return;
+      
       ManagerKey[] managerKeys = (ManagerKey[])Enum.GetValues(typeof(ManagerKey));
       
       foreach (ManagerKey key in managerKeys)
@@ -57,6 +61,8 @@ namespace Managers.Loader
           if (managerKeys.Length == _initializedManagers.Count)
           {
             AllManagersInitialized();
+            
+            _isAllManagersInitialized = true;
           }
         };
       }

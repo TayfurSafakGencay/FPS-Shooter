@@ -245,6 +245,11 @@ namespace Managers.Manager
     {
       _audioMixer.SetFloat(_ambienceMixerGroupKey, CalculateVolume(normalizedValue));
     }
+    
+    public void DecreaseAllVolume(float duration)
+    {
+      _audioMixer.DOSetFloat(_masterMixerGroupKey, _minDb, duration);
+    }
 
     private float CalculateVolume(float normalizedValue)
     {

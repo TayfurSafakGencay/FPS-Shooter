@@ -19,13 +19,15 @@ namespace Enemy.Zombie
     private const float _maxDistanceForChase = 40;
 
     private Enemy _enemy;
-
+    
     private void Awake()
     {
       _enemy = GetComponent<Enemy>();
       
       _navMeshAgent = GetComponent<NavMeshAgent>();
       _target = GameObject.FindWithTag("Player").transform;
+      
+      _isDestroyed = false;
 
       _navMeshAgent.speed = 4;
       _navMeshAgent.angularSpeed = 360;
@@ -114,9 +116,8 @@ namespace Enemy.Zombie
     public async void WalkRandomly()
     {
       if (_enemy.IsDead) return;
-      
-      await Utility.Delay(Random.Range(_minTimeForRandomWalk, _maxTimeForRandomWalk));
-      
+      if (_isDestroyed) return;
+
       if (_noticed)
       {
         await Utility.Delay(_repeatTimeForRandomWalk);
@@ -130,20 +131,22 @@ namespace Enemy.Zombie
         {
           StopWalkingRandomly();
         }
-        
+
         await Utility.Delay(_repeatTimeForRandomWalk);
         WalkRandomly();
       }
 
-      float randomYRotation = Random.Range(0f, 360f);
+      if (_enemy.IsDead) return;
+      if (_isDestroyed) return;
 
+      float randomYRotation = Random.Range(0f, 360f);
       Quaternion targetRotation = Quaternion.Euler(0, randomYRotation, 0);
 
       transform.DORotateQuaternion(targetRotation, 0.5f).SetEase(Ease.InOutSine);
-      
+
       _enemy.Animator.Walk();
       _isWalkingRandomly = true;
-      
+
       WalkRandomly();
     }
     
@@ -165,6 +168,12 @@ namespace Enemy.Zombie
     public bool IsNoticed()
     {
       return _noticed;
+    }
+
+    private bool _isDestroyed;
+    private void OnDestroy()
+    { 
+      _isDestroyed = true;
     }
   }
 }

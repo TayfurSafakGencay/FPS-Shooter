@@ -33,7 +33,18 @@ namespace Managers.Manager
         Activate();
       }
     }
+    
+    public void StartMainMenu()
+    {
+      AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneName.MainMenuScene.ToString());
+        
+      asyncLoad.completed += (AsyncOperation op) =>
+      {
+        GameManager.Instance.ChangeGameState(GameState.MainMenu);
+      };
+    }
 
+    private SceneName _sceneName = SceneName.TestScene;
     private LoadingPanel _loadingPanel;
     public async void StartLoadingScene()
     {
@@ -42,7 +53,17 @@ namespace Managers.Manager
       await PanelManager.Instance.CreatePanel(PanelKey.LoadingPanel);
       _loadingPanel = PanelManager.Instance.GetPanelHandle(PanelKey.LoadingPanel).Result.GetComponent<LoadingPanel>();
       
-      StartCoroutine(LoadSceneWithAdditionalOperations(SceneName.TestScene));
+      StartCoroutine(LoadSceneWithAdditionalOperations(_sceneName));
+    }
+
+    public void Restart()
+    {
+      AsyncOperation sceneLoadOperation = SceneManager.LoadSceneAsync(_sceneName.ToString());
+      
+      sceneLoadOperation.completed += (AsyncOperation op) =>
+      {
+        GameManager.Instance.ChangeGameState(GameState.Game);
+      };
     }
 
     public IEnumerator LoadSceneWithAdditionalOperations(SceneName sceneName)
@@ -78,6 +99,7 @@ namespace Managers.Manager
         yield return new WaitForSeconds(2f);
       }
       
+      PanelManager.Instance.ReleaseAllPanelsAsync();
       sceneLoadOperation.allowSceneActivation = true;
       GameManager.Instance.ChangeGameState(GameState.Game);
     }
@@ -112,7 +134,7 @@ namespace Managers.Manager
 
   public enum SceneName
   {
-    MainMenu,
+    MainMenuScene,
     GameScene,
     TestScene
   }

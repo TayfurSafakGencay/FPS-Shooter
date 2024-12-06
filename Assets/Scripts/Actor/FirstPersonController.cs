@@ -2,6 +2,7 @@ using System.Collections;
 using Actor.Gun.Animations;
 using DG.Tweening;
 using UnityEngine;
+using UserInterface.General;
 
 namespace Actor
 {
@@ -99,11 +100,15 @@ namespace Actor
     private float _rotationX;
     
     private float _sprintSpeedInitial;
+    
+    private Player _player;
 
     private void Awake()
     {
       _characterController = GetComponent<CharacterController>();
       _playerAnimationController = GetComponent<PlayerAnimationController>();
+      _player = GetComponent<Player>();
+      
       _defaultYPos = _camera.transform.localPosition.y;
 
       Cursor.lockState = CursorLockMode.Locked;
@@ -116,6 +121,8 @@ namespace Actor
 
     private void Update()
     {
+      if (_player.GetPlayerHealth().IsDead) return;
+      
       if (CanMove)
       {
         HandleMovement();
@@ -202,6 +209,13 @@ namespace Actor
       _isFiring = false;
 
       _cameraParent.transform.DOLocalRotateQuaternion(_originalRotation, _recoilDuration * 2).SetEase(Ease.OutQuad);
+    }
+
+    public void Death()
+    {
+      Quaternion targetRotation = Quaternion.Euler(-80, _camera.transform.eulerAngles.y, _camera.transform.eulerAngles.z);
+
+      _camera.transform.DOLocalRotate(targetRotation.eulerAngles, UserInterfaceTimes.DeathVignetteEffectTime).SetEase(Ease.InOutSine);
     }
 
     private void HandleJump()

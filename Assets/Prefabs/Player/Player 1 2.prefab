@@ -1087,6 +1087,7 @@ MonoBehaviour:
   _recoilDuration: 0.1
   _recoilRandomness: 90
   _cameraParent: {fileID: 6352763475434268807}
+  CameraShakeCoefficient: 1.5
 --- !u!114 &4991996845836087013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,6 +1255,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3af1acf55a6168f4895ccde9ba66e6f3, type: 3}
   - {fileID: 8300000, guid: d612bfd93566e1f488e988653ef0c8e2, type: 3}
   _healAudioClip: {fileID: 8300000, guid: 92ad0ef6a51758c4c995aa1f31616b6e, type: 3}
+  _deathAudioClip: {fileID: 8300000, guid: 70e327b715d8aef4690976f91fcc88d0, type: 3}
 --- !u!114 &5415450769457432815
 MonoBehaviour:
   m_ObjectHideFlags: 0

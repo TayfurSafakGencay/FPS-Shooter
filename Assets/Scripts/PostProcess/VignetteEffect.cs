@@ -12,7 +12,9 @@ namespace PostProcess
     [SerializeField]
     private VolumeProfile _volumeProfile;
     
-    private Vignette _vignette;
+    private static Vignette _vignette;
+    
+    private static ColorAdjustments _colorAdjustments;
     
     private void Awake()
     {
@@ -21,6 +23,12 @@ namespace PostProcess
         _vignette = vignette;
       }
       
+      if(_volumeProfile.TryGet<ColorAdjustments>(out ColorAdjustments colorAdjustments))
+      {
+        _colorAdjustments = colorAdjustments;
+      }
+      
+      _colorAdjustments.colorFilter.value = Color.white;
       _vignette.intensity.value = 1;
     }
 
@@ -32,11 +40,15 @@ namespace PostProcess
           0.15f, UserInterfaceTimes.InitialVignetteEffectTime).OnComplete(AnimationCompleted);
     }
 
+    public static void DeathVignette()
+    {
+      DOTween.To(() => _colorAdjustments.colorFilter.value, x => _colorAdjustments.colorFilter.value = x,
+        Color.black, UserInterfaceTimes.DeathVignetteEffectTime * 2);
+    }
+
     private void AnimationCompleted()
     {
       SettingsManager.Instance.EnableDeviceControls();
-
-      Destroy(gameObject);
     }
   }
 }

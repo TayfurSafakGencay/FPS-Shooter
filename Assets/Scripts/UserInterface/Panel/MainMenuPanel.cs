@@ -1,5 +1,6 @@
 ﻿using Audio;
 using Managers.Manager;
+using Managers.Manager.Settings;
 using UserInterface.Panel.Base;
 
 namespace UserInterface.Panel
@@ -8,12 +9,16 @@ namespace UserInterface.Panel
   {
     private void Start()
     {
+      SettingsManager.Instance.EnableDeviceControls();
+
       SoundManager.Instance.PlayMusic(SoundKey.MainMenuMusic);
     }
 
     public void StartGame()
     {
       LoadingManager.Instance.StartLoadingScene();
+      
+      Destroy(gameObject);
     }
     
     public async void Options()

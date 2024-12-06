@@ -119,6 +119,20 @@ namespace Actor.Gun
       _emptyHand.SetActive(true);
       _player.GetPlayerAnimationController().ChangeArmAnimator(_emptyHand.transform);
     }
+
+    public void Death()
+    {
+      _emptyHand.SetActive(false);
+
+      if (HasGun)
+      {
+        ActiveGun.GetModel().SetActive(false);
+      }
+      else if (HasSecondaryGun)
+      {
+        SecondaryGun.GetModel().SetActive(false);
+      }
+    }
     
     public void AddAmmo(GunType gunType, int ammo)
     {
