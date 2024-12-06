@@ -75,11 +75,17 @@ namespace Managers.Manager
       else Destroy(gameObject);
     }
 
+    private void Start()
+    {
+      SetVolumeFromPlayerPrefs();
+    }
+
     public override void Initialize()
     {
       AddAction(ref GameManager.Instance.GameStateChanged, OnGameStateChanged);
 
       SetMixerGroupOutputs();
+      SetVolumeFromPlayerPrefs();
     }
 
     private async void OnGameStateChanged()
@@ -90,7 +96,7 @@ namespace Managers.Manager
           SoundsData = await LoadAudioData(AudioDataAddressableKey.MainMenuAudioData);
           break;
         case GameState.Game:
-          StopMusicFadeOut(_musicFadeOutDuration);
+          StopMusicFadeOut();
           break;
       }
     }
@@ -109,6 +115,15 @@ namespace Managers.Manager
 
       Debug.LogWarning("Audio Data could not loaded!");
       return null;
+    }
+
+    public void SetVolumeFromPlayerPrefs()
+    {
+      _audioMixer.SetFloat(_masterMixerGroupKey, PlayerPrefs.GetFloat(_masterMixerGroupKey, 0));
+      _audioMixer.SetFloat(_musicMixerGroupKey, PlayerPrefs.GetFloat(_musicMixerGroupKey, 0));
+      _audioMixer.SetFloat(_sfxMixerGroupKey, PlayerPrefs.GetFloat(_sfxMixerGroupKey, 0));
+      _audioMixer.SetFloat(_uiMixerGroupKey, PlayerPrefs.GetFloat(_uiMixerGroupKey, 0));
+      _audioMixer.SetFloat(_ambienceMixerGroupKey, PlayerPrefs.GetFloat(_ambienceMixerGroupKey, 0));
     }
 
     public void PlayMusic(SoundKey soundKey)
@@ -223,27 +238,42 @@ namespace Managers.Manager
 
     public void SetMasterVolume(float normalizedValue)
     {
-      _audioMixer.SetFloat(_masterMixerGroupKey, CalculateVolume(normalizedValue));
+      float volume = CalculateVolume(normalizedValue);
+      
+      _audioMixer.SetFloat(_masterMixerGroupKey, volume);
+      PlayerPrefs.SetFloat(_masterMixerGroupKey, volume);
     }
 
     public void SetMusicVolume(float normalizedValue)
     {
-      _audioMixer.SetFloat(_musicMixerGroupKey, CalculateVolume(normalizedValue));
+      float volume = CalculateVolume(normalizedValue);
+      
+      _audioMixer.SetFloat(_musicMixerGroupKey, volume);
+      PlayerPrefs.SetFloat(_musicMixerGroupKey, volume);
     }
 
     public void SetSFXVolume(float normalizedValue)
     {
-      _audioMixer.SetFloat(_sfxMixerGroupKey, CalculateVolume(normalizedValue));
+      float volume = CalculateVolume(normalizedValue);
+      
+      _audioMixer.SetFloat(_sfxMixerGroupKey, volume);
+      PlayerPrefs.SetFloat(_sfxMixerGroupKey, volume);
     }
 
     public void SetUIVolume(float normalizedValue)
     {
-      _audioMixer.SetFloat(_uiMixerGroupKey, CalculateVolume(normalizedValue));
+      float volume = CalculateVolume(normalizedValue);
+      
+      _audioMixer.SetFloat(_uiMixerGroupKey, volume);
+      PlayerPrefs.SetFloat(_uiMixerGroupKey, volume);
     }
 
     public void SetAmbienceVolume(float normalizedValue)
     {
-      _audioMixer.SetFloat(_ambienceMixerGroupKey, CalculateVolume(normalizedValue));
+      float volume = CalculateVolume(normalizedValue);
+      
+      _audioMixer.SetFloat(_ambienceMixerGroupKey, volume);
+      PlayerPrefs.SetFloat(_ambienceMixerGroupKey, volume);
     }
     
     public void DecreaseAllVolume(float duration)

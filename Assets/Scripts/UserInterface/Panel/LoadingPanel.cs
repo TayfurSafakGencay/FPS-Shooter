@@ -15,6 +15,14 @@ namespace UserInterface.Panel
     private Image _loadingSlider;
     
     private float _targetPercentage;
+
+    public override void Awake()
+    {
+      base.Awake();
+      
+      SoundManager.Instance.SetVolumeFromPlayerPrefs();
+    }
+
     protected override void ChangePanelLayer()
     {
       SortingGroup.sortingOrder = PanelLayer.LoadingPanel;

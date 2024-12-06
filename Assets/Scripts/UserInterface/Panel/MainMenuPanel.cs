@@ -7,6 +7,12 @@ namespace UserInterface.Panel
 {
   public class MainMenuPanel : BasePanel
   {
+    public override void Awake()
+    {
+      base.Awake();
+      
+      SoundManager.Instance.SetVolumeFromPlayerPrefs();
+    }
     private void Start()
     {
       SettingsManager.Instance.EnableDeviceControls();

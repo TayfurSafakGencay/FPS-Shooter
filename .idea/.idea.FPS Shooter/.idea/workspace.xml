@@ -6,30 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="899317de-2363-4c2a-b5e9-981aeff7816f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Zombie 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemies/Zombie 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Global Volume/VolumeProfileTest.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Global Volume/VolumeProfileTest.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Panels/PlayerScreenPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Panels/PlayerScreenPanel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Panels/PlayerScreenPanel.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Panels/PlayerScreenPanel.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Player 1 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player/Player 1 2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PostProcess/MorningForest Post Process.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PostProcess/MorningForest Post Process.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PostProcess/StaminaEffect.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PostProcess/StaminaEffect.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/MainMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/MainMenuScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/FirstPersonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/FirstPersonController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/Animations/PlayerAnimationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/Animations/PlayerAnimationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/PlayerGunSelector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Gun/PlayerGunSelector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/PlayerHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/PlayerHealth.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Zombie/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Zombie/EnemyAI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Loader/ManagerLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Loader/ManagerLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/LoadingManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/LoadingManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/PanelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/PanelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Audio/GameAudioMixer.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Audio/GameAudioMixer.mixer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/SoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/SoundManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PostProcess/VignetteEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PostProcess/VignetteEffect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/General/UserInterfaceTimes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/General/UserInterfaceTimes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/LoadingPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/LoadingPanel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/MainMenuPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/MainMenuPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/PlayerScreenPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/PlayerScreenPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/Settings/SettingsPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/Panel/Settings/SettingsPanel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +244,7 @@
       <workItem from="1733234294008" duration="12244000" />
       <workItem from="1733328163033" duration="9724000" />
       <workItem from="1733420835945" duration="3354000" />
-      <workItem from="1733469485275" duration="9193000" />
+      <workItem from="1733469485275" duration="13482000" />
     </task>
     <servers />
   </component>

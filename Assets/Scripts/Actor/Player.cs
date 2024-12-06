@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Actor.Gun;
 using Actor.Gun.Animations;
 using DG.Tweening;
+using Managers.Manager;
 using UnityEngine;
 using UserInterface.Panel;
 
@@ -54,6 +55,8 @@ namespace Actor
 
     private void Start()
     {
+      SoundManager.Instance.SetVolumeFromPlayerPrefs();
+
       _makeSound.SetPlayer(this);
     }
 

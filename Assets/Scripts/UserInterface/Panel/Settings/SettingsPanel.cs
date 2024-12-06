@@ -61,7 +61,6 @@ namespace UserInterface.Panel.Settings
       OpenSettingsContentPanel(ref _audioSettingsPanel, ref _audioButtonHighlight, _audioTitle);
     }
     
-    
     [Header("Controls Settings")]
     [SerializeField] private GameObject _controlsSettingsPanel;
     
