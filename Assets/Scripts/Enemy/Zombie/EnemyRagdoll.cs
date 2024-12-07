@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Systems.EndGame;
 using UnityEngine;
 using UnityEngine.AI;
 using Utilities;
@@ -29,7 +30,7 @@ namespace Enemy.Zombie
       _animator = GetComponent<Animator>();
       _bodyParts = new List<BodyPart>(GetComponentsInChildren<BodyPart>());
       _characterController = GetComponent<CharacterController>();
-
+      
       Enemy enemy = GetComponent<Enemy>();
       for (int i = 0; i < _bodyParts.Count; i++)
       {
@@ -40,6 +41,8 @@ namespace Enemy.Zombie
     private void Start()
     {
       DisableRagdoll();
+      
+      EndGameSystem.Instance.AddZombieCount();
     }
 
     private void Update()
@@ -59,12 +62,16 @@ namespace Enemy.Zombie
     {
       if (!_enemy.IsDead) 
       {
+        _enemy.IsDead = true;
+
         EnableRagdoll();
         _enemy.Sound.PlayDeadSound();
 
         ChangeAllChildLayers();
 
         Component[] components = gameObject.GetComponents<Component>();
+        
+        EndGameSystem.Instance.DeathZombie();
 
         foreach (Component component in components)
         {
@@ -85,9 +92,7 @@ namespace Enemy.Zombie
         }
       }
       
-      Vector3 force = damage * direction * 3;
-      
-      _enemy.IsDead = true;
+      Vector3 force = damage * direction;
       
       hitRb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
 

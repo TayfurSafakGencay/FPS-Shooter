@@ -28,7 +28,7 @@ namespace PostProcess
         _colorAdjustments = colorAdjustments;
       }
       
-      _colorAdjustments.colorFilter.value = Color.white;
+      _colorAdjustments.colorFilter.value = Color.black;
       _vignette.intensity.value = 1;
     }
 
@@ -36,8 +36,15 @@ namespace PostProcess
     {
       SettingsManager.Instance.DisableDeviceControls();
 
-        DOTween.To(() => _vignette.intensity.value, x => _vignette.intensity.Override(x), 
-          0.15f, UserInterfaceTimes.InitialVignetteEffectTime).OnComplete(AnimationCompleted);
+      InitialColorAdjustments();
+        // DOTween.To(() => _vignette.intensity.value, x => _vignette.intensity.Override(x), 
+        // 0.15f, UserInterfaceTimes.InitialVignetteEffectTime).OnComplete(AnimationCompleted);
+    }
+    
+    public void InitialColorAdjustments()
+    {
+      DOTween.To(() => _colorAdjustments.colorFilter.value, x => _colorAdjustments.colorFilter.value = x,
+        Color.white, UserInterfaceTimes.InitialVignetteEffectTime).OnComplete(AnimationCompleted);
     }
 
     public static void DeathVignette()

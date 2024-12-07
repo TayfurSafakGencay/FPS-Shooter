@@ -160,7 +160,7 @@ namespace UserInterface.General
       _hitCrosshair.enabled = false;
     }
 
-    private const float _randomness = 2.5f;
+    private const float _randomness = 4f;
     private void OnHit(bool headshot)
     {
       _hitCrosshair.color = headshot ? Color.red : Color.white;

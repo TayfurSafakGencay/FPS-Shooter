@@ -43,11 +43,18 @@ namespace UserInterface.Panel
     [SerializeField]
     private Image _bloodScreen;
 
+    [SerializeField]
+    private GameObject _infoObject;
+    
+    [SerializeField]
+    private TextMeshProUGUI _infoText;
+
     private void Awake()
     {
       Player = FindObjectOfType<Player>();
       
       _lootBackground.SetActive(false);
+      _infoObject.SetActive(false);
       
       _ammoText.SetText("");
       _crosshairController.gameObject.SetActive(true);
@@ -138,6 +145,17 @@ namespace UserInterface.Panel
       _bloodScreen.enabled = false;
       
       gameObject.SetActive(false);
+    }
+    
+    public void OnInfo(string text)
+    {
+      _infoObject.SetActive(true);
+      _infoText.SetText(text);
+    }
+    
+    public void DisableInfo()
+    {
+      _infoObject.SetActive(false);
     }
   }
 }

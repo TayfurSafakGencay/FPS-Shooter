@@ -44,7 +44,8 @@ namespace Managers.Manager
       };
     }
 
-    private SceneName _sceneName = SceneName.TestScene;
+    private const SceneName _sceneName = SceneName.TestScene;
+    
     private LoadingPanel _loadingPanel;
     public async void StartLoadingScene()
     {
@@ -99,9 +100,9 @@ namespace Managers.Manager
         yield return new WaitForSeconds(2f);
       }
       
-      PanelManager.Instance.ReleaseAllPanelsAsync();
       sceneLoadOperation.allowSceneActivation = true;
       GameManager.Instance.ChangeGameState(GameState.Game);
+      // PanelManager.Instance.ReleaseAllPanelsAsync();
     }
 
     private int _loadingTaskCount;
