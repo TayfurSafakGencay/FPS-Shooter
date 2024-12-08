@@ -52,6 +52,12 @@ namespace PostProcess
       DOTween.To(() => _colorAdjustments.colorFilter.value, x => _colorAdjustments.colorFilter.value = x,
         Color.black, UserInterfaceTimes.DeathVignetteEffectTime * 2);
     }
+    
+    public static void GameCompleted()
+    {
+      DOTween.To(() => _colorAdjustments.colorFilter.value, x => _colorAdjustments.colorFilter.value = x,
+        Color.black, UserInterfaceTimes.GameCompletedVignetteEffectTime);
+    }
 
     private void AnimationCompleted()
     {

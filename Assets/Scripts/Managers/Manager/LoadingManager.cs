@@ -44,7 +44,7 @@ namespace Managers.Manager
       };
     }
 
-    private const SceneName _sceneName = SceneName.TestScene;
+    private const SceneName _sceneName = SceneName.GameScene;
     
     private LoadingPanel _loadingPanel;
     public async void StartLoadingScene()

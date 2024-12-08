@@ -1,8 +1,12 @@
 ﻿using Actor;
+using Audio;
 using HelicopterAction;
+using Managers.Manager;
+using Managers.Manager.Settings;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Utilities;
 
 namespace Systems.EndGame
 {
@@ -85,9 +89,23 @@ namespace Systems.EndGame
       _player.GetPlayerScreenPanel().OnInfo(_helicopterLandedText);
     }
 
-    public void EndGame()
+    [SerializeField]
+    private AudioClip _gameEndClip;
+
+    private const float _gameEndSoundDisableDuration = 1f;
+
+    public async void EndGame()
     {
-      print("end game");
+      SettingsManager.Instance.DisableDeviceControls();
+      _player.LevelCompleted();
+
+      SoundManager.Instance.LevelCompleted(_gameEndSoundDisableDuration);
+      await Utility.Delay(_gameEndSoundDisableDuration + 0.5f);
+
+      SoundManager.Instance.PlayMusic(_gameEndClip);
+      await Utility.Delay(_gameEndClip.length);
+      
+      SoundManager.Instance.PlayMusicForEndGame(SoundKey.MainMenuMusic);
     }
   }
 }

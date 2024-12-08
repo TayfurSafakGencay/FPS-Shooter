@@ -24,15 +24,6 @@ namespace PostProcess
       _vignette.intensity.value = 0;
     }
 
-    public static void OnHealthChange(float currentHealth, float maxHealth)
-    {
-      float damage = maxHealth - currentHealth;
-      float damagePercentage = damage / maxHealth;
-      
-      DOTween.To(() => _vignette.intensity.value, x => _vignette.intensity.Override(x), 
-        damagePercentage, UserInterfaceTimes.DamageEffectTime);
-    }
-
     public static async void OnStaminaChanged()
     {
       DOTween.To(() => _vignette.intensity.value, x => _vignette.intensity.Override(x), 

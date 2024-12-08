@@ -135,6 +135,26 @@ namespace Managers.Manager
       _musicAudioSource.Play();
     }
 
+    public void PlayMusicForEndGame(SoundKey soundKey, float duration = 4f)
+    {
+      _musicAudioSource.volume = 0;
+      _musicAudioSource.DOFade(1, duration);
+
+      SoundDTO soundDto = SoundsData.GetSound(soundKey);
+      _musicAudioSource.clip = soundDto.AudioClip;
+      _musicAudioSource.time = 13f;
+      _musicAudioSource.loop = true;
+      _musicAudioSource.Play();
+    }
+    
+    public void PlayMusic(AudioClip audioClip, float volume = 1)
+    {
+      _musicAudioSource.clip = audioClip;
+      _musicAudioSource.volume = volume;
+      _musicAudioSource.loop = false;
+      _musicAudioSource.Play();
+    }
+
     public void StopMusic()
     {
       _musicAudioSource.Stop();
@@ -279,6 +299,13 @@ namespace Managers.Manager
     public void DecreaseAllVolume(float duration)
     {
       _audioMixer.DOSetFloat(_masterMixerGroupKey, _minDb, duration);
+    }
+
+    public void LevelCompleted(float duration)
+    {
+      _audioMixer.DOSetFloat(_ambienceMixerGroupKey, _minDb, duration);
+      _audioMixer.DOSetFloat(_sfxMixerGroupKey, _minDb, duration);
+      _audioMixer.DOSetFloat(_uiMixerGroupKey, _minDb, duration);
     }
 
     private float CalculateVolume(float normalizedValue)

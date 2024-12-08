@@ -4,6 +4,7 @@ using Actor.Gun;
 using Actor.Gun.Animations;
 using DG.Tweening;
 using Managers.Manager;
+using PostProcess;
 using UnityEngine;
 using UserInterface.Panel;
 
@@ -96,7 +97,27 @@ namespace Actor
       _playerAnimationController.GetGunPart().OnScopeOpen(_isScoped);
       
       OnScopeOpened?.Invoke(_isScoped);
-      
+    }
+
+    public void LevelCompleted()
+    {
+      _playerGunSelector.EmptyHand();
+      VignetteEffect.GameCompleted();
+      _playerScreenPanel.gameObject.SetActive(false);
+
+      Component[] components = gameObject.GetComponents<Component>();
+
+      foreach (Component component in components)
+      {
+        switch (component)
+        {
+          case Transform:
+            continue;
+          case MonoBehaviour monoBehaviour:
+            monoBehaviour.enabled = false;
+            break;
+        }
+      }
     }
 
     public bool GetIsScoped()

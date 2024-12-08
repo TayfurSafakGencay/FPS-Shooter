@@ -110,7 +110,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 15, y: 0}
-  m_SizeDelta: {x: 1.5, y: 10}
+  m_SizeDelta: {x: 1.5, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8990297241820164434
 CanvasRenderer:
@@ -429,7 +429,7 @@ MonoBehaviour:
   _playerScreenPanel: {fileID: 6267382453051171349}
   _expandValue: 0
   _speed: 10
-  _margin: 15
+  _margin: 10
   _expandSpeed: 20
   _shrinkSpeed: 100
   _top: {fileID: 530049880130140937}
@@ -438,10 +438,10 @@ MonoBehaviour:
   _right: {fileID: 3450327320913793250}
   _center: {fileID: 2355376121883763161}
   _crossHair: {fileID: 4560139348927311093}
-  _crouchingMargin: 10
-  _normalMargin: 15
-  _runningMargin: 90
-  _otherMovements: 125
+  _crouchingMargin: 8
+  _normalMargin: 10
+  _runningMargin: 80
+  _otherMovements: 110
   _hitCrosshair: {fileID: 131254026826249359}
 --- !u!1 &2491887653066656754
 GameObject:
@@ -801,7 +801,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 15}
-  m_SizeDelta: {x: 1.5, y: 10}
+  m_SizeDelta: {x: 1.5, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5893321915627407270
 CanvasRenderer:
@@ -1098,7 +1098,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 90}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2765958972016381577
 CanvasRenderer:
@@ -1715,7 +1715,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -15}
-  m_SizeDelta: {x: 1.5, y: 10}
+  m_SizeDelta: {x: 1.5, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2872198364944362800
 CanvasRenderer:
@@ -2095,7 +2095,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -15, y: 0}
-  m_SizeDelta: {x: 1.5, y: 10}
+  m_SizeDelta: {x: 1.5, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4348007300231955118
 CanvasRenderer:
