@@ -6,14 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="899317de-2363-4c2a-b5e9-981aeff7816f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Panels/PlayerScreenPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Panels/PlayerScreenPanel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Audio/GameAudioMixer.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Audio/GameAudioMixer.mixer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PostProcess/MorningForest Post Process.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PostProcess/MorningForest Post Process.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PostProcess/NightForest Post Process.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PostProcess/NightForest Post Process.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Actor/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/LoadingManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/LoadingManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/SoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/Manager/SoundManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PostProcess/StaminaEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PostProcess/StaminaEffect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PostProcess/VignetteEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PostProcess/VignetteEffect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Systems/EndGame/EndGameSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/EndGame/EndGameSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Scenes/GameScene/NavMesh.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Scenes/GameScene/NavMesh.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DayCycle/DayCycleGeneralOperations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DayCycle/DayCycleGeneralOperations.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DayCycle/DayCycleSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DayCycle/DayCycleSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HelicopterAction/Helicopter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HelicopterAction/Helicopter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserInterface/General/UserInterfaceTimes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserInterface/General/UserInterfaceTimes.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -250,7 +250,7 @@
       <workItem from="1733469485275" duration="14843000" />
       <workItem from="1733558887997" duration="8008000" />
       <workItem from="1733576737900" duration="12197000" />
-      <workItem from="1733643490500" duration="2275000" />
+      <workItem from="1733643490500" duration="7958000" />
     </task>
     <servers />
   </component>

@@ -120,7 +120,7 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: 67a8ffeaae9a54846a611bd2fdb5c09f
+  - guid: dee2f8e06c1908e418c9861fad4ae433
     name: Ambiance
   - guid: 9e03bcaacbf66514a9e7b5a54f9f498e
     name: Master
@@ -193,8 +193,8 @@ AudioMixerSnapshotController:
     75d9b4a270285384c846afb38adb1346: 0.88
     d3f5e764974992541b23f571868971a6: 10
     0ea96435a8c79a94ba39f14fbe07f772: 2.1
-    52f230e5901eb714dbea79fc91f069a3: 0.04171297
-    9e03bcaacbf66514a9e7b5a54f9f498e: -0.08374828
+    52f230e5901eb714dbea79fc91f069a3: 0
+    9e03bcaacbf66514a9e7b5a54f9f498e: 0
   m_TransitionOverrides: {}
 --- !u!244 &1071502498192077024
 AudioMixerEffectController:

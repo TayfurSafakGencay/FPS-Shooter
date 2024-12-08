@@ -1,4 +1,5 @@
 ﻿using Actor;
+using DayCycle;
 using DG.Tweening;
 using Systems.EndGame;
 using UnityEngine;
@@ -25,6 +26,9 @@ namespace HelicopterAction
     
     private BoxCollider _boxCollider;
 
+    [SerializeField]
+    private GameObject _ligths;
+
     private void Awake()
     {
       _audioSource = GetComponent<AudioSource>();
@@ -44,6 +48,7 @@ namespace HelicopterAction
       AnimateRotor();
     }
 
+    private bool _isHelicopterReachedToPoint;
     private void FlyToTargetPosition()
     {
       Sequence helicopterSequence = DOTween.Sequence();
@@ -56,6 +61,12 @@ namespace HelicopterAction
         {
           AdjustPitchOverTime();
           EndGameSystem.Instance.HelicopterReached();
+          _isHelicopterReachedToPoint = true;
+
+          if (_isLandingRequested)
+          {
+            Land();
+          }
         });
 
       helicopterSequence.Play();
@@ -73,20 +84,44 @@ namespace HelicopterAction
 
     private bool _isLanded;
     
+    private bool _isLandingRequested;
+    
     public void Land()
     {
+      _isLandingRequested = true;
+      if (!_isHelicopterReachedToPoint) return;
+      
       _targetPosition = _landPosition;
       
       Sequence helicopterSequence = DOTween.Sequence();
 
       helicopterSequence.Append(transform.DOMove(_targetPosition, _landDuration).SetEase(Ease.InOutQuad));
 
-      helicopterSequence.OnComplete(() =>
+      helicopterSequence.OnComplete(Landed);
+    }
+
+    private void Landed()
+    {
+      _isLanded = true;
+      _boxCollider.size = new Vector3(4, 1, 3);
+      EndGameSystem.Instance.HelicopterLanded();
+
+      DayCycleSystem.OnDayTimeChanged += OnDayTimeChange;
+    }
+
+    private void OnDayTimeChange(DayTime dayTime)
+    {
+      switch (dayTime)
       {
-        _isLanded = true;
-        _boxCollider.size = new Vector3(4, 1, 3);
-        EndGameSystem.Instance.HelicopterLanded();
-      });
+        case DayTime.Night:
+        case DayTime.Evening:
+          _ligths.SetActive(true);
+          break;
+        case DayTime.Morning:
+        case DayTime.Noon:
+          _ligths.SetActive(false);
+          break;
+      }
     }
 
     private void AdjustPitchOverTime()
@@ -97,8 +132,6 @@ namespace HelicopterAction
 
     private void OnTriggerEnter(Collider other)
     {
-      if (!_isLanded) return;
-
       if (!other.CompareTag("Player")) return;
       
       if (_isLanded)
