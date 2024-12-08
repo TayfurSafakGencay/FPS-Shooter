@@ -35,16 +35,51 @@ namespace Actor
     
     private void AddWeapon(Loot loot)
     {
+      GunType gunType;
       switch (loot.Key)
       {
         case LootKey.AK47:
-          _player.GetPlayerGunSelector().EquipGun(GunType.AK47);
+           gunType = GunType.AK47;
           break;
         case LootKey.M4:
-          _player.GetPlayerGunSelector().EquipGun(GunType.M4);
+          gunType = GunType.M4;
           break;
         default:
-          throw new ArgumentOutOfRangeException();
+          return;
+      }
+      
+      _player.GetPlayerGunSelector().EquipGun(gunType);
+      CheckIsThereAmmoInInventory(gunType);
+    }
+    
+    private void CheckIsThereAmmoInInventory(GunType gunType)
+    {
+      switch (gunType)
+      {
+        case GunType.AK47:
+          if (Items.TryGetValue(LootKey.Ammo_AK47, out ItemVo akAmmo))
+          {
+            _player.GetPlayerGunSelector().AddAmmo(gunType, akAmmo.Quantity);
+            return;
+          }
+          break;
+        case GunType.M4:
+          if (Items.TryGetValue(LootKey.Ammo_M4, out ItemVo m4Ammo))
+          {
+            _player.GetPlayerGunSelector().AddAmmo(gunType, m4Ammo.Quantity);
+            return;
+          }
+          break;
+      }
+      if (Items.ContainsKey(gunType switch
+      {
+        
+        GunType.AK47 => LootKey.Ammo_AK47,
+        GunType.M4 => LootKey.Ammo_M4,
+        _ => throw new ArgumentOutOfRangeException()
+      }))
+      {
+        return;
       }
     }
     
@@ -57,7 +92,12 @@ namespace Actor
         _ => throw new ArgumentOutOfRangeException()
       };
       
-      _player.GetPlayerGunSelector().AddAmmo(gunType, loot.Quantity);
+      bool hasTheGun = _player.GetPlayerGunSelector().AddAmmo(gunType, loot.Quantity);
+
+      if (!hasTheGun)
+      {
+        AddConsumable(loot);
+      }
     }
     
     private void AddConsumable(Loot loot)

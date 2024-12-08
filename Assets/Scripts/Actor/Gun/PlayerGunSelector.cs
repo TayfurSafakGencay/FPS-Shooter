@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Guns.Configurators;
 using Guns.Enum;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Actor.Gun
@@ -134,20 +135,25 @@ namespace Actor.Gun
       }
     }
     
-    public void AddAmmo(GunType gunType, int ammo)
+    public bool AddAmmo(GunType gunType, int ammo)
     {
+      if (!HasGun) return false;
+      
       if (gunType == ActiveGun.GunType)
       {
         ActiveGun.AmmoConfig.AddAmmo(ammo);
+        return true;
       }
-      else if (gunType == SecondaryGun.GunType)
+
+      if (!HasSecondaryGun) return false;
+      
+      if (gunType == SecondaryGun.GunType)
       {
         SecondaryGun.AmmoConfig.AddAmmo(ammo);
+        return true;
       }
-      else
-      {
-        Debug.LogError($"No Gun found for type {gunType}");
-      }
+      
+      return false;
     }
 
     public void AddEventListenerOnGunChanged(Action<Transform> action)
