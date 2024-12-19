@@ -8,7 +8,7 @@ namespace Enemy.Zombie
   {
     private void Start()
     {
-      Destroy(gameObject, 10f);
+      Destroy(gameObject, 20f);
     }
 
     public void TakeDamage(int damage, Vector3 forceDirection, Vector3 hitPoint, out bool isHeadshot)

@@ -98,7 +98,7 @@ namespace Enemy.Zombie
 
       _state = ZombieState.Ragdoll;
       
-      Destroy(gameObject, 10f);
+      Destroy(gameObject, 20f);
     }
 
     private void DisableRagdoll()

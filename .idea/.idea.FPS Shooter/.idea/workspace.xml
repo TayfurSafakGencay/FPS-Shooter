@@ -5,6 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="899317de-2363-4c2a-b5e9-981aeff7816f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/EmptyHand/PutRadarToBackpack.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/EmptyHand/PutRadarToBackpack.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/EmptyHand/UseRadar.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/EmptyHand/UseRadar.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/EmptyHand/UsingRadar.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/EmptyHand/UsingRadar.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Loot/Radar.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Loot/Radar.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Flashlight.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/Flashlight.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/PlayerRadar.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Actor/PlayerRadar.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Zombie/IOutlineable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Zombie/IOutlineable.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Chunk.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Chunk/Chunk.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Chunk/Chunk.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Chunk/EnemySpawner.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Systems/Chunk/EnemySpawner.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectSettings/ScriptableBuildPipeline.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FPS Shooter/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Guns/EmptyHand/EmptyHand.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Guns/EmptyHand/EmptyHand.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Helicopter/Helicopter.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Helicopter/Helicopter.prefab" afterDir="false" />
@@ -279,7 +299,7 @@
       <workItem from="1734247240982" duration="20676000" />
       <workItem from="1734448827017" duration="1791000" />
       <workItem from="1734546266002" duration="2162000" />
-      <workItem from="1734631587706" duration="849000" />
+      <workItem from="1734631587706" duration="1524000" />
     </task>
     <servers />
   </component>
