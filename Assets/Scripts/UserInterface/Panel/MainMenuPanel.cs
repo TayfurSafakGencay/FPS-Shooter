@@ -38,7 +38,6 @@ namespace UserInterface.Panel
       // Editörde oyunu durdurur
       UnityEditor.EditorApplication.isPlaying = false;
 #else
-        // Oyunu tamamen kapatır
         Application.Quit();
 #endif
     }

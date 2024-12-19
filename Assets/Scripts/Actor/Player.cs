@@ -7,6 +7,7 @@ using Managers.Manager;
 using PostProcess;
 using UnityEngine;
 using UserInterface.Panel;
+using Utilities;
 
 namespace Actor
 {
@@ -29,6 +30,12 @@ namespace Actor
     private PlayerStamina _playerStamina;
     
     private BreathSound _breathSound;
+    
+    [SerializeField]
+    private Flashlight _flashlight;
+    
+    [SerializeField]
+    private PlayerRadar _playerRadar;
     
     [SerializeField]
     private MakeSound _makeSound;
@@ -99,8 +106,12 @@ namespace Actor
       OnScopeOpened?.Invoke(_isScoped);
     }
 
-    public void LevelCompleted()
+    public async void LevelCompleted()
     {
+      GetPlayerAnimationController().EndGame();
+
+      await Utility.Delay(1f);
+      
       _playerGunSelector.EmptyHand();
       VignetteEffect.GameCompleted();
       _playerScreenPanel.gameObject.SetActive(false);
@@ -173,6 +184,16 @@ namespace Actor
     public BreathSound GetBreathSound()
     {
       return _breathSound;
+    }
+    
+    public PlayerRadar GetPlayerRadar()
+    {
+      return _playerRadar;
+    }
+    
+    public Flashlight GetFlashlight()
+    {
+      return _flashlight;
     }
   }
 }

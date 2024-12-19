@@ -28,8 +28,8 @@ TagManager:
   - DeadBody
   - FrontChecker
   - InvisibileWall
-  - 
-  - 
+  - Chunk
+  - Radar
   - 
   - 
   - 

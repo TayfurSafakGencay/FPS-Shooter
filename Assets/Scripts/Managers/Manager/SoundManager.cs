@@ -135,14 +135,14 @@ namespace Managers.Manager
       _musicAudioSource.Play();
     }
 
-    public void PlayMusicForEndGame(SoundKey soundKey, float duration = 4f)
+    public void PlayMusicForEndGame(SoundKey soundKey, float duration = 7f)
     {
       _musicAudioSource.volume = 0;
       _musicAudioSource.DOFade(1, duration);
 
       SoundDTO soundDto = SoundsData.GetSound(soundKey);
       _musicAudioSource.clip = soundDto.AudioClip;
-      _musicAudioSource.time = 13f;
+      _musicAudioSource.time = 10f;
       _musicAudioSource.loop = true;
       _musicAudioSource.Play();
     }

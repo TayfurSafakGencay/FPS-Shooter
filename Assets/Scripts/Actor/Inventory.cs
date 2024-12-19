@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Guns.Enum;
 using LootSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Utilities;
 
 namespace Actor
 {
@@ -33,7 +35,7 @@ namespace Actor
       }
     }
     
-    private void AddWeapon(Loot loot)
+    private async void AddWeapon(Loot loot)
     {
       GunType gunType;
       switch (loot.Key)
@@ -48,8 +50,17 @@ namespace Actor
           return;
       }
       
-      _player.GetPlayerGunSelector().EquipGun(gunType);
       CheckIsThereAmmoInInventory(gunType);
+
+      if (!IsRadarUsed)
+      {
+        _player.GetPlayerGunSelector().EquipGun(gunType);
+        return;
+      }
+      
+      UseRadar();
+      await Utility.Delay(0.85f);
+      _player.GetPlayerGunSelector().EquipGun(gunType);
     }
     
     private void CheckIsThereAmmoInInventory(GunType gunType)
@@ -132,6 +143,12 @@ namespace Actor
       if (key == LootKey.Pill)
       {
         if (_player.GetPlayerHealth().IsFullHealth()) return;
+
+        if (IsRadarUsed)
+        {
+          UseRadar();
+          await Utility.Delay(0.85f);
+        }
         
         await _player.GetPlayerGunSelector().EmptyHand();
         
@@ -145,6 +162,25 @@ namespace Actor
       if (item.Quantity == 0)
       {
         Items.Remove(key);
+      }
+    }
+    
+    [HideInInspector]
+    public bool IsRadarUsed;
+    public async void UseRadar()
+    {
+      if (!Items.ContainsKey(LootKey.Radar)) return;
+
+      if (!IsRadarUsed)
+      {
+        await _player.GetPlayerGunSelector().EmptyHand();
+        IsRadarUsed = true;
+        _player.GetPlayerAnimationController().Radar();
+      }
+      else
+      {
+        IsRadarUsed = false;
+        _player.GetPlayerAnimationController().PutRadarToBackpack();
       }
     }
 

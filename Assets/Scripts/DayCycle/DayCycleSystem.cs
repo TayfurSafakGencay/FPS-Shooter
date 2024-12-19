@@ -22,7 +22,7 @@ namespace DayCycle
       }
     }
 
-    public const float DayTimeChangingTime = 40f;
+    public const float DayTimeChangingTime = 20f;
 
     private void Start()
     {

@@ -20,6 +20,8 @@ namespace Systems.EndGame
     private int _zombieCount;
     
     private Player _player;
+    
+    private int _chunkCount;
 
     private void Awake()
     {
@@ -39,6 +41,8 @@ namespace Systems.EndGame
     public void DeathZombie()
     {
       _zombieCount--;
+
+      if (_chunkCount > 0) return;
 
       if (_zombieCount == 5)
       {
@@ -99,13 +103,25 @@ namespace Systems.EndGame
       SettingsManager.Instance.DisableDeviceControls();
       _player.LevelCompleted();
 
+      await Utility.Delay(_gameEndSoundDisableDuration);
+
       SoundManager.Instance.LevelCompleted(_gameEndSoundDisableDuration);
-      await Utility.Delay(_gameEndSoundDisableDuration + 0.5f);
+      await Utility.Delay(_gameEndSoundDisableDuration + 1.5f);
 
       SoundManager.Instance.PlayMusic(_gameEndClip);
       await Utility.Delay(_gameEndClip.length);
       
       SoundManager.Instance.PlayMusicForEndGame(SoundKey.MainMenuMusic);
+    }
+    
+    public void AddChunkCount()
+    {
+      _chunkCount++;
+    }
+    
+    public void ChunkActivated()
+    {
+      _chunkCount--;
     }
   }
 }

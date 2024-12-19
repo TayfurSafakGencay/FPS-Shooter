@@ -4,6 +4,7 @@ using Guns.Configurators;
 using Guns.Enum;
 using Unity.VisualScripting;
 using UnityEngine;
+using Utilities;
 
 namespace Actor.Gun
 {
@@ -30,9 +31,6 @@ namespace Actor.Gun
     private Player _player;
 
     [SerializeField]
-    private Light _gunLight;
-
-    [SerializeField]
     private GameObject _emptyHand;
     
     public bool HasGun => ActiveGun != null;
@@ -42,7 +40,6 @@ namespace Actor.Gun
     private void Awake()
     {
       _player = GetComponent<Player>();
-      _gunLight.enabled = false;
     }
 
     public void EquipGun(GunType gunType)
@@ -83,8 +80,16 @@ namespace Actor.Gun
 
     public async void SwitchGun()
     {
-      if (!HasGun || !HasSecondaryGun) return;
-
+      if (!HasGun) return;
+      
+      if (_player.GetInventory().IsRadarUsed)
+      {
+        _player.GetInventory().UseRadar();
+        await Utility.Delay(0.85f);
+      }
+      
+      if (!HasSecondaryGun) return;
+      
       await _player.GetPlayerAnimationController().GunChangingAnimation();
       
       (ActiveGun, SecondaryGun) = (SecondaryGun, ActiveGun);
@@ -159,11 +164,6 @@ namespace Actor.Gun
     public void AddEventListenerOnGunChanged(Action<Transform> action)
     {
       _onGunChanged += action;
-    }
-
-    public void GunLightSwitch()
-    {
-      _gunLight.enabled = !_gunLight.enabled;
     }
   }
 }

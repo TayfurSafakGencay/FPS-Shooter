@@ -27,7 +27,7 @@ namespace HelicopterAction
     private BoxCollider _boxCollider;
 
     [SerializeField]
-    private GameObject _ligths;
+    private GameObject _lights;
 
     private void Awake()
     {
@@ -40,6 +40,8 @@ namespace HelicopterAction
       
       _audioSource.clip = _helicopterSound;
       _audioSource.Play();
+      
+      _lights.SetActive(false);
     }
 
     private void Start()
@@ -115,11 +117,11 @@ namespace HelicopterAction
       {
         case DayTime.Night:
         case DayTime.Evening:
-          _ligths.SetActive(true);
+          _lights.SetActive(true);
           break;
         case DayTime.Morning:
         case DayTime.Noon:
-          _ligths.SetActive(false);
+          _lights.SetActive(false);
           break;
       }
     }

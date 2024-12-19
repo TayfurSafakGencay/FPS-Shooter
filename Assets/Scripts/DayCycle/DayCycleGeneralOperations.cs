@@ -72,6 +72,9 @@ namespace DayCycle
     {
       Morning();
       StartSkyboxRotation();
+      
+      RenderSettings.fog = true;
+      RenderSettings.fogDensity = 0;
     }
 
     private void OnDayTimeChanged(DayTime dayTime)

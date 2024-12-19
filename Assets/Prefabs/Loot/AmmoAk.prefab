@@ -126,9 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: 2
   Type: 1
-  Text: x30 AK47 Ammo
+  Text: x90 AK47 Ammo
   MaxQuantity: 1000
-  Quantity: 30
+  Quantity: 90
 --- !u!65 &6446785243823498165
 BoxCollider:
   m_ObjectHideFlags: 0

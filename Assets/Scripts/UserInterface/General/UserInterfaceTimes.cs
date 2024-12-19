@@ -10,6 +10,6 @@
     
     public const float DeathVignetteEffectTime = 2f;
     
-    public const float GameCompletedVignetteEffectTime = 100f;
+    public const float GameCompletedVignetteEffectTime = 95f;
   }
 }

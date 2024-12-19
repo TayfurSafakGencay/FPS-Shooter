@@ -43,6 +43,8 @@ namespace Actor.Gun.Animations
     END_RELOAD,
     
     End_Pill,
+    
+    End_Radar,
   }
   public class AnimationEvent : UnityEvent<AnimationEventKey>
   {

@@ -88,6 +88,9 @@ namespace Actor.Gun.Animations
         case AnimationEventKey.End_Pill:
           PillEnd();
           break;
+        case AnimationEventKey.End_Radar:
+          RadarEnd();
+          break;
       }
     }
 
@@ -102,6 +105,32 @@ namespace Actor.Gun.Animations
     private void PillEnd()
     {
       _player.GetPlayerHealth().HealingOverTime();
+      
+      _player.GetPlayerGunSelector().GetFirstGun();
+    }
+
+    #endregion
+
+    #region Radar
+
+    private const string RADAR_TRIGGER = "UseRadar";
+    
+    public void Radar()
+    {
+      _animator.SetTrigger(RADAR_TRIGGER);
+      
+      _player.GetPlayerRadar().StartRadar();
+    }
+    
+    private const string PUT_RADAR_TO_BACKPACK_TRIGGER = "EndUseRadar";
+    public void PutRadarToBackpack()
+    {
+      _animator.SetTrigger(PUT_RADAR_TO_BACKPACK_TRIGGER);
+    }
+    
+    public void RadarEnd()
+    {
+      _player.GetPlayerRadar().StopRadar();
       
       _player.GetPlayerGunSelector().GetFirstGun();
     }
@@ -182,6 +211,12 @@ namespace Actor.Gun.Animations
         _movingAnimationValue = false;
         _defaultGunPosition = _gunPart.GetInitialPosition();
       }
+    }
+    
+    public void EndGame()
+    {
+      _animator.SetBool(_move, false);
+      _movingAnimationValue = false;
     }
 
     #endregion

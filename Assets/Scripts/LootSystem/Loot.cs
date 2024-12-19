@@ -34,5 +34,6 @@ namespace LootSystem
     Ammo_AK47,
     M4,
     Ammo_M4,
+    Radar,
   }
 }

@@ -7513,7 +7513,7 @@ MonoBehaviour:
   RotorSpeed: 360
   Disabled: {fileID: 8114972506759300222}
   _helicopterSound: {fileID: 8300000, guid: 115d0610fdd90824a8420131b5d9a205, type: 3}
-  _ligths: {fileID: 0}
+  _lights: {fileID: 1783474837918797318}
 --- !u!82 &4007686041429462045
 AudioSource:
   m_ObjectHideFlags: 0

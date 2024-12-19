@@ -126,9 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: 4
   Type: 1
-  Text: x30 M4 Ammo
+  Text: x90 M4 Ammo
   MaxQuantity: 1000
-  Quantity: 30
+  Quantity: 90
 --- !u!65 &1949424420333661167
 BoxCollider:
   m_ObjectHideFlags: 0

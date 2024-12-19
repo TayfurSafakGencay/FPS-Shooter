@@ -33,12 +33,17 @@ namespace Actor
     {
       if (Keyboard.current.fKey.wasPressedThisFrame)
       {
-        _gunSelector.GunLightSwitch();
+        _player.GetFlashlight().GunLightSwitch();
       }
 
       if (Keyboard.current.eKey.wasPressedThisFrame)
       {
         _player.GetPlayerLoot().TakeLootItem();
+      }
+
+      if (Keyboard.current.digit3Key.wasPressedThisFrame)
+      {
+        _player.GetInventory().UseRadar();
       }
 
       if (Keyboard.current.digit5Key.wasPressedThisFrame)

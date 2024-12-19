@@ -97,6 +97,8 @@ namespace Enemy.Zombie
       hitRb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
 
       _state = ZombieState.Ragdoll;
+      
+      Destroy(gameObject, 10f);
     }
 
     private void DisableRagdoll()
