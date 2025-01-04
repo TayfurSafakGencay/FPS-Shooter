@@ -29,7 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3601174143731537476}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -42,7 +42,7 @@ ParticleSystem:
   m_GameObject: {fileID: 863628859167693670}
   serializedVersion: 8
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 2.5
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
@@ -4869,7 +4869,7 @@ Transform:
   m_LocalRotation: {x: -0.00000020194088, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3601174143731537476}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4882,7 +4882,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2707807127706235978}
   serializedVersion: 8
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 2.5
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
@@ -9856,7 +9856,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8795754123722091521}
   - {fileID: 5517583949917878713}
@@ -9872,7 +9872,7 @@ ParticleSystem:
   m_GameObject: {fileID: 8329417373547284050}
   serializedVersion: 8
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 2.5
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
@@ -10099,8 +10099,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.75
-      minScalar: 1.5
+      scalar: 3
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14605,7 +14605,7 @@ ParticleSystemRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8329417373547284050}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0

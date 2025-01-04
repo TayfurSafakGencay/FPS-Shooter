@@ -52,6 +52,12 @@ namespace Actor.Gun.Animations
     
     public void ChangeArmAnimator(Transform gunTransform)
     {
+      if (_armAnimator != null)
+      {
+        _armAnimator.GetAnimator().Rebind();
+        _animator.Rebind();
+      }
+      
       _armAnimator = gunTransform.GetComponentInChildren(typeof(ArmAnimator)) as ArmAnimator;
       
       if (_armAnimator == null) return;
@@ -67,6 +73,12 @@ namespace Actor.Gun.Animations
       _armAnimator.RemoveEventListenerOnAnimationEvent(OnAnimationEventDispatch);
       _animator.Rebind();
       _armAnimator.GetAnimator().Rebind();
+    }
+
+    public void ResetAnimator()
+    {
+      _animator.Rebind();
+      _armAnimator.GetAnimator().Update(0);
     }
     
     private void OnAnimationEventDispatch(AnimationEventKey eventKey)

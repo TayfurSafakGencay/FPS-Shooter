@@ -18,11 +18,13 @@ namespace Systems.EndGame
     private const string _helicopterAddressable = "Helicopter";
     
     private int _zombieCount;
+
+    private int _zombieSpawnerCount;
+    
+    private int _spawnedZombieCount;
     
     private Player _player;
     
-    private int _chunkCount;
-
     private void Awake()
     {
       if (Instance == null) Instance = this;
@@ -31,18 +33,30 @@ namespace Systems.EndGame
       _player = FindObjectOfType<Player>();
       
       _zombieCount = 0;
+      _zombieSpawnerCount = 0;
     }
     
     public void AddZombieCount()
     {
+      _spawnedZombieCount++;
       _zombieCount++;
+    }
+    
+    public void AddZombieSpawner()
+    {
+      _zombieSpawnerCount++;
     }
 
     public void DeathZombie()
     {
       _zombieCount--;
+      print("Spawned Zombie Count: " + _spawnedZombieCount + " - Zombie Spawner Count:" + _zombieSpawnerCount + " - Zombie Count:" + _zombieCount);
 
-      if (_chunkCount > 0) return;
+      if (_spawnedZombieCount + 10 <= _zombieSpawnerCount)
+      {
+        print("Spawned Zombie Count: " + _spawnedZombieCount + " - Zombie Spawner Count:" + _zombieSpawnerCount);
+        return;
+      }
 
       if (_zombieCount == 5)
       {
@@ -61,8 +75,13 @@ namespace Systems.EndGame
     
     private Helicopter _helicopter;
     
+    private bool _helicopterCalled;
+    
     private async void CallHelicopter()
     {
+      if (_helicopterCalled) return;
+      _helicopterCalled = true;
+      
       AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(_helicopterAddressable);
 
       await handle.Task;
@@ -112,16 +131,6 @@ namespace Systems.EndGame
       await Utility.Delay(_gameEndClip.length);
       
       SoundManager.Instance.PlayMusicForEndGame(SoundKey.MainMenuMusic);
-    }
-    
-    public void AddChunkCount()
-    {
-      _chunkCount++;
-    }
-    
-    public void ChunkActivated()
-    {
-      _chunkCount--;
     }
   }
 }

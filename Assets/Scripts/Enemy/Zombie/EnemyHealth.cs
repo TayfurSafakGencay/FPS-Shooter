@@ -21,5 +21,10 @@ namespace Enemy.Zombie
 
       return CurrentHealth <= 0;
     }
+
+    public void ResetHealth()
+    {
+      CurrentHealth = _maxHealth;
+    }
   }
 }

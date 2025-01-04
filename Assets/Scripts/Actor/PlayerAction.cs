@@ -41,12 +41,12 @@ namespace Actor
         _player.GetPlayerLoot().TakeLootItem();
       }
 
-      if (Keyboard.current.digit3Key.wasPressedThisFrame)
+      if (Keyboard.current.digit1Key.wasPressedThisFrame)
       {
         _player.GetInventory().UseRadar();
       }
 
-      if (Keyboard.current.digit5Key.wasPressedThisFrame)
+      if (Keyboard.current.digit2Key.wasPressedThisFrame)
       {
         _player.GetInventory().UseConsumable(LootKey.Pill);
       }
@@ -59,7 +59,7 @@ namespace Actor
     {
       if (!_gunSelector.HasGun) return;
       
-      if (Keyboard.current.digit1Key.wasPressedThisFrame)
+      if (Keyboard.current.qKey.wasPressedThisFrame)
       {
         _gunSelector.SwitchGun();
       }
@@ -67,7 +67,7 @@ namespace Actor
       if (_isReloading || _firstPersonController.GetIsRunning()) return;
       
       bool conditions = Mouse.current.leftButton.isPressed 
-                        && Application.isFocused && _gunSelector.ActiveGun != null;
+                        && Application.isFocused && _gunSelector.ActiveGun != null && _gunSelector.ActiveGun.GetModel().activeInHierarchy;
       _gunSelector.ActiveGun.Tick(conditions);
 
       if (Mouse.current.rightButton.wasPressedThisFrame)

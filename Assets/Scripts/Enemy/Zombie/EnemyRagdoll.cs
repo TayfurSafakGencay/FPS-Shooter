@@ -3,24 +3,17 @@ using Systems.EndGame;
 using UnityEngine;
 using UnityEngine.AI;
 using Utilities;
+using ZombiePool;
 
 namespace Enemy.Zombie
 {
   public class EnemyRagdoll : MonoBehaviour
   {
-    private enum ZombieState
-    {
-      Walk,
-      Ragdoll
-    }
-
     private Enemy _enemy;
     
     private List<BodyPart> _bodyParts;
 
     private Animator _animator;
-
-    private ZombieState _state = ZombieState.Walk;
 
     private CharacterController _characterController;
     
@@ -41,24 +34,9 @@ namespace Enemy.Zombie
     private void Start()
     {
       DisableRagdoll();
-      
-      EndGameSystem.Instance.AddZombieCount();
     }
 
-    private void Update()
-    {
-      switch (_state)
-      {
-        case ZombieState.Walk:
-          WalkingBehaviour();
-          break;
-        case ZombieState.Ragdoll:
-          RagdollBehaviour();
-          break;
-      }
-    }
-
-    public void Death(float damage, Vector3 direction, Vector3 hitPoint, Rigidbody hitRb)
+    public async void Death(float damage, Vector3 direction, Vector3 hitPoint, Rigidbody hitRb)
     {
       if (!_enemy.IsDead) 
       {
@@ -96,9 +74,8 @@ namespace Enemy.Zombie
       
       hitRb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
 
-      _state = ZombieState.Ragdoll;
-      
-      Destroy(gameObject, 20f);
+      await Utility.Delay(20);
+      ZombiePoolManager.Instance.ReturnToPool(_enemy);
     }
 
     private void DisableRagdoll()
@@ -123,19 +100,13 @@ namespace Enemy.Zombie
       _characterController.enabled = false;
     }
 
-    private void WalkingBehaviour()
-    {
-    }
-
-    private void RagdollBehaviour()
-    {
-    }
-
     public void RemoveBodyPart(BodyPart bodyPart)
     {
       _bodyParts.Remove(bodyPart);
+      _removedBodyParts.Add(bodyPart);
     }
     
+    private const string _normalLayer = "CharacterController";
     private const string targetLayer = "DeadBody";
     public void ChangeAllChildLayers()
     {
@@ -155,6 +126,33 @@ namespace Enemy.Zombie
       Physics.IgnoreLayerCollision(deadBodyLayer, playerLayer, true);
       Physics.IgnoreLayerCollision(deadBodyLayer, characterControllerLayer, true);
       Physics.IgnoreLayerCollision(deadBodyLayer, enemyLayer, true);
+    }
+
+    private readonly List<BodyPart> _removedBodyParts = new();
+    public void Respawn()
+    {
+      gameObject.layer = LayerMask.NameToLayer(_normalLayer);
+      _bodyParts.AddRange(_removedBodyParts);
+      DisableRagdoll();
+      
+      Component[] components = gameObject.GetComponents<Component>();
+      foreach (Component component in components)
+      {
+        switch (component)
+        {
+          case Transform:
+            continue;
+          case MonoBehaviour monoBehaviour:
+            monoBehaviour.enabled = true;
+            break;
+          case NavMeshAgent navMeshAgent:
+            navMeshAgent.enabled = true;
+            break;
+          case Collider col:
+            col.enabled = true;
+            break;
+        }
+      }
     }
   }
 }

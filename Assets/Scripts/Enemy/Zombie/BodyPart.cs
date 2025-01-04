@@ -26,16 +26,9 @@ namespace Enemy.Zombie
     
     public Rigidbody Rigidbody { get; private set; }
 
-    private CharacterJoint _characterJoint;
-    
-    private Collider _collider;
-
     private void Awake()
     {
       Rigidbody = GetComponent<Rigidbody>();
-      _characterJoint = GetComponent<CharacterJoint>();
-      _collider = GetComponent<Collider>();
-
       if (_woundHole != null) _woundHole.SetActive(false);
 
       foreach (BodyPart bodyPart in _childBodyParts) bodyPart.OnBodyPartDestroyed += OnChildObjectDestroyed;
@@ -86,14 +79,12 @@ namespace Enemy.Zombie
       OnBodyPartDestroyed?.Invoke(this);
       OnBodyPartDestroyed = null;
       
-      Destroy(_collider);
-      Destroy(_characterJoint);
-      Destroy(Rigidbody);
-      Destroy(this);
+      gameObject.SetActive(false);
     }
 
     private void OnChildObjectDestroyed(BodyPart bodyPart)
     {
+      _destroyedBodyParts.Add(bodyPart);
       _childBodyParts.Remove(bodyPart);
     }
     
@@ -112,6 +103,7 @@ namespace Enemy.Zombie
       }
     }
 
+    private const string _normalLayer = "Enemy";
     private const string targetLayer = "DeadBody";
 
     public void DisableCollisions()
@@ -128,6 +120,19 @@ namespace Enemy.Zombie
       Physics.IgnoreLayerCollision(deadBodyLayer, playerLayer, true);
       Physics.IgnoreLayerCollision(deadBodyLayer, characterControllerLayer, true);
       Physics.IgnoreLayerCollision(deadBodyLayer, enemyLayer, true);
+    }
+
+    private readonly List<BodyPart> _destroyedBodyParts = new();
+    public void Respawn()
+    {
+      gameObject.SetActive(true);
+
+      gameObject.layer = LayerMask.NameToLayer(_normalLayer);
+      
+      if (_woundHole != null) _woundHole.SetActive(false);
+      transform.localScale = Vector3.one;
+      
+      _childBodyParts.AddRange(_destroyedBodyParts);
     }
   }
   public enum BodyPartKey

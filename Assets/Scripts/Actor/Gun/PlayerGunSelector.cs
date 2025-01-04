@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Guns.Configurators;
 using Guns.Enum;
-using Unity.VisualScripting;
 using UnityEngine;
 using Utilities;
 
@@ -85,7 +84,7 @@ namespace Actor.Gun
       if (_player.GetInventory().IsRadarUsed)
       {
         _player.GetInventory().UseRadar();
-        await Utility.Delay(0.85f);
+        await Utility.Delay(0.5f);
       }
       
       if (!HasSecondaryGun) return;
@@ -109,7 +108,7 @@ namespace Actor.Gun
       if (!HasGun) return;
       
       ActiveGun.GetModel().SetActive(true);
-      
+
       _onGunChanged?.Invoke(ActiveGun.GetModel().transform);
     }
     
@@ -118,6 +117,8 @@ namespace Actor.Gun
       if (HasGun)
       {
         await _player.GetPlayerAnimationController().GunChangingAnimation();
+        
+        _player.GetPlayerAnimationController().ResetAnimator();
 
         ActiveGun.GetModel().SetActive(false);
       }

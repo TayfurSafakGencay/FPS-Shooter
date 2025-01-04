@@ -36,7 +36,7 @@ namespace Enemy.Zombie
 
     private void Start()
     {
-      WalkRandomly();
+      // WalkRandomly();
     }
 
     private void Update()
@@ -113,42 +113,42 @@ namespace Enemy.Zombie
     private const float _maxTimeForRandomWalk = 50;
     
     private const float _repeatTimeForRandomWalk = 60;
-    public async void WalkRandomly()
-    {
-      if (_enemy.IsDead) return;
-      if (_isDestroyed) return;
-
-      if (_noticed)
-      {
-        await Utility.Delay(_repeatTimeForRandomWalk);
-        WalkRandomly();
-        return;
-      }
-
-      if (_isWalkingRandomly)
-      {
-        if (Random.Range(0, 3) == 0)
-        {
-          StopWalkingRandomly();
-        }
-
-        await Utility.Delay(_repeatTimeForRandomWalk);
-        WalkRandomly();
-      }
-
-      if (_enemy.IsDead) return;
-      if (_isDestroyed) return;
-
-      float randomYRotation = Random.Range(0f, 360f);
-      Quaternion targetRotation = Quaternion.Euler(0, randomYRotation, 0);
-
-      transform.DORotateQuaternion(targetRotation, 0.5f).SetEase(Ease.InOutSine);
-
-      _enemy.Animator.Walk();
-      _isWalkingRandomly = true;
-
-      WalkRandomly();
-    }
+    // public async void WalkRandomly()
+    // {
+    //   if (_enemy.IsDead) return;
+    //   if (_isDestroyed) return;
+    //
+    //   if (_noticed)
+    //   {
+    //     await Utility.Delay(_repeatTimeForRandomWalk);
+    //     WalkRandomly();
+    //     return;
+    //   }
+    //
+    //   if (_isWalkingRandomly)
+    //   {
+    //     if (Random.Range(0, 3) == 0)
+    //     {
+    //       StopWalkingRandomly();
+    //     }
+    //
+    //     await Utility.Delay(_repeatTimeForRandomWalk);
+    //     WalkRandomly();
+    //   }
+    //
+    //   if (_enemy.IsDead) return;
+    //   if (_isDestroyed) return;
+    //
+    //   float randomYRotation = Random.Range(0f, 360f);
+    //   Quaternion targetRotation = Quaternion.Euler(0, randomYRotation, 0);
+    //
+    //   transform.DORotateQuaternion(targetRotation, 0.5f).SetEase(Ease.InOutSine);
+    //
+    //   _enemy.Animator.Walk();
+    //   _isWalkingRandomly = true;
+    //
+    //   WalkRandomly();
+    // }
     
     public void ObstacleDetected()
     {
@@ -164,16 +164,18 @@ namespace Enemy.Zombie
       _enemy.Animator.Idle();
       _isWalkingRandomly = false;
     }
-    
-    public bool IsNoticed()
-    {
-      return _noticed;
-    }
 
     private bool _isDestroyed;
     private void OnDestroy()
     { 
       _isDestroyed = true;
+    }
+
+    public void ResetAI()
+    {
+      _noticed = false;
+
+      // WalkRandomly();
     }
   }
 }

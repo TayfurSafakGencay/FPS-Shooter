@@ -1,10 +1,11 @@
-﻿using DG.Tweening;
+﻿using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Utilities;
 
 namespace Enemy.Zombie
 {
-    [RequireComponent(typeof(Outline))]  
+    // [RequireComponent(typeof(Outline))]  
   public class Enemy : MonoBehaviour, IOutlineable
   {
     public EnemyHealth Health { get; private set; }
@@ -20,8 +21,12 @@ namespace Enemy.Zombie
     public bool IsDead;
     
     public GameObject Player { get; private set; }
+
+    public Outline Outline;
     
-    public Outline Outline { get; private set; }
+    public ZombieSound ZombieSound { get; private set; }
+    
+    public List<BodyPart> BodyParts { get; private set; }
 
     private void Awake()
     {
@@ -29,6 +34,8 @@ namespace Enemy.Zombie
       
       Bindings();
       CloseOutline();
+      
+      BodyParts = new List<BodyPart>(GetComponentsInChildren<BodyPart>());
     }
 
     private void Bindings()
@@ -38,13 +45,13 @@ namespace Enemy.Zombie
       Animator = GetComponent<ZombieAnimator>();
       AI = GetComponent<EnemyAI>();
       Sound = GetComponent<ZombieSound>();
-      Outline = GetComponent<Outline>();
+      ZombieSound = GetComponent<ZombieSound>();
     }
     
     private void CloseOutline()
     {
       Outline.enabled = false;
-      Outline.OutlineColor = Color.red;
+      Outline.OutlineColor = Color.white;
     }
 
     private const float OutlineTime = 15f;
@@ -72,6 +79,22 @@ namespace Enemy.Zombie
       }
 
       sequence.OnComplete(() => Outline.enabled = false); 
+    }
+
+    public void Respawn()
+    {
+      IsDead = false;
+
+      Health.ResetHealth();
+      AI.ResetAI();
+      Ragdoll.Respawn();
+      Animator.Respawn();
+      ZombieSound.Respawn();
+
+      foreach (BodyPart bodyPart in BodyParts)
+      {
+        bodyPart.Respawn();
+      }
     }
   }
 }

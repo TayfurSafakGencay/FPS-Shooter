@@ -129,7 +129,9 @@ namespace DayCycle
       SoundManager.Instance.PlayAmbienceSound(SoundKey.NightAmbiance, 1f, 1, true);
       DOTween.To(() => RenderSettings.fogDensity, x => RenderSettings.fogDensity = x, 0.175f, 20f).SetEase(Ease.InQuad);
       RenderSettings.fogColor = Color.gray;
-      _volume.profile = _nightPostProcess;
+      
+      AnimatePostProcessing(_morningBloom, _morningColorAdjustments, 0.1f, 0.15f);
+      // _volume.profile = _nightPostProcess;
     }
     
     private async void Night()
@@ -139,6 +141,8 @@ namespace DayCycle
       
       await Utility.Delay(_waitingBeforeSkyboxChange);
       await SmoothTransition(new Color(0.9f, 0.9f, 0.9f, 0.5f), _nightSkybox, _morningSkybox);
+      
+      AnimatePostProcessing(_morningBloom, _morningColorAdjustments, 0f, 0f);
     }
     
     private async Task SmoothTransition(Color targetColor, Material oldSkybox, Material newSkyBox)

@@ -84,6 +84,11 @@ namespace Enemy.Zombie
       _animator.SetTrigger(AnimationType.Walk.ToString());
     }
     
+    public void Respawn()
+    {
+      Idle();
+    }
+    
     private enum AnimationType
     {
       Idle,

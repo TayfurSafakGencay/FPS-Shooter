@@ -99,5 +99,13 @@ namespace Enemy.Zombie
       AudioSource.clip = DeathSounds[index];
       AudioSource.Play();
     }
+
+    public void Respawn()
+    {
+      _isScreaming = false;
+      _isAttacking = false;
+      
+      StartCoroutine(PlayRandomGrumbleSound());
+    }
   }
 }
