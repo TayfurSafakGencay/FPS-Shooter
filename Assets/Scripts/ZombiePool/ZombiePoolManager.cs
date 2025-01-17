@@ -15,7 +15,7 @@ namespace ZombiePool
         [SerializeField]
         private Enemy.Zombie.Enemy _enemyPrefab;
 
-        private const int initialPoolSize = 3;
+        private const int initialPoolSize = 60;
 
         private void Awake()
         {

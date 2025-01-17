@@ -1,5 +1,4 @@
-﻿using System;
-using Systems.EndGame;
+﻿using Systems.EndGame;
 using UnityEngine;
 using ZombiePool;
 
@@ -42,16 +41,20 @@ namespace Systems.Chunk
       if (!_active) return;
       _active = false;
       
+      print(gameObject.name);
       EndGameSystem.Instance.AddZombieCount();
 
-      _collider.enabled = false;
-      enabled = false;
-
       Enemy.Zombie.Enemy enemy = ZombiePoolManager.Instance.GetFromPool();
-      enemy.gameObject.transform.position = transform.position;
+      
+      string spawnerNumber = gameObject.name.Split(": ")[1]; 
+      enemy.name = "Enemy: " + spawnerNumber;
+      
+      enemy.gameObject.transform.position = transform.position - 0.2f * Vector3.up;
       enemy.gameObject.SetActive(true);
       enemy.Respawn();
       
+      _collider.enabled = false;
+      enabled = false;
       gameObject.SetActive(false);
     }
   }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PanelCanvas
   - PlayerSpawnerTrigger
+  - RestrictArea
   layers:
   - Default
   - TransparentFX

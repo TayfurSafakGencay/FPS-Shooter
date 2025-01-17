@@ -1,8 +1,16 @@
-﻿
-namespace Managers.Manager.Settings
+﻿namespace Managers.Manager.Settings
 {
   public partial class SettingsManager
   {
+    private void Start()
+    {
+      SetMasterVolume(1);
+      SetMusicVolume(1);
+      SetSFXVolume(1);
+      SetUIVolume(1);
+      SetAmbienceVolume(1);
+    }
+
     public float MasterVolume { get; private set; }
     
     public void SetMasterVolume(float volume)

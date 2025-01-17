@@ -133,6 +133,7 @@ namespace Enemy.Zombie
     {
       gameObject.layer = LayerMask.NameToLayer(_normalLayer);
       _bodyParts.AddRange(_removedBodyParts);
+      _removedBodyParts.Clear();
       DisableRagdoll();
       
       Component[] components = gameObject.GetComponents<Component>();

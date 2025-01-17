@@ -31,6 +31,8 @@ namespace Actor
 
     private void Update()
     {
+      if (Time.timeScale == 0) return;
+
       if (Keyboard.current.fKey.wasPressedThisFrame)
       {
         _player.GetFlashlight().GunLightSwitch();

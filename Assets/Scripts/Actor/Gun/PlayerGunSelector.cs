@@ -127,6 +127,15 @@ namespace Actor.Gun
       _player.GetPlayerAnimationController().ChangeArmAnimator(_emptyHand.transform);
     }
 
+    public async Task EndGame()
+    {
+      await _player.GetPlayerAnimationController().GunChangingAnimation();
+      _player.GetPlayerAnimationController().ResetAnimator();
+      ActiveGun.GetModel().SetActive(false);
+      SecondaryGun.GetModel().SetActive(false);
+      _emptyHand.SetActive(false);
+    }
+
     public void Death()
     {
       _emptyHand.SetActive(false);

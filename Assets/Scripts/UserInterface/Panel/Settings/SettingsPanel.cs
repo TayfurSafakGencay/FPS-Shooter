@@ -13,6 +13,7 @@ namespace UserInterface.Panel.Settings
     private GameObject _openedPanel;
     
     private GameObject _openedHighlight;
+    
     protected override void ChangePanelLayer()
     {
       SortingGroup.sortingOrder = PanelLayer.SettingsPanel;
@@ -27,6 +28,11 @@ namespace UserInterface.Panel.Settings
 
     private void InitialSettings()
     {
+      Time.timeScale = 0;
+      
+      Cursor.visible = true;
+      Cursor.lockState = CursorLockMode.None;
+      
       _openedPanel = _audioSettingsPanel;
       _openedHighlight = _audioButtonHighlight;
       
@@ -35,7 +41,18 @@ namespace UserInterface.Panel.Settings
       _controlsSettingsPanel.SetActive(false);
       _controlsButtonHighlight.SetActive(false);
     }
-    
+
+    private void Update()
+    {
+      if (Input.GetKeyDown(KeyCode.Escape))
+      {
+        if (GameManager.Instance.CurrentGameState == GameState.Game)
+        {
+          ClosePanel();
+        }
+      }
+    }
+
     private void OpenSettingsContentPanel(ref GameObject panel, ref GameObject highlight, string title)
     {
       _openedPanel.gameObject.SetActive(false);
@@ -71,6 +88,19 @@ namespace UserInterface.Panel.Settings
     public void OpenControlsSettings()
     {
       OpenSettingsContentPanel(ref _controlsSettingsPanel, ref _controlsButtonHighlight, _controlsTitle);
+    }
+
+    public void ClosePanel()
+    {
+      Time.timeScale = 1;
+
+      if (GameManager.Instance.CurrentGameState == GameState.Game)
+      {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+      }
+      
+      PanelManager.Instance.RemovePanel(PanelKey.SettingsPanel);
     }
   }
 }

@@ -22,7 +22,7 @@ namespace DayCycle
       }
     }
 
-    public const float DayTimeChangingTime = 180f;
+    public const float DayTimeChangingTime = 120f;
 
     private void Start()
     {
@@ -30,21 +30,28 @@ namespace DayCycle
 
       StartDayCycle();
     }
+
+    public static void EndGame()
+    {
+      _dayCycleSequence.Kill();
+    }
+    
+    private static Sequence _dayCycleSequence;
     
     private void StartDayCycle()
     {
-      Sequence dayCycleSequence = DOTween.Sequence();
+      _dayCycleSequence = DOTween.Sequence();
       
-      dayCycleSequence.Append(_directionalLight.DORotate(new Vector3(90, 130, 90),
+      _dayCycleSequence.Append(_directionalLight.DORotate(new Vector3(90, 130, 90),
         DayTimeChangingTime, RotateMode.FastBeyond360).OnComplete( () => ChangeDayTime(DayTime.Noon)));
       
-      dayCycleSequence.Append(_directionalLight.DORotate(new Vector3(180, 130, 90),
+      _dayCycleSequence.Append(_directionalLight.DORotate(new Vector3(180, 130, 90),
         DayTimeChangingTime, RotateMode.FastBeyond360).OnComplete( () => ChangeDayTime(DayTime.Evening)));
          
-      dayCycleSequence.Append(_directionalLight.DORotate(new Vector3(270, 130, 90),
+      _dayCycleSequence.Append(_directionalLight.DORotate(new Vector3(270, 130, 90),
         DayTimeChangingTime, RotateMode.FastBeyond360).OnComplete( () => ChangeDayTime(DayTime.Night)));
       
-      dayCycleSequence.Append(_directionalLight.DORotate(new Vector3(360, 130, 90),
+      _dayCycleSequence.Append(_directionalLight.DORotate(new Vector3(360, 130, 90),
         DayTimeChangingTime, RotateMode.FastBeyond360).OnComplete(() =>
         {
           ChangeDayTime(DayTime.Morning);

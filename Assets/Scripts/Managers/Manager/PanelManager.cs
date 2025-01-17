@@ -109,6 +109,11 @@ namespace Managers.Manager
 
       _panelHandles.Clear();     
     }
+    
+    public bool IsPanelActive(PanelKey panelKey)
+    {
+      return _panelHandles.ContainsKey(panelKey);
+    }
   }
 
   public enum PanelKey

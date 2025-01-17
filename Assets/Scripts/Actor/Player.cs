@@ -108,12 +108,12 @@ namespace Actor
 
     public async void LevelCompleted()
     {
-      GetPlayerAnimationController().EndGame();
+      _playerAnimationController.EndGame();
+      _firstPersonController.SetCanMove(false);
 
-      await Utility.Delay(1f);
+      await Utility.Delay(0.2f);
       
-      _playerGunSelector.EmptyHand();
-      VignetteEffect.GameCompleted();
+      _playerGunSelector.EndGame();
       _playerScreenPanel.gameObject.SetActive(false);
 
       Component[] components = gameObject.GetComponents<Component>();

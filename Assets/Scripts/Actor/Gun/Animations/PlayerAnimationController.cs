@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Base.Enum;
 using Guns.GunParts;
 using UnityEngine;
 using Utilities;
@@ -174,10 +173,10 @@ namespace Actor.Gun.Animations
     
     private void DropMagazine()
     {
-      GameObject droppedMagazine = Instantiate(_magazine, _magazine.transform.position, new Quaternion(0,0,90,1));
-      droppedMagazine.AddComponent<Rigidbody>();
-      droppedMagazine.AddComponent<BoxCollider>().size = _gunPart.MagazineColliderSize;
-      droppedMagazine.transform.gameObject.layer = (int)Layer.OnlyVisual;
+      // GameObject droppedMagazine = Instantiate(_magazine, _magazine.transform.position, new Quaternion(0,0,90,1));
+      // droppedMagazine.AddComponent<Rigidbody>();
+      // droppedMagazine.AddComponent<BoxCollider>().size = _gunPart.MagazineColliderSize;
+      // droppedMagazine.transform.gameObject.layer = (int)Layer.OnlyVisual;
     }
 
     private void AttachMagazine()

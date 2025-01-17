@@ -133,6 +133,7 @@ namespace Enemy.Zombie
       transform.localScale = Vector3.one;
       
       _childBodyParts.AddRange(_destroyedBodyParts);
+      _destroyedBodyParts.Clear();
     }
   }
   public enum BodyPartKey

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Managers.Manager;
-using Managers.Manager.Settings;
 using PostProcess;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -103,6 +102,7 @@ namespace Actor
 
     public async void Die()
     {
+      _hearthBeatAudioSource.loop = false;
       _hearthBeatAudioSource.Stop();
       _hearthBeatAudioSource.clip = _deathAudioClip;
       _hearthBeatAudioSource.Play();

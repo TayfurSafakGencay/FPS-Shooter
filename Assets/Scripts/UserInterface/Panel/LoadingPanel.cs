@@ -20,6 +20,9 @@ namespace UserInterface.Panel
     {
       base.Awake();
       
+      Cursor.lockState = CursorLockMode.Locked;
+      Cursor.visible = false;
+      
       SoundManager.Instance.SetVolumeFromPlayerPrefs();
     }
 

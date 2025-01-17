@@ -1,8 +1,10 @@
 ﻿using Actor;
 using Audio;
+using DayCycle;
 using HelicopterAction;
 using Managers.Manager;
 using Managers.Manager.Settings;
+using PostProcess;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -13,7 +15,6 @@ namespace Systems.EndGame
   public class EndGameSystem : MonoBehaviour
   {
     public static EndGameSystem Instance { get; private set; }
-    // Helikopterin inmesi için bütün zombileri öldür yazısı çıkar.
     
     private const string _helicopterAddressable = "Helicopter";
     
@@ -24,6 +25,8 @@ namespace Systems.EndGame
     private int _spawnedZombieCount;
     
     private Player _player;
+
+    public bool EndGameChecker;
     
     private void Awake()
     {
@@ -40,6 +43,8 @@ namespace Systems.EndGame
     {
       _spawnedZombieCount++;
       _zombieCount++;
+      
+      print($"Zombie Spawned! - Spawned Zombie Count: {_spawnedZombieCount}, Zombie Spawner Count: {_zombieSpawnerCount}, Zombie Count: {_zombieCount}");
     }
     
     public void AddZombieSpawner()
@@ -50,24 +55,29 @@ namespace Systems.EndGame
     public void DeathZombie()
     {
       _zombieCount--;
-      print("Spawned Zombie Count: " + _spawnedZombieCount + " - Zombie Spawner Count:" + _zombieSpawnerCount + " - Zombie Count:" + _zombieCount);
+      
+      print($"Zombie Dead! - Spawned Zombie Count: {_spawnedZombieCount}, Zombie Spawner Count: {_zombieSpawnerCount}, Zombie Count: {_zombieCount}");
 
-      if (_spawnedZombieCount + 10 <= _zombieSpawnerCount)
+      if (_spawnedZombieCount < _zombieSpawnerCount)
       {
-        print("Spawned Zombie Count: " + _spawnedZombieCount + " - Zombie Spawner Count:" + _zombieSpawnerCount);
+        print("Henüz tüm zombiler spawn olmadı!");
         return;
       }
 
-      if (_zombieCount == 5)
+      if (_zombieCount < 10 && !_helicopterCalled)
       {
         CallHelicopter();
+        HelicopterReached();
       }
       else if (_zombieCount == 0)
       {
         _helicopter.Land();
-        HelicopterReached();
+        
+        string helicopterLandingText = "You’ve secured the entire area, and the helicopter is now landing. Proceed to the extraction point immediately!";
+      
+        _player.GetPlayerScreenPanel().OnInfo(helicopterLandingText);
       }
-      else if (_zombieCount < 5)
+      else
       {
         HelicopterReached();
       }
@@ -94,12 +104,6 @@ namespace Systems.EndGame
 
     public void HelicopterReached()
     {
-      if (_zombieCount == 0)
-      {
-        _player.GetPlayerScreenPanel().DisableInfo();
-        return;
-      }
-      
       string helicopterReachedText = $"Secure the whole area for the helicopter to land safely! {_zombieCount} zombies left.";
       
       _player.GetPlayerScreenPanel().OnInfo(helicopterReachedText);
@@ -119,6 +123,11 @@ namespace Systems.EndGame
 
     public async void EndGame()
     {
+      DayCycleGeneralOperations.EndGame();
+      DayCycleSystem.EndGame();
+      
+      EndGameChecker = true;
+      
       SettingsManager.Instance.DisableDeviceControls();
       _player.LevelCompleted();
 
@@ -128,8 +137,9 @@ namespace Systems.EndGame
       await Utility.Delay(_gameEndSoundDisableDuration + 1.5f);
 
       SoundManager.Instance.PlayMusic(_gameEndClip);
-      await Utility.Delay(_gameEndClip.length);
+      await Utility.Delay(_gameEndClip.length + 1f);
       
+      VignetteEffect.GameCompleted();
       SoundManager.Instance.PlayMusicForEndGame(SoundKey.MainMenuMusic);
     }
   }

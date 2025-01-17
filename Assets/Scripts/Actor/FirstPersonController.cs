@@ -121,6 +121,8 @@ namespace Actor
 
     private void Update()
     {
+      if (Time.timeScale == 0) return;
+      
       if (_player.GetPlayerHealth().IsDead) return;
       
       if (CanMove)
@@ -297,8 +299,6 @@ namespace Actor
     public bool GetIsCrouching() => _isCrouching;
 
     public bool GetIsJumping() => _shouldJump;
-
-    public bool GetCanMove() => CanMove;
 
     public bool GetIsSliding() => _isSliding;
 

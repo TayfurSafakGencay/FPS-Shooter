@@ -15,7 +15,6 @@ namespace HelicopterAction
     public float rotationDuration = 0.5f;
 
     public Transform Rotor;
-    public float RotorSpeed = 360f;
 
     public GameObject Disabled;
     
@@ -74,6 +73,8 @@ namespace HelicopterAction
       helicopterSequence.Play();
     }
     
+    private float RotorSpeed = 10;
+
     private void AnimateRotor()
     {
       Rotor.DORotate(new Vector3(0, 360, 0), 1f / RotorSpeed, RotateMode.LocalAxisAdd)
@@ -113,6 +114,8 @@ namespace HelicopterAction
 
     private void OnDayTimeChange(DayTime dayTime)
     {
+      if (EndGameSystem.Instance.EndGameChecker) return;
+      
       switch (dayTime)
       {
         case DayTime.Night:

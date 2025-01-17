@@ -59,9 +59,9 @@ namespace Enemy.Zombie
     {
       if (_enemy.IsDead) return;
       
-      float screamSoundLength = ScreamSound.length;
-      if (ChaseSystem.Screaming) return; 
-      ChaseSystem.Screamed(screamSoundLength);
+      // float screamSoundLength = ScreamSound.length;
+      // if (ChaseSystem.Screaming) return; 
+      // ChaseSystem.Screamed(screamSoundLength);
       
       _isScreaming = true;
 
@@ -70,8 +70,8 @@ namespace Enemy.Zombie
       AudioSource.clip = ScreamSound;
       AudioSource.Play();
 
-      await Utility.Delay(screamSoundLength);
-      _isScreaming = false;
+      // await Utility.Delay(screamSoundLength);
+      // _isScreaming = false;
     }
 
     private bool _isAttacking;

@@ -58,7 +58,6 @@ namespace Managers.Manager
     LoadAssets,
     Game,
     Death,
-    TestScene,
   }
 
   public enum GameScenes

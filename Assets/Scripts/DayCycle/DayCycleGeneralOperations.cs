@@ -77,8 +77,17 @@ namespace DayCycle
       RenderSettings.fogDensity = 0;
     }
 
+    private static bool _isGameEnd;
+
+    public static void EndGame()
+    {
+      _isGameEnd = true;
+    }
+
     private void OnDayTimeChanged(DayTime dayTime)
     {
+      if(_isGameEnd) return;
+      
       switch (dayTime)
       {
         case DayTime.Morning:

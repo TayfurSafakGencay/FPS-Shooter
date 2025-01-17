@@ -48,10 +48,15 @@ namespace UserInterface.Panel
     
     [SerializeField]
     private TextMeshProUGUI _infoText;
+    
+    [SerializeField]
+    private TextMeshProUGUI _fpsText;
 
+    private Systems.FPSCounter.FPSDisplay _fpsDisplay;
     private void Awake()
     {
       Player = FindObjectOfType<Player>();
+      _fpsDisplay = Systems.FPSCounter.FPSDisplay.Instance;
       
       _lootBackground.SetActive(false);
       _infoObject.SetActive(false);
@@ -69,6 +74,7 @@ namespace UserInterface.Panel
 
     private void Update()
     {
+      // _fpsText.SetText(_fpsDisplay.GetFPS().ToString("f1"));
       _healthSlider.fillAmount = Player.GetPlayerHealth().GetHealthPercentage();
       _staminaSlider.fillAmount = Player.GetPlayerStamina().GetStaminaPercentage();
       _pillCountText.text = "x" + Player.GetInventory().GetConsumableCount(LootKey.Pill);
@@ -112,7 +118,7 @@ namespace UserInterface.Panel
       {
         _bloodScreen.color = new Color(1, 1, 1, 1 - health / 100);
 
-        await Utility.Delay(0.5f);
+        await Utility.Delay(0.25f);
           
         _bloodFadeAnimation = _bloodScreen.DOColor(new Color(1,1,1,0), 0.5f).OnComplete(() => _bloodScreen.enabled = false);
       }

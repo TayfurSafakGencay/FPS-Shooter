@@ -2,6 +2,7 @@
 using Managers.Manager;
 using Managers.Manager.Settings;
 using UserInterface.Panel.Base;
+using UnityEngine;
 
 namespace UserInterface.Panel
 {
@@ -35,10 +36,9 @@ namespace UserInterface.Panel
     public void QuitGame()
     {
 #if UNITY_EDITOR
-      // Editörde oyunu durdurur
       UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit();
+         Application.Quit();
 #endif
     }
 

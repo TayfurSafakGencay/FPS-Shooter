@@ -1,9 +1,9 @@
-﻿using Base.Interface;
-using DG.Tweening;
+﻿using System;
+using Actor;
+using Base.Interface;
 using Systems.Chase;
 using UnityEngine;
 using UnityEngine.AI;
-using Utilities;
 using Random = UnityEngine.Random;
 
 namespace Enemy.Zombie
@@ -20,6 +20,10 @@ namespace Enemy.Zombie
 
     private Enemy _enemy;
     
+    private ZombieRandomWalkerManager _zombieRandomWalkerManager;
+    
+    private Player _player;
+    
     private void Awake()
     {
       _enemy = GetComponent<Enemy>();
@@ -27,8 +31,6 @@ namespace Enemy.Zombie
       _navMeshAgent = GetComponent<NavMeshAgent>();
       _target = GameObject.FindWithTag("Player").transform;
       
-      _isDestroyed = false;
-
       _navMeshAgent.speed = 4;
       _navMeshAgent.angularSpeed = 360;
       _navMeshAgent.stoppingDistance = 2;
@@ -36,7 +38,9 @@ namespace Enemy.Zombie
 
     private void Start()
     {
-      // WalkRandomly();
+      _zombieRandomWalkerManager = ZombieRandomWalkerManager.Instance;
+      _zombieRandomWalkerManager.RandomlyWalk += RandomWalkDecision;
+      
     }
 
     private void Update()
@@ -44,6 +48,14 @@ namespace Enemy.Zombie
       if (!_noticed) return;
       
       Chase();        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+      if (other.CompareTag("RestrictArea"))
+      {
+        StopWalkingRandomly();
+      }
     }
 
     private void Chase()
@@ -106,76 +118,33 @@ namespace Enemy.Zombie
       _enemy.Animator.Scream();
     }
 
-    private bool _isWalkingRandomly;
-    
-    private const float _minTimeForRandomWalk = 20;
-    
-    private const float _maxTimeForRandomWalk = 50;
-    
-    private const float _repeatTimeForRandomWalk = 60;
-    // public async void WalkRandomly()
-    // {
-    //   if (_enemy.IsDead) return;
-    //   if (_isDestroyed) return;
-    //
-    //   if (_noticed)
-    //   {
-    //     await Utility.Delay(_repeatTimeForRandomWalk);
-    //     WalkRandomly();
-    //     return;
-    //   }
-    //
-    //   if (_isWalkingRandomly)
-    //   {
-    //     if (Random.Range(0, 3) == 0)
-    //     {
-    //       StopWalkingRandomly();
-    //     }
-    //
-    //     await Utility.Delay(_repeatTimeForRandomWalk);
-    //     WalkRandomly();
-    //   }
-    //
-    //   if (_enemy.IsDead) return;
-    //   if (_isDestroyed) return;
-    //
-    //   float randomYRotation = Random.Range(0f, 360f);
-    //   Quaternion targetRotation = Quaternion.Euler(0, randomYRotation, 0);
-    //
-    //   transform.DORotateQuaternion(targetRotation, 0.5f).SetEase(Ease.InOutSine);
-    //
-    //   _enemy.Animator.Walk();
-    //   _isWalkingRandomly = true;
-    //
-    //   WalkRandomly();
-    // }
-    
-    public void ObstacleDetected()
-    {
-      if (!_isWalkingRandomly) return;
-      
-      StopWalkingRandomly();
-    }
-    
     private void StopWalkingRandomly()
     {
       if (_enemy.IsDead) return;
+      if (_noticed) return;
       
       _enemy.Animator.Idle();
-      _isWalkingRandomly = false;
-    }
-
-    private bool _isDestroyed;
-    private void OnDestroy()
-    { 
-      _isDestroyed = true;
     }
 
     public void ResetAI()
     {
       _noticed = false;
+    }
 
-      // WalkRandomly();
+    private const float _maxDistanceForWalk = 55f;
+    public void RandomWalkDecision(Vector3 playerPosition)
+    {
+      if (_enemy.IsDead) return;
+      if (_noticed) return;
+      if (Random.Range(0, 10) == 0) return;
+      if (Vector3.Distance(transform.position, playerPosition) > _maxDistanceForWalk) return;
+      
+      Vector3 position = _zombieRandomWalkerManager.GetRandomPointOnTerrain(transform.position);
+      _navMeshAgent.destination = position;
+      
+      _navMeshAgent.isStopped = false;
+      
+      _enemy.Animator.Walk();
     }
   }
 }

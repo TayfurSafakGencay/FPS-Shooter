@@ -7,5 +7,10 @@ namespace Enemy.Zombie
     public Vector3 InitialRotation;
 
     public Rigidbody Rigidbody;
+
+    private void Start()
+    {
+      Destroy(gameObject, 10);
+    }
   }
 }

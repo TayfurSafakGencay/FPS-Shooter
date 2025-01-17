@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Guns.Enum;
 using LootSystem;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utilities;
 
 namespace Actor
@@ -50,17 +49,17 @@ namespace Actor
           return;
       }
       
-      CheckIsThereAmmoInInventory(gunType);
-
       if (!IsRadarUsed)
       {
         _player.GetPlayerGunSelector().EquipGun(gunType);
+        CheckIsThereAmmoInInventory(gunType);
         return;
       }
       
       UseRadar();
       await Utility.Delay(0.85f);
       _player.GetPlayerGunSelector().EquipGun(gunType);
+      CheckIsThereAmmoInInventory(gunType);
     }
     
     private void CheckIsThereAmmoInInventory(GunType gunType)
@@ -82,15 +81,16 @@ namespace Actor
           }
           break;
       }
+
       if (Items.ContainsKey(gunType switch
+          {
+
+            GunType.AK47 => LootKey.Ammo_AK47,
+            GunType.M4 => LootKey.Ammo_M4,
+            _ => throw new ArgumentOutOfRangeException()
+          }))
       {
         
-        GunType.AK47 => LootKey.Ammo_AK47,
-        GunType.M4 => LootKey.Ammo_M4,
-        _ => throw new ArgumentOutOfRangeException()
-      }))
-      {
-        return;
       }
     }
     

@@ -9,6 +9,21 @@ namespace UserInterface.Panel.Settings
 {
   public class AudioSettingsPanel : BasePanel
   {
+    private void OnEnable()
+    {
+      _masterSlider.value = SettingsManager.Instance.MasterVolume;
+      _musicSlider.value = SettingsManager.Instance.MusicVolume;
+      _sfxSlider.value = SettingsManager.Instance.SFXVolume;
+      _uiSlider.value = SettingsManager.Instance.UIVolume;
+      _ambienceSlider.value = SettingsManager.Instance.AmbienceVolume;
+      
+      _masterValueText.text = $"{(int)(_masterSlider.value * 100)}%";
+      _musicValueText.text = $"{(int)(_musicSlider.value * 100)}%";
+      _sfxValueText.text = $"{(int)(_sfxSlider.value * 100)}%";
+      _uiValueText.text = $"{(int)(_uiSlider.value * 100)}%";
+      _ambienceValueText.text = $"{(int)(_ambienceSlider.value * 100)}%";
+    }
+
     protected override void ChangePanelLayer()
     {
       SortingGroup.sortingOrder = PanelLayer.SettingsPanelContent;
@@ -52,6 +67,16 @@ namespace UserInterface.Panel.Settings
     {
       SettingsManager.Instance.SetUIVolume(_uiSlider.value);
       _uiValueText.text = $"{(int)(_uiSlider.value * 100)}%";
+    }
+    
+    [Header("Ambience Audio")]
+    [SerializeField] private Slider _ambienceSlider;
+    [SerializeField] private TextMeshProUGUI _ambienceValueText;
+
+    public void OnAmbienceSliderValueChanged()
+    {
+      SettingsManager.Instance.SetAmbienceVolume(_ambienceSlider.value);
+      _ambienceValueText.text = $"{(int)(_ambienceSlider.value * 100)}%";
     }
   }
 }
